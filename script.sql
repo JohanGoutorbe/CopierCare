@@ -8,6 +8,8 @@ CREATE TABLE utilisateurs (
     prenom VARCHAR(50) NOT NULL,
     poste VARCHAR(150) NOT NULL,
     email VARCHAR(100) NOT NULL,
+    rang VARCHAR(50) NOT NULL, /* USER | ADMIN */
+    photo TEXT NOT NULL,
     PRIMARY KEY (id)
 );
 
