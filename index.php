@@ -15,12 +15,12 @@ $iterations_number = 3;
 $longueur_releve_compteur = 7;
 
 while ($query = $stmt->fetch()) {
-    $i = 1;
+    $i = 0;
     $values = -9;
-    while ($i-1 < $iterations_number) {
+    while ($i < $iterations_number) {
+        $i++;
         $actual_values = $values * $i;
         $num = substr($query['test'], $actual_values, $longueur_releve_compteur);
-        $i++;
         echo $num . "; ";
     }
     echo "</br>";
