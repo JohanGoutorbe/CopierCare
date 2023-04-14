@@ -12,7 +12,7 @@
             </div>
 
             <div class="sidebar">
-                <a href="#">
+                <a href="#" class="active">
                     <span class="material-icons-sharp">home</span>
                     <h3>Accueil</h3>
                 </a>
