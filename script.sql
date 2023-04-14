@@ -42,4 +42,5 @@ CREATE TABLE pieces (
     reference VARCHAR(50),
     duree_de_vie VARCHAR(10) NOT NULL,
     PRIMARY KEY (id)
+    date_modif
 );
