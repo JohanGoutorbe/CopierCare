@@ -2,6 +2,7 @@
 
 session_start();
 
+// Connexion à la base de données locale
 define('USER', "root");
 define('PASSWD', "");
 define('SERVER', "localhost");
