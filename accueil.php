@@ -25,7 +25,7 @@
                     <h3>Clients</h3>
                 </a>
                 <a href="#">
-                    <span class="material-icons-sharp">print_outline</span>
+                    <span style="width: 24px;" class="material-icons-sharp">print_outline</span>
                     <h3>Copieurs</h3>
                 </a>
                 <a href="#">
