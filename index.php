@@ -28,4 +28,6 @@ while ($query = $stmt->fetch()) {
 */
 
 include './head.php';
+
+include './accueil.php'
 ?>
