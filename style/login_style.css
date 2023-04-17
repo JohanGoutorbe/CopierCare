@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+    display: flex;
+    justify-content: center;
+    flex-direction: columns;
+    align-items: center;
+    background-color: #f6f6f958;
+    font-family: 'Roboto', sans-serif;
+}
+
+section {
+    height: 100vh;
+    padding-top: 10vh;
+}
+
+form {
+    background-color: #fff;
+    padding: 40px 50px;
+    border-radius: 10px;
+    min-width: 300px;
+}
+
+form h1 {
+    color: #eb7371;
+    text-align: center;
+}
+
+form .social-media {
+    margin-top: -10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+form p.choose-email {
+    text-align: center;
+}
+
+form .inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+form .inputs input[type='text'], input[type='password'] {
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(132, 139, 200, 0.18);
+    outline: none;
+    margin-bottom: 15px;
+}
+
+form button {
+    padding: 15px 25px;
+    border-radius: 5px;
+    border: none;
+    font-size: 15px;
+    color: #fff;
+    background-color: #eb7371;
+    outline: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    section {
+        height: 100%;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    form {
+        padding: 20px 10px
+    }
+}
