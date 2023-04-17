@@ -113,6 +113,32 @@
                 </div>
                 <!--------------- END OF INCOME ------------>
             </div>
+            <!--------------- END OF INSIGHTS ------------>
+
+            <div class="alert">
+                <h2>Alertes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pièce</th>
+                            <th>Copieur</th>
+                            <th>Client</th>
+                            <th>Limitte de la pièce</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Fordable Mini Drone</td>
+                            <td>85631</td>
+                            <td>Due</td>
+                            <td class="warning">Pending</td>
+                            <td class="primary">Details</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="#">Show All</a>
+            </div>
         </main>
     </div>
 </body>
