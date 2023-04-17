@@ -198,7 +198,7 @@
                         <img src="./files/images/profile-2.jpg">
                     </div>
                     <div class="message">
-                        <p><b>Mike Tyson</b>recieved his order of Night lion tech GPS drone.</p>
+                        <p><b>Mike Tyson</b> recieved his order of Night lion tech GPS drone.</p>
                         <small class="text-muted">2 Minutes Ago</small>
                     </div>
                 </div>
@@ -207,7 +207,7 @@
                         <img src="./files/images/profile-3.jpg">
                     </div>
                     <div class="message">
-                        <p><b>Diana Ayi</b>declien her order of 2 DJI Air 2S.</p>
+                        <p><b>Diana Ayi</b> declien her order of 2 DJI Air 2S.</p>
                         <small class="text-muted">5 Minutes Ago</small>
                     </div>
                 </div>
@@ -216,7 +216,7 @@
                         <img src="./files/images/profile-4.jpg">
                     </div>
                     <div class="message">
-                        <p><b>Mandy Roy</b>recieved his order of Larvender KF102 Drone.</p>
+                        <p><b>Mandy Roy</b> recieved his order of Larvender KF102 Drone.</p>
                         <small class="text-muted">6 Minutes Ago</small>
                     </div>
                 </div>
