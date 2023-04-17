@@ -366,6 +366,7 @@ main table tbody td {
     border-bottom: 1px solid var(--color-light);
     color: var(--color-dark-variant);
 }
+
 main table tbody tr:last-child td {
     border: none;
 }
@@ -375,4 +376,31 @@ main .alert a {
     display: block;
     margin: 1rem auto;
     color: var(--color-primary);
+}
+
+/* ------------------ RIGHT ------------------ */
+.right {
+    margin-top: 1.4rem;
+}
+
+.right .top {
+    display: flex;
+    justify-content: end;
+    gap: 2rem;
+    background: gray;
+}
+
+.right .top button {
+    display: none;
+}
+
+.right .theme-toggler {
+    background: var(--color-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 1.6rem;
+    width: 4.2rem;
+    cursor: pointer;
+    border-radius: var(--border-radius-1);
 }
