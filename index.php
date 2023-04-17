@@ -31,6 +31,7 @@ while ($query = $stmt->fetch()) {
 */
 
 include './head.php';
+include './aside.php';
 
 include './accueil.php'
 ?>
