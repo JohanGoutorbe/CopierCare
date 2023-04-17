@@ -7,6 +7,9 @@ error_reporting(E_ALL);
 
 include './dbconnect.php';
 /*
+
+<!-- Lire et écrire les relevés compteurs dans la base de données -->
+
 $query  = "SELECT * FROM `test`";
 $stmt = $db->prepare($query);
 $stmt->execute();
