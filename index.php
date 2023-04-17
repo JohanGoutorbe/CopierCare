@@ -35,7 +35,8 @@ while ($query = $stmt->fetch()) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CopierCare - Accueil</title>
+    <title>CopierCare - Tableau de bord
+    </title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+outlined">
     <link rel="stylesheet" href="./style/style.css">
@@ -91,7 +92,7 @@ while ($query = $stmt->fetch()) {
             </div>
         </aside>
         <!----------------------- END OF ASIDE ------------------------->
-        
+
         <main>
             <h1>Tableau de bord</h1>
 
