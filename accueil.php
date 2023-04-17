@@ -123,9 +123,9 @@
 
         <div class="right">
             <div class="top">
-                <buton id="menu-btn">
+                <button id="menu-btn">
                     <span class="material-icons-sharp">menu</span>
-                </buton>
+                </button>
                 <div class="theme-toggler">
                     <span class="material-icons-sharp active">light_mode</span>
                     <span class="material-icons-sharp">dark_mode</span>
