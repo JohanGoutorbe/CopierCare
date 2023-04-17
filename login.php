@@ -20,19 +20,19 @@ error_reporting(E_ALL);
 
 <body>
     <section>
-        <form action="./login_processing.php" method="post">
+        <form action="./login_processing.php" method="post" class="form1">
             <h1>Se connecter</h1>
-            <p class="choose-email">En utilisant un nom d'utilisateur :</p>
+            <p class="choose-email">En utilisant un <strong>nom d'utilisateur</strong> :</p>
             <div class="inputs">
                 <input type="text" placeholder="Nom d'utiliateur">
                 <input type="password" placeholder="Mot de passe">
                 <button type="submit">Se connecter</button>
             </div>
         </form>
-        <form action="./login_processing.php" method="post">
-            <p class="choose-email">En utilisant un nom d'utilisateur :</p>
+        <form action="./login_processing.php" method="post" class="form2">
+            <p class="choose-email">En utilisant une <strong>adresse email</strong> :</p>
             <div class="inputs">
-                <input type="text" placeholder="Nom d'utiliateur">
+                <input type="email" placeholder="Adresse email">
                 <input type="password" placeholder="Mot de passe">
                 <button type="submit">Se connecter</button>
             </div>
