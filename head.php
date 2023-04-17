@@ -9,4 +9,5 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+outlined">
     <link rel="stylesheet" href="./style/style.css">
     <link rel="shortcut icon" href="./files/logo_copiercare.png" type="image/x-icon">
+    <script src="./index.js"></script>
 </head>
