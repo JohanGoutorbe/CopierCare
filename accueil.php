@@ -184,9 +184,44 @@
                         <p>Hey, <b>Daniel</b></p>
                         <small class="text-muted">Admin</small>
                     </div>
+                    <div class="profile-photo">
+                        <img src="./files/images/profile-1.jpg" alt="Photo de profil">
+                    </div>
                 </div>
             </div>
+            <!-- END OF TOP -->
+            <div class="recent-updates"></div>
+            <h2>Recent Updates</h2>
+            <div class="updates">
+                <div class="update">
+                    <div class="profile-photo">
+                        <img src="./files/images/profile-2.jpg">
+                    </div>
+                    <div class="message">
+                        <p><b>Mike Tyson</b>recieved his order of Night lion tech GPS drone.</p>
+                        <small class="text-muted">2 Minutes Ago</small>
+                    </div>
+                </div>
+                <div class="update">
+                    <div class="profile-photo">
+                        <img src="./files/images/profile-3.jpg">
+                    </div>
+                    <div class="message">
+                        <p><b>Diana Ayi</b>declien her order of 2 DJI Air 2S.</p>
+                        <small class="text-muted">5 Minutes Ago</small>
+                    </div>
+                </div>
+                <div class="update">
+                    <div class="profile-photo">
+                        <img src="./files/images/profile-4.jpg">
+                    </div>
+                    <div class="message">
+                        <p><b>Mandy Roy</b>recieved his order of Larvender KF102 Drone.</p>
+                        <small class="text-muted">6 Minutes Ago</small>
+                    </div>
+                </div>
 
+            </div>
         </div>
     </div>
 </body>
