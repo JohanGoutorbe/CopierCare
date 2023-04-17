@@ -646,7 +646,7 @@ main .alert a {
     .right .top .theme-toggler {
         width: 4.4rem;
         position: absolute;
-        left: 66%;
+        left: 60%;
     }
 
     .right .profile .info {
@@ -662,5 +662,7 @@ main .alert a {
         left: 1rem;
     }
 
-
+    .right .top button span {
+        font-size: 2rem;
+    }
 }
