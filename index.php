@@ -5,11 +5,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-include './dbconnect.php';
 /*
-
 <!-- Lire et écrire les relevés compteurs dans la base de données -->
-
 $query  = "SELECT * FROM `test`";
 $stmt = $db->prepare($query);
 $stmt->execute();
