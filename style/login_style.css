@@ -17,9 +17,18 @@ section {
 
 form {
     background-color: #fff;
-    padding: 40px 50px;
-    border-radius: 10px;
     min-width: 300px;
+    padding: 40px 50px;
+}
+
+.form1 {
+    padding-bottom: 10px;
+    border-top: 10px;
+}
+
+.form2 {
+    padding-top: 10px;
+    border-bottom: 10px;
 }
 
 form h1 {
@@ -43,7 +52,7 @@ form .inputs {
     flex-direction: column;
 }
 
-form .inputs input[type='text'], input[type='password'] {
+form .inputs input[type='text'], input[type='password'], input[type='email'] {
     padding: 15px;
     border: none;
     border-radius: 5px;
@@ -67,6 +76,7 @@ form button {
     section {
         height: 100%;
         padding: 0;
+        margin: 0;
         overflow: hidden;
     }
 
