@@ -144,7 +144,7 @@ aside {
 }
 
 aside .top {
-    background: white;
+    background: var(--color-white);
     display: flex;
     align-items: center;
     justify-content: space-between;
