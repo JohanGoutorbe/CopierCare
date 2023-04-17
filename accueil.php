@@ -168,6 +168,26 @@
                 <a href="#">Show All</a>
             </div>
         </main>
+        <!--------------- END OF MAIN ------------>
+
+        <div class="right">
+            <div class="top">
+                <buton id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </buton>
+                <div class="theme-toggler">
+                    <span class="material-icons-sharp">light_mode</span>
+                    <span class="material-icons-sharp">dark_mode</span>
+                </div>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>Daniel</b></p>
+                        <small class="text-muted">Admin</small>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </body>
 
