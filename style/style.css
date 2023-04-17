@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-/* ------------------ VARIABLES ------------------ */
+/* ------------------ LIGHT THEME VARIABLES ------------------ */
 :root {
     --color-primary: #7380ec;
     --color-danger: #ff7782;
@@ -23,6 +23,16 @@
     --card-padding: 1.8rem;
     --padding-1: 1.2rem;
 
+    --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+/* ------------------ DARK THEME VARIABLES ------------------ */
+.dark-theme-variables {
+    --color-background: #181a1e;
+    --color-white: #202528;
+    --color-dark: #edeffd;
+    --color-dark-variant: #a3bdcc;
+    --color-light: rgba(0, 0, 0, 0.4);
     --box-shadow: 0 2rem 3rem var(--color-light);
 }
 
@@ -572,7 +582,7 @@ main .alert a {
 
     aside {
         position: fixed;
-        left: 0;
+        left: -100%;
         background: var(--color-white);
         width: 18rem;
         z-index: 3;
@@ -580,6 +590,13 @@ main .alert a {
         height: 100vh;
         padding-right: var(--card-padding);
         display: none;
+        animation: showMenu 400ms ease forwards;
+    }
+
+    @keyframes showMenu {
+        to {
+            left: 0;
+        }
     }
 
     aside .logo {
@@ -598,6 +615,7 @@ main .alert a {
         width: 100%;
         height: 3.4rem;
     }
+
     aside .sidebar a:last-child {
         position: absolute;
         bottom: 5rem;
@@ -610,7 +628,7 @@ main .alert a {
 
     main {
         margin-top: 8rem;
-        padding:  0 1rem;
+        padding: 0 1rem;
     }
 
     main .alert {
@@ -623,7 +641,7 @@ main .alert a {
         width: 100%;
         margin: 0;
     }
-    
+
     .right {
         width: 94%;
         margin: 0 auto 4rem;
