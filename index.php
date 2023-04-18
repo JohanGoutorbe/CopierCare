@@ -48,7 +48,7 @@ while ($query = $stmt->fetch()) {
         <aside>
             <div class="top">
                 <div class="logo">
-                    <img src="./files/logo_copiercare.png" alt="CopierCare logo">
+                    <img src="./getImage.php?nom=logo_copiercare.png" alt="CopierCare logo">
                     <h2><span class="danger">COPIER</span>CARE</h2>
                 </div>
                 <div class="close" id="close-btn">
@@ -231,7 +231,7 @@ while ($query = $stmt->fetch()) {
                         <small class="text-muted">Admin</small>
                     </div>
                     <div class="profile-photo">
-                        <img src="./files/images/profile-1.jpg" alt="Photo de profil">
+                        <img src="./getImage.php?nom=profile-1.jpg" alt="Photo de profil">
                     </div>
                 </div>
             </div>
@@ -241,7 +241,7 @@ while ($query = $stmt->fetch()) {
                 <div class="updates">
                     <div class="update">
                         <div class="profile-photo">
-                            <img src="./files/images/profile-2.jpg">
+                            <img src="./getImage.php?nom=profile-2.jpg">
                         </div>
                         <div class="message">
                             <p><b>Mike Tyson</b> recieved his order of Night lion tech GPS drone.</p>
@@ -250,7 +250,7 @@ while ($query = $stmt->fetch()) {
                     </div>
                     <div class="update">
                         <div class="profile-photo">
-                            <img src="./files/images/profile-3.jpg">
+                            <img src="./getImage.php?nom=profile-3.jpg">
                         </div>
                         <div class="message">
                             <p><b>Diana Ayi</b> declien her order of 2 DJI Air 2S.</p>
@@ -259,7 +259,7 @@ while ($query = $stmt->fetch()) {
                     </div>
                     <div class="update">
                         <div class="profile-photo">
-                            <img src="./files/images/profile-4.jpg">
+                            <img src="./getImage.php?nom=profile-4.jpg">
                         </div>
                         <div class="message">
                             <p><b>Mandy Roy</b> recieved his order of Larvender KF102 Drone.</p>
