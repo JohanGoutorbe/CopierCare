@@ -44,15 +44,15 @@ CREATE TABLE `clients` (
 
 CREATE TABLE `conso` (
   `id` int(10) UNSIGNED NOT NULL,
-  `copieur_id` int(10) UNSIGNED NOT NULL,
-  `tambour_noir` int(10) UNSIGNED NOT NULL,
-  `tambour_couleur` int(10) UNSIGNED NOT NULL,
-  `dev_noir` int(10) UNSIGNED NOT NULL,
-  `dev_couleur` int(10) UNSIGNED NOT NULL,
-  `courroie` int(10) UNSIGNED NOT NULL,
-  `four` int(10) UNSIGNED NOT NULL,
-  `patins_dep_papier` int(10) UNSIGNED NOT NULL,
-  `patins_chargeur` int(10) UNSIGNED NOT NULL
+  `copieur_id` smallint UNSIGNED NOT NULL,
+  `tambour_noir` int UNSIGNED NOT NULL,
+  `tambour_couleur` int UNSIGNED NOT NULL,
+  `dev_noir` int UNSIGNED NOT NULL,
+  `dev_couleur` int UNSIGNED NOT NULL,
+  `courroie` int UNSIGNED NOT NULL,
+  `four` int UNSIGNED NOT NULL,
+  `patins_dep_papier` int UNSIGNED NOT NULL,
+  `patins_chargeur` int UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -67,8 +67,8 @@ CREATE TABLE `copieurs` (
   `modele` varchar(25) NOT NULL,
   `date_mise_en_service` varchar(10) NOT NULL,
   `dat_fin_garantie` varchar(10) NOT NULL,
-  `releve_compteur_nb` text NOT NULL,
-  `releve_compteur_couleur` text NOT NULL,
+  `compteur_nb` text NOT NULL,
+  `compteur_couleur` text NOT NULL,
   `client_id` int(10) UNSIGNED NOT NULL,
   `options` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -190,3 +190,24 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
+CREATE TABLE inters (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  num_gestco INT UNSIGNED NOT NULL,
+  date varchar(10) NOT NULL,
+  client_id INT UNSIGNED NOT NULL,
+  copieur_id INT UNSIGNED NOT NULL,
+  tech_id INT UNSIGNED NOT NULL,
+  compteur_nb text NOT NULL,
+  compteur_couleur text NOT NULL,
+  panne text not null,
+  diagnostic text not null,
+  travaux text not null,
+  liste_pieces_changees varchar(250),
+  FOREIGN KEY (`client_id`) REFERENCES `clients`(id),
+  FOREIGN KEY (`copieur_id`) REFERENCES `copieurs`(id),
+  FOREIGN KEY (`tech_id`) REFERENCES `utilisateurs`(id)
+)
