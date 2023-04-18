@@ -1,9 +1,13 @@
 <?php
 
-//Affichage des erreurs sur la page web
+// Affichage des erreurs
 ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+ini_set('displau_startup_errors', 1);
 error_reporting(E_ALL);
+
+// Initialisation de la session
+session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -32,11 +36,15 @@ error_reporting(E_ALL);
         <form action="./login_processing.php" method="post" class="form2">
             <p class="choose-email">En utilisant une <strong>adresse email</strong> :</p>
             <div class="inputs">
-                <input name="email" type="email" placeholder="Adresse email">
+                <input name="email" type="email" placeholder="Adresse mail">
                 <input name="pwd" type="password" placeholder="Mot de passe">
                 <button type="submit">Se connecter</button>
             </div>
+            <?php if (isset($_SESSION['errors'])) { 
+                echo '<br><br><p class="error" style="max-width: 300px; color: red; font-family: \'Roboto\', sans-serif; text-align: center; margin-top: 0;">' . $_SESSION['errors'] . '</p>';
+            } ?>
         </form>
     </section>
 </body>
+
 </html>
