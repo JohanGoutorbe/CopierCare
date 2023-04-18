@@ -131,7 +131,8 @@ CREATE TABLE `inters` (
 
 CREATE TABLE `pieces` (
   `id` int(10) UNSIGNED NOT NULL,
-  `nom` varchar(100) NOT NULL
+  `nom` varchar(100) NOT NULL,
+  `ref` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
