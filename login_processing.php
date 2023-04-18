@@ -12,8 +12,24 @@ if (isset($_POST['username']) && isset($_POST['pwd'])) {
     if (!empty($_POST['username']) && !empty($_POST['pwd'])) {
         $username = htmlspecialchars($_POST['username']);
         $pwd = htmlspecialchars($_POST['pwd']);
+        if (strlen($username) < 30) {
+            if (ctype_alpha($username)) {
+                if (strlen($pwd) < 20) {
+                    # code...
+                } else {
+                    $_SESSION['errors'] = "Le mot de passe est incorrect";
+                    header('Location: login.php');
+                }
+            } else {
+                $_SESSION['errors'] = "L'identifiant de connexion est incorrect";
+                header('Location: login.php');
+            }
+        } else {
+            $_SESSION['errors'] = "L'identifiant de connexion est incorrect";
+            header('Location: login.php');
+        }
     } else {
-        $_SESSION['errors'] = "L'identifiant ou le mot de passe est vide";
+        $_SESSION['errors'] = "L'identifiant de connexion ou le mot de passe est vide";
         header('Location: login.php');
     }
 } elseif (isset($_POST['email']) && isset($_POST['pwd'])) {
