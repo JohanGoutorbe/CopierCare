@@ -3,10 +3,10 @@
 session_start();
 
 // Connexion à la base de données locale
-define('USER', "root");
-define('PASSWD', "");
-define('SERVER', "localhost");
-define('BASE', "copiercare");
+define('USER', "309818_root");
+define('PASSWD', 'Pa$$w0rdAlwaysDataROOT');
+define('SERVER', "mysql-copiercarev1.alwaysdata.net");
+define('BASE', "copiercarev1_db");
 
 $dsn = "mysql:dbname=" . BASE . ";host=" . SERVER;
 
