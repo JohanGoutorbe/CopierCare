@@ -66,7 +66,7 @@ if (@isset($_SESSION['logged']) && @$_SESSION['logged'] == true) {
                     <span class="material-icons-sharp">construction</span>
                     <h3>Consommables</h3>
                 </a>
-                <a href="./pieces.php">
+                <a href="./pieces.php" class="active">
                     <span class="material-icons-sharp">devices</span>
                     <h3>Pièces</h3>
                 </a>
@@ -74,7 +74,7 @@ if (@isset($_SESSION['logged']) && @$_SESSION['logged'] == true) {
                     <span class="material-icons-sharp">settings</span>
                     <h3>Paramètres</h3>
                 </a>
-                <a href="./admin.php" class="active">
+                <a href="./admin.php">
                     <span class="material-icons-sharp">admin_panel_settings</span>
                     <h3>Administrateur</h3>
                 </a>
