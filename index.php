@@ -5,6 +5,9 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+// Initialisation de la session 
+session_start();
+
 /*
 <!-- Lire et écrire les relevés compteurs dans la base de données -->
 $query  = "SELECT * FROM `test`";
@@ -24,8 +27,18 @@ while ($query = $stmt->fetch()) {
         echo $num . "; ";
     }
     echo "</br>";
+}*/
+
+if (@isset($_SESSION['logged']) && @$_SESSION['logged'] == true) {
+    $_SESSION['validate'] = true;
+} else {
+    $_SESSION['errors'] = "Veuillez vous authentifier à l'aide de l'une des méthodes ci-dessus.";
+    header('Location: login.php');
+    exit();
 }
-*/
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -324,3 +337,6 @@ while ($query = $stmt->fetch()) {
 </body>
 
 </html>
+
+<?php
+?>
