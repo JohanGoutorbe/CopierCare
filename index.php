@@ -5,8 +5,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Initialisation de la session 
-session_start();
+// Connexion à la base de données
+include './dbconnect.php';
 
 /*
 <!-- Lire et écrire les relevés compteurs dans la base de données -->
@@ -37,7 +37,17 @@ if (@isset($_SESSION['logged']) && @$_SESSION['logged'] == true) {
     exit();
 }
 
+$username = $_SESSION['username'];
 
+$sql = "SELECT * FROM `utilisateurs` WHERE `identifiant` = :username";
+$stmt = $db->prepare($sql);
+$stmt->bindParam('username', $username);
+$stmt->execute();
+
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+$_SESSION['surname'] = $result['prenom'];
+$_SESSION['photo'] = $result['photo'];
+$_SESSION['rang'] = $result['rang'];
 
 ?>
 
@@ -70,7 +80,7 @@ if (@isset($_SESSION['logged']) && @$_SESSION['logged'] == true) {
             </div>
 
             <div class="sidebar">
-                <a href="#" class="active">
+                <a href="./index.php" class="active">
                     <span class="material-icons-sharp">home</span>
                     <h3>Accueil</h3>
                 </a>
@@ -78,7 +88,7 @@ if (@isset($_SESSION['logged']) && @$_SESSION['logged'] == true) {
                     <span class="material-icons-sharp">report_gmailerrorred</span>
                     <h3>Alertes</h3>
                 </a>
-                <a href="#">
+                <a href="./clients.php">
                     <span class="material-icons-sharp">groups</span>
                     <h3>Clients</h3>
                 </a>
@@ -240,11 +250,11 @@ if (@isset($_SESSION['logged']) && @$_SESSION['logged'] == true) {
                 </div>
                 <div class="profile">
                     <div class="info">
-                        <p>Hey, <b>Daniel</b></p>
-                        <small class="text-muted">Admin</small>
+                        <p>Hey, <b><?php echo ucfirst($_SESSION['surname']); ?></b></p>
+                        <small class="text-muted"><?php echo ucfirst($_SESSION['rang']); ?></small>
                     </div>
                     <div class="profile-photo">
-                        <img src="./getImage.php?nom=profile-1.jpg" alt="Photo de profil">
+                        <img src="./getImage.php?nom=<?php echo $_SESSION['photo']; ?>" alt="Photo de profil">
                     </div>
                 </div>
             </div>
