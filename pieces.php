@@ -16,6 +16,13 @@ if (@isset($_SESSION['logged']) && @$_SESSION['logged'] == true) {
     exit();
 }
 
+$sql = "SELECT * FROM `utilisateurs` WHERE `identifiant` = :username";
+$stmt = $db->prepare($sql);
+$stmt->bindParam('username', $username);
+$stmt->execute();
+
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +31,7 @@ if (@isset($_SESSION['logged']) && @$_SESSION['logged'] == true) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CopierCare - Tableau de bord
+    <title>CopierCare - Pièces
     </title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+outlined">
@@ -87,9 +94,12 @@ if (@isset($_SESSION['logged']) && @$_SESSION['logged'] == true) {
         <!----------------------- END OF ASIDE ------------------------->
 
         <main>
-            <h1>Tableau de bord</h1>
+            <h1>Liste des pièces</h1>
             <div class="alert">
-                <h2>Alertes</h2>
+                <h2><a href="?newpiece=oui" style="text-align:left;">Ajouter une pièce</a></h2>
+            </div>
+            <div class="alert">
+                <h2>Pièces</h2>
                 <table>
                     <thead>
                         <tr>
