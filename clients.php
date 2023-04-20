@@ -55,7 +55,7 @@ include './dbconnect.php';
                 </a>
                 <a href="#">
                     <span class="material-icons-sharp">construction</span>
-                    <h3>Pièces</h3>
+                    <h3>Consommables</h3>
                 </a>
                 <a href="#">
                     <span class="material-icons-sharp">settings</span>
@@ -150,7 +150,7 @@ include './dbconnect.php';
             <!--------------- END OF TOP ------------>
         </div>
     </div>
-    
+
     <script src="./index.js"></script>
 </body>
 
