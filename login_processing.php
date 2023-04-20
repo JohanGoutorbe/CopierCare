@@ -11,6 +11,8 @@ include './dbconnect.php';
 // Déclaration des variables
 $username_validate = false;
 $email_validate = false;
+$_SESSION['logged'] = false;
+$_SESSION['errors'] = "";
 
 if (!isset($_POST['username']) && !isset($_POST['pwd'])) {
     $username = $_POST['username'];
@@ -76,7 +78,19 @@ if ($username_validate) {
     $stmt->bindParam('username', $username);
     $stmt->bindParam('pwd', $pwd);
     $stmt->execute();
+    $userCount = $stmt->rowCount();
+    if ($userCount == 1) {
+        $_SESSION['logged'] = true;
+        $_SESSION['username'] = $username;
+    } else {
+        # code...
+    }
+    
     
 } elseif ($email_validate) {
     # code...
 }
+
+
+$_SESSION['errors'] = "Les identifiants renseignés n'ont pas permis de vous authentifier.<br>Veuillez réessayer.";
+header('Location: login.php');
