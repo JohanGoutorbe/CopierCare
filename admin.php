@@ -41,7 +41,7 @@ include './dbconnect.php';
                     <span class="material-icons-sharp">home</span>
                     <h3>Accueil</h3>
                 </a>
-                <a href="#">
+                <a href="./alertes.php">
                     <span class="material-icons-sharp">report_gmailerrorred</span>
                     <h3>Alertes</h3>
                 </a>
@@ -49,23 +49,23 @@ include './dbconnect.php';
                     <span class="material-icons-sharp">groups</span>
                     <h3>Clients</h3>
                 </a>
-                <a href="#">
+                <a href="./copieurs.php">
                     <span style="width: 24px;" class="material-icons-sharp">print_outline</span>
                     <h3>Copieurs</h3>
                 </a>
-                <a href="#">
+                <a href="./consommables.php">
                     <span class="material-icons-sharp">construction</span>
                     <h3>Consommables</h3>
                 </a>
-                <a href="#">
+                <a href="./parametres.php">
                     <span class="material-icons-sharp">settings</span>
                     <h3>Paramètres</h3>
                 </a>
-                <a href="#" class="active">
+                <a href="./admin.php" class="active">
                     <span class="material-icons-sharp">admin_panel_settings</span>
                     <h3>Administrateur</h3>
                 </a>
-                <a href="#">
+                <a href="./logout.php">
                     <span class="material-icons-sharp">logout</span>
                     <h3>Se déconnecter</h3>
                 </a>
