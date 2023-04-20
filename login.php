@@ -29,15 +29,7 @@ session_start();
             <p class="choose-email">En utilisant un <strong>nom d'utilisateur</strong> :</p>
             <div class="inputs">
                 <input name="username" type="text" placeholder="Nom d'utiliateur">
-                <input name="pwd" type="password" placeholder="Mot de passe">
-                <button type="submit">Se connecter</button>
-            </div>
-        </form>
-        <form action="./login_processing.php" method="post" class="form2">
-            <p class="choose-email">En utilisant une <strong>adresse email</strong> :</p>
-            <div class="inputs">
-                <input name="email" type="email" placeholder="Adresse mail">
-                <input name="pwd" type="password" placeholder="Mot de passe">
+                <input name="pwd1" type="password" placeholder="Mot de passe">
                 <button type="submit">Se connecter</button>
             </div>
             <?php if (isset($_SESSION['errors'])) { 
