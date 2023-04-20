@@ -93,7 +93,21 @@ $stmt->execute();
         <main>
             <h1>Liste des pièces</h1>
             <div class="alert">
+                <?php ?>
                 <h2><a href="?newpiece=oui" style="text-align:left;">Ajouter une pièce</a></h2>
+                <?php ?>
+                <div class="sales">
+                    <form action="" method="POST" class="formAddPiece">
+                        <div class="inputs">
+                            <label for="pieceName">Désignation de la pièce : </label>
+                            <input type="text" name="pieceName" required>
+                        </div>
+                        <div class="inputs">
+                            <label for="pieceName">Désignation de la pièce : </label>
+                            <input type="text" name="pieceName" required>
+                        </div>
+                    </form>
+                </div>
             </div>
             <div class="alert">
                 <h2>Pièces</h2>
