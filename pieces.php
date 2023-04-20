@@ -103,7 +103,7 @@ $stmt->execute();
                             <input type="text" name="pieceName" required>
                         </div>
                         <div class="inputs">
-                            <label for="pieceName">Désignation de la pièce : </label>
+                            <label for="pieceName">Référennce de la pièce : </label>
                             <input type="text" name="pieceName" required>
                         </div>
                     </form>
