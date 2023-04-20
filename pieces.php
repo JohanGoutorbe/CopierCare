@@ -16,12 +16,9 @@ if (@isset($_SESSION['logged']) && @$_SESSION['logged'] == true) {
     exit();
 }
 
-$sql = "SELECT * FROM `utilisateurs` WHERE `identifiant` = :username";
+$sql = "SELECT * FROM `pieces` WHERE 1";
 $stmt = $db->prepare($sql);
-$stmt->bindParam('username', $username);
 $stmt->execute();
-
-$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
 <!DOCTYPE html>
@@ -103,52 +100,25 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
                 <table>
                     <thead>
                         <tr>
-                            <th>Pièce</th>
-                            <th>Copieur</th>
-                            <th>Client</th>
-                            <th>Limittes de la pièce</th>
-                            <th></th>
+                            <th>Nom</th>
+                            <th>Référence</th>
+                            <th>Modifier</th>
+                            <th>Supprimer</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Fordable Mini Drone</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Fordable Mini Drone</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Fordable Mini Drone</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Fordable Mini Drone</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Fordable Mini Drone</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
+                        <?php
+                        while ($query = $stmt->fetch()) {
+                            echo '<tr>';
+                            echo '<td>' . $query['nom'] . '</td>';
+                            echo '<td>' . $query['ref'] . '</td>';
+                            echo '<td class="warning" style="max-width: 100px;">Modifier</td>';
+                            echo '<td class="danger" style="max-width: 100px;"><span class="material-icons-sharp">delete</span></td>';
+                            echo '</tr>';
+                        }
+                        ?>
                     </tbody>
                 </table>
-                <a href="#">Show All</a>
             </div>
         </main>
         <div class="right">
