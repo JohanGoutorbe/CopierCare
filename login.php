@@ -19,7 +19,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CopierCare | Connexion</title>
     <link rel="stylesheet" href="./style/login_style.css">
-    <link rel="shortcut icon" href="./files/logo_copiercare.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./getImage.php?nom=logo_copiercare.png" type="image/x-icon">
 </head>
 
 <body>
@@ -32,7 +32,7 @@ session_start();
                 <input name="pwd1" type="password" placeholder="Mot de passe">
                 <button type="submit">Se connecter</button>
             </div>
-            <?php if (isset($_SESSION['errors'])) { 
+            <?php if (isset($_SESSION['errors'])) {
                 echo '<br><br><p class="error" style="max-width: 300px; color: red; font-family: \'Roboto\', sans-serif; text-align: center; margin-top: 0;">' . $_SESSION['errors'] . '</p>';
             } ?>
         </form>

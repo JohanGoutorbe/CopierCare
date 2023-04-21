@@ -63,7 +63,7 @@ $_SESSION['rang'] = $result['rang'];
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+outlined">
     <link rel="stylesheet" href="./style/style.css">
-    <link rel="shortcut icon" href="./files/logo_copiercare.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./getImage.php?nom=logo_copiercare.png" type="image/x-icon">
 </head>
 
 <body>
