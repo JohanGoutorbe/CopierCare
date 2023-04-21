@@ -7,6 +7,7 @@ error_reporting(E_ALL);
 
 // Connexion à la base de données
 include './dbconnect.php';
+$message = '';
 
 if (@isset($_SESSION['logged']) && @$_SESSION['logged'] == true) {
     $_SESSION['validate'] = true;
@@ -19,6 +20,66 @@ if (@isset($_SESSION['logged']) && @$_SESSION['logged'] == true) {
 $sql = "SELECT * FROM `pieces` WHERE 1";
 $stmt = $db->prepare($sql);
 $stmt->execute();
+
+if (isset($_POST[('PieceSubmit')])) {
+    if (!empty($_POST['pieceName']) && !empty($_POST['pieceRef'])) {
+        $pieceName = htmlspecialchars($_POST['pieceName']);
+        $pieceRef = htmlspecialchars($_POST['pieceRef']);
+        if (strlen($pieceName) < 100 && strlen($pieceRef) < 20) {
+            $Crud = 'C';
+        } else {
+            $message = "Le nom ou la référence de la pièce est trop long.";
+        }
+    }
+}
+
+if (isset($_POST['PieceDeleteSubmit'])) {
+    $Crud = 'D';
+}
+
+if (isset($_POST['PieceUpdateSubmit'])) {
+    $Crud = 'U1';
+}
+
+if (isset($_POST['PieceUpdate2Submit'])) {
+    $Crud = 'U2';
+    $pieceName = $_POST['pieceName'];
+    $pieceRef = $_POST['pieceRef'];
+    $pieceId = $_POST['pieceId'];
+}
+
+if (@$Crud != '0') {
+    try {
+        if ($db) {
+            switch (@$Crud) {
+                case 'C':
+                    $sql = "INSERT INTO `pieces` (`nom`, `ref`) VALUES (:name, :ref)";
+                    $stmt = $db->prepare($sql);
+                    $stmt->bindParam('name', $pieceName);
+                    $stmt->bindParam('ref', $pieceRef);
+                    $stmt->execute();
+                    $message = "Réussite de l'insertion.<br>La pièce " . $pieceName . " a bien été ajoutée.";
+                    break;
+                case 'U2':
+                    $sql = "UPDATE `pieces` set nom = :name, ref = :ref WHERE id = :id";
+                    $stmt = $db->prepare($sql);
+                    $stmt->bindParam('name', $pieceName);
+                    $stmt->bindParam('ref', $pieceRef);
+                    $stmt->bindParam('id', $id);
+                    $stmt->execute();
+                    break;
+                case 'D':
+                    # code...
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+        }
+    } catch (\Throwable $th) {
+        //throw $th;
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -33,13 +94,13 @@ $stmt->execute();
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+outlined">
     <link rel="stylesheet" href="./style/style.css">
-    <link rel="shortcut icon" href="./files/logo_copiercare.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./getImage.php?nom=logo_copiercare.png" type="image/x-icon">
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" style="grid-template-columns: 14rem auto 18rem;">
         <aside>
-            <div class="top">
+            <div class=" top">
                 <div class="logo">
                     <img src="./getImage.php?nom=logo_copiercare.png" alt="CopierCare logo">
                     <h2><span class="danger">COPIER</span>CARE</h2>
@@ -103,17 +164,23 @@ $stmt->execute();
                             <input type="text" name="pieceName" required>
                         </div>
                         <div class="inputs">
-                            <label for="pieceName">Référennce de la pièce : </label>
-                            <input type="text" name="pieceName" required>
+                            <label for="pieceRef">Référence de la pièce : </label>
+                            <input type="text" name="pieceRef" required>
                         </div>
+                        <button type="submit" name="pieceSubmit" value="Add a Piece" class="BtnAdd" style="background: #fff; padding: 1rem; border-radius: 2rem; margin-top: 1rem; box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18); transition: all 300ms ease; width: 200px; height: 50px;">
+                            <h2 style="color: #7380ec;">Valider</h2>
+                        </button>
+                        <?php echo $message; ?>
                     </form>
                 </div>
+                <?php ?>
             </div>
-            <div class="alert">
+            <div class="alert bis">
                 <h2>Pièces</h2>
                 <table>
                     <thead>
                         <tr>
+                            <th style=" display: none;">ID</th>
                             <th>Nom</th>
                             <th>Référence</th>
                             <th>Modifier</th>
@@ -124,9 +191,10 @@ $stmt->execute();
                         <?php
                         while ($query = $stmt->fetch()) {
                             echo '<tr>';
+                            echo '<td style="display: none;">' . $query['id'] . '</td>';
                             echo '<td>' . $query['nom'] . '</td>';
                             echo '<td>' . $query['ref'] . '</td>';
-                            echo '<td class="warning" style="max-width: 100px;">Modifier</td>';
+                            echo '<td class="warning" style="max-width: 100px;"><span class="material-icons-sharp">edit</span></td>';
                             echo '<td class="danger" style="max-width: 100px;"><span class="material-icons-sharp">delete</span></td>';
                             echo '</tr>';
                         }
