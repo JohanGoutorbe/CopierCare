@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 
 // Initialisation de la session
 session_start();
-
+$_SESSION['theme'] = "white";
 ?>
 
 <!DOCTYPE html>
