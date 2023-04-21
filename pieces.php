@@ -160,14 +160,14 @@ if (@$Crud != '0') {
                 <div class="sales">
                     <form action="" method="POST" class="formAddPiece">
                         <div class="inputs">
-                            <label for="pieceName">Désignation de la pièce : </label>
-                            <input type="text" name="pieceName" required>
+                            <label for="pieceName">Désignation : </label>
+                            <input type="text" name="pieceName" placeholder="Exemple" required>
                         </div>
                         <div class="inputs">
-                            <label for="pieceRef">Référence de la pièce : </label>
-                            <input type="text" name="pieceRef" required>
+                            <label for="pieceRef">Référence : </label>
+                            <input type="text" name="pieceRef" placeholder="ex" required>
                         </div>
-                        <button type="submit" name="pieceSubmit" value="Add a Piece" class="BtnAdd" style="background: #fff; padding: 1rem; border-radius: 2rem; margin-top: 1rem; box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18); transition: all 300ms ease; width: 200px; height: 50px;">
+                        <button type="submit" name="pieceSubmit" value="Add a Piece" class="BtnAdd">
                             <h2 style="color: #7380ec;">Valider</h2>
                         </button>
                         <?php echo $message; ?>
