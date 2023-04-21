@@ -531,6 +531,32 @@ main .alert a {
     font-weight: 600;
 }
 
+.BtnAdd {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 2rem;
+    margin-top: 1rem;
+    box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+    transition: all 300ms ease;
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ================== MEDIA QUERIES ================== */
 @media screen and (max-width: 1200px) {
     .container {
