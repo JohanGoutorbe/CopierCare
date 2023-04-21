@@ -154,26 +154,25 @@ if (@$Crud != '0') {
         <main>
             <h1>Liste des pièces</h1>
             <div class="alert">
-                <?php ?>
                 <h2><a href="?newpiece=oui" style="text-align:left;">Ajouter une pièce</a></h2>
-                <?php ?>
-                <div class="sales">
-                    <form action="" method="POST" class="formAddPiece">
-                        <div class="inputs">
-                            <label for="pieceName">Désignation : </label>
-                            <input type="text" name="pieceName" placeholder="Exemple" required>
-                        </div>
-                        <div class="inputs">
-                            <label for="pieceRef">Référence : </label>
-                            <input type="text" name="pieceRef" placeholder="ex" required>
-                        </div>
-                        <button type="submit" name="pieceSubmit" value="Add a Piece" class="BtnAdd">
-                            <h2 style="color: #7380ec;">Valider</h2>
-                        </button>
-                        <?php echo $message; ?>
-                    </form>
-                </div>
-                <?php ?>
+                <?php if (@$_GET['newpiece'] = 'oui') {
+                    echo '<div class="sales">';
+                    echo '<form action="" method="POST" class="formAddPiece ">';
+                    echo '<div class="inputs">';
+                    echo '<label for="pieceName">Désignation : </label>';
+                    echo '<input type="text" name="pieceName" placeholder="Exemple" required>';
+                    echo '</div>';
+                    echo '<div class="inputs">';
+                    echo '<label for="pieceRef">Référence : </label>';
+                    echo '<input type="text" name="pieceRef" placeholder="ex" required>';
+                    echo '</div>';
+                    echo '<button type="submit" name="pieceSubmit" value="Add a Piece" class="BtnAdd">';
+                    echo '<h2 style="color: #7380ec;">Valider</h2>';
+                    echo '</button>';
+                    echo $message;
+                    echo '</form>';
+                    echo '</div>';
+                } ?>
             </div>
             <div class="alert bis">
                 <h2>Pièces</h2>
