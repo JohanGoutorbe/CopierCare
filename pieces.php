@@ -50,31 +50,26 @@ if (isset($_POST['PieceUpdate2Submit'])) {
 
 if (@$Crud != '0') {
     try {
-        if ($db) {
-            switch (@$Crud) {
-                case 'C':
-                    $sql = "INSERT INTO `pieces` (`nom`, `ref`) VALUES (:name, :ref)";
-                    $stmt = $db->prepare($sql);
-                    $stmt->bindParam('name', $pieceName);
-                    $stmt->bindParam('ref', $pieceRef);
-                    $stmt->execute();
-                    $message = "Réussite de l'insertion.<br>La pièce " . $pieceName . " a bien été ajoutée.";
-                    break;
-                case 'U2':
-                    $sql = "UPDATE `pieces` set nom = :name, ref = :ref WHERE id = :id";
-                    $stmt = $db->prepare($sql);
-                    $stmt->bindParam('name', $pieceName);
-                    $stmt->bindParam('ref', $pieceRef);
-                    $stmt->bindParam('id', $id);
-                    $stmt->execute();
-                    break;
-                case 'D':
-                    # code...
-                    break;
-                default:
-                    # code...
-                    break;
-            }
+        switch (@$Crud) {
+            case 'C':
+                $sql = "INSERT INTO `pieces` (`nom`, `ref`) VALUES (:name, :ref)";
+                $stmt = $db->prepare($sql);
+                $stmt->bindParam('name', $pieceName);
+                $stmt->bindParam('ref', $pieceRef);
+                $stmt->execute();
+                $message = "Réussite de l'insertion.<br>La pièce " . $pieceName . " a bien été ajoutée.";
+                break;
+            case 'U2':
+                $sql = "UPDATE `pieces` set nom = :name, ref = :ref WHERE id = :id";
+                $stmt = $db->prepare($sql);
+                $stmt->bindParam('name', $pieceName);
+                $stmt->bindParam('ref', $pieceRef);
+                $stmt->bindParam('id', $id);
+                $stmt->execute();
+                break;
+            case 'D':
+                # https://www.youtube.com/watch?v=2QPuo3ynS_U
+                break;
         }
     } catch (\Throwable $th) {
         //throw $th;
@@ -154,10 +149,10 @@ if (@$Crud != '0') {
         <main>
             <h1>Liste des pièces</h1>
             <div class="alert">
-                <h2><a href="?newpiece=oui" style="text-align:left;">Ajouter une pièce</a></h2>
-                <?php if (@$_GET['newpiece'] = 'oui') {
+                <h2><a href="<?php if (isset($_GET['newpiece'])) { echo './pieces.php';} else { echo '?newpiece=oui';} ?>" style="text-align:left;">Ajouter une pièce</a></h2>
+                <?php if (isset($_GET['newpiece']) && $_GET['newpiece'] = 'oui') {
                     echo '<div class="sales">';
-                    echo '<form action="" method="POST" class="formAddPiece ">';
+                    echo '<form action="./pieces.php" method="POST" class="formAddPiece ">';
                     echo '<div class="inputs">';
                     echo '<label for="pieceName">Désignation : </label>';
                     echo '<input type="text" name="pieceName" placeholder="Exemple" required>';
@@ -169,10 +164,10 @@ if (@$Crud != '0') {
                     echo '<button type="submit" name="pieceSubmit" value="Add a Piece" class="BtnAdd">';
                     echo '<h2 style="color: #7380ec;">Valider</h2>';
                     echo '</button>';
-                    echo $message;
                     echo '</form>';
                     echo '</div>';
-                } ?>
+                } else { echo '';}
+                echo $message; ?>
             </div>
             <div class="alert bis">
                 <h2>Pièces</h2>
