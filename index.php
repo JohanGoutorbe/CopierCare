@@ -249,8 +249,8 @@ $_SESSION['rang'] = $result['rang'];
                     <span class="material-icons-sharp">menu</span>
                 </button>
                 <div class="theme-toggler">
-                    <span class="material-icons-sharp active">light_mode</span>
-                    <span class="material-icons-sharp">dark_mode</span>
+                    <span class="material-icons-sharp<?php if ($_SESSION['theme'] == "white") { echo " active";}; ?>">light_mode</span>
+                    <span class="material-icons-sharp"<?php if ($_SESSION['theme'] == "black") { echo " active";}; ?>">dark_mode</span>
                 </div>
                 <div class="profile">
                     <div class="info">
