@@ -353,6 +353,10 @@ main .alert {
     margin: 2rem;
 }
 
+main .bis {
+    margin: 15rem 0 0 8.8rem;
+}
+
 main .alert h2 {
     margin-bottom: 0.8rem;
 }
