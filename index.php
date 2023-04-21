@@ -132,8 +132,8 @@ $_SESSION['rang'] = $result['rang'];
                     <span class="material-icons-sharp">analytics</span>
                     <div class="middle">
                         <div class="left">
-                            <h3>Total Sales</h3>
-                            <h1>$25,024</h1>
+                            <h3>Nombre de copieurs</h3>
+                            <h1>~450</h1>
                         </div>
                         <div class="progress">
                             <svg>
@@ -144,15 +144,15 @@ $_SESSION['rang'] = $result['rang'];
                             </div>
                         </div>
                     </div>
-                    <small class="text-muted">Last 24 Hours</small>
+                    <small class="text-muted">Depuis le 21 avril 2023</small>
                 </div>
                 <!--------------- END OF SALES ------------>
                 <div class="expenses">
                     <span class="material-icons-sharp">bar_chart</span>
                     <div class="middle">
                         <div class="left">
-                            <h3>Total Expenses</h3>
-                            <h1>$14,160</h1>
+                            <h3>Nombre d'interventions</h3>
+                            <h1>1,652</h1>
                         </div>
                         <div class="progress">
                             <svg>
@@ -163,15 +163,15 @@ $_SESSION['rang'] = $result['rang'];
                             </div>
                         </div>
                     </div>
-                    <small class="text-muted">Last 24 Hours</small>
+                    <small class="text-muted">Depuis le 21 avril 2023</small>
                 </div>
                 <!--------------- END OF EXPENSES ------------>
                 <div class="income">
                     <span class="material-icons-sharp">stacked_line_chart</span>
                     <div class="middle">
                         <div class="left">
-                            <h3>Total Expenses</h3>
-                            <h1>$10,864</h1>
+                            <h3>Nombre de clients</h3>
+                            <h1>136</h1>
                         </div>
                         <div class="progress">
                             <svg>
@@ -182,7 +182,7 @@ $_SESSION['rang'] = $result['rang'];
                             </div>
                         </div>
                     </div>
-                    <small class="text-muted">Last 24 Hours</small>
+                    <small class="text-muted">Depuis le 21 avril 2023</small>
                 </div>
                 <!--------------- END OF INCOME ------------>
             </div>
