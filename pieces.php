@@ -149,25 +149,25 @@ if (@$Crud != '0') {
         <main>
             <h1>Liste des pièces</h1>
             <div class="alert">
-                <h2><a href="<?php if (isset($_GET['newpiece'])) { echo './pieces.php';} else { echo '?newpiece=oui';} ?>" style="text-align:left;">Ajouter une pièce</a></h2>
-                <?php if (isset($_GET['newpiece']) && $_GET['newpiece'] = 'oui') {
-                    echo '<div class="sales">';
-                    echo '<form action="./pieces.php" method="POST" class="formAddPiece ">';
-                    echo '<div class="inputs">';
-                    echo '<label for="pieceName">Désignation : </label>';
-                    echo '<input type="text" name="pieceName" placeholder="Exemple" required>';
-                    echo '</div>';
-                    echo '<div class="inputs">';
-                    echo '<label for="pieceRef">Référence : </label>';
-                    echo '<input type="text" name="pieceRef" placeholder="ex" required>';
-                    echo '</div>';
-                    echo '<button type="submit" name="pieceSubmit" value="Add a Piece" class="BtnAdd">';
-                    echo '<h2 style="color: #7380ec;">Valider</h2>';
-                    echo '</button>';
-                    echo '</form>';
-                    echo '</div>';
-                } else { echo '';}
-                echo $message; ?>
+                <button id="AddPieceBtn" class="AddPieceBtn">
+                    <h2 style="text-align:left; font-size: 1.4rem; font-family: Poppins, sans-serif; color: #363949;">Ajouter une pièce</h2>
+                </button>
+                <section class="sales" id="addPiece">
+                    <form action="./pieces.php" method="POST" class="formAddPiece ">
+                        <div class="inputs">
+                            <label for="pieceName">Désignation : </label>
+                            <input type="text" name="pieceName" placeholder="Exemple" required>
+                        </div>
+                        <div class="inputs">
+                            <label for="pieceRef">Référence : </label>
+                            <input type="text" name="pieceRef" placeholder="ex" required>
+                        </div>
+                        <button type="submit" name="pieceSubmit" value="Add a Piece" class="BtnAdd">
+                            <h2 style="color: #7380ec;">Valider</h2>
+                        </button>
+                    </form>
+                </section>
+                <?php echo $message; ?>
             </div>
             <div class="alert bis">
                 <h2>Pièces</h2>
@@ -221,6 +221,7 @@ if (@$Crud != '0') {
     </div>
 
     <script src="./index.js"></script>
+    <script src="./pieces.js"></script>
 </body>
 
 </html>
