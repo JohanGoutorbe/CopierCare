@@ -17,7 +17,7 @@ if (@isset($_SESSION['logged']) && @$_SESSION['logged'] == true) {
     exit();
 }
 
-$sql = "SELECT * FROM `pieces` WHERE 1";
+$sql = "SELECT * FROM `pieces` WHERE 1 ORDER BY id DESC";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 
