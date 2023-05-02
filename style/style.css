@@ -531,8 +531,14 @@ main .alert a {
     font-weight: 600;
 }
 
+
+.AddPieceBtn {
+    background: var(--color-background);
+    cursor: pointer;
+}
+
 .BtnAdd {
-    background: #fff;
+    background: var(--color-white);
     padding: 1rem;
     border-radius: 2rem;
     margin-top: 1rem;
