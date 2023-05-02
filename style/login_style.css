@@ -26,21 +26,9 @@ form {
     border-top: 10px;
 }
 
-.form2 {
-    padding-top: 10px;
-    border-bottom: 10px;
-}
-
 form h1 {
     color: #eb7371;
     text-align: center;
-}
-
-form .social-media {
-    margin-top: -10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
 }
 
 form p.choose-email {
