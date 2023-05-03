@@ -27,7 +27,7 @@ if (isset($_POST[('pieceSubmit')])) {
                 $stmt->bindParam('name', $pieceName);
                 $stmt->bindParam('ref', $pieceRef);
                 $stmt->execute();
-                $_SESSION['message'] = '<p style="color: #41f1b6; text-shadow: 0px 0px black;">La pièce ' . $pieceName . ' a bien été ajoutée.</p>';
+                $_SESSION['message'] = '<p style="color: #41f1b6; text-shadow: 0px 0px black;">La pièce <strong>' . $pieceName . '</strong> a bien été ajoutée.</p>';
                 header("Refresh:0");
             } else {
                 $_SESSION['message'] = '<p style="color: #ff7782;">La référence doit être plus courte que le nom</p>';
@@ -162,14 +162,15 @@ if (isset($_POST[('pieceSubmit')])) {
             </div>
         </main>
 
-        <section id="modal" class="modal" aria-hidden="true" role="dialog" aria_labelledby="titlemodal" style="display: none;">
+        <section id="modal" class="modal" aria-hidden="true" role="dialog" aria_labelledby="titlemodal"> <!-- style="display: none;" -->
             <div class="modal-wrapper">
                 <form action="./updatePiece.php" method="post" class="form1">
                     <h1 id="titlemodal">Modifier la pièce suivante :<br><?php if (isset($_GET['pieceName'])) { echo $_GET['pieceName']; } ?></h1>
                     <div class="inputs">
-                        <input name="username" type="text" placeholder="Nom de la pièce" value="<?php ?>">
-                        <input name="ref" type="text" placeholder="Référence de la pièce" value="<?php ?>">
-                        <button type="submit">Appliquer les modifications</button>
+                        <input name="id" type="number" style="display: none;" value="<?php echo $_GET['id']; ?>">
+                        <input name="name" type="text" placeholder="Nom de la pièce">
+                        <input name="ref" type="text" placeholder="Référence de la pièce">
+                        <button type="submit" name="pieceUpdateSubmit">Appliquer les modifications</button>
                     </div>
                 </form>
             </div>
