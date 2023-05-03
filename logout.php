@@ -1,6 +1,7 @@
 <?php
 
 // Réinitialisation des variables de session
+$_SESSION['validate'] = false;
 $_SESSION['logged'] = false;
 $_SESSION['username'] = "";
 $_SESSION['surname'] = "";
@@ -17,5 +18,3 @@ session_destroy();
 header('location: login.php');
 
 exit;
-
-?>
