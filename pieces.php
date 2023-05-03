@@ -7,72 +7,36 @@ error_reporting(E_ALL);
 
 // Connexion à la base de données
 include './dbconnect.php';
-$message = '';
 
-if (@isset($_SESSION['logged']) && @$_SESSION['logged'] == true) {
-    $_SESSION['validate'] = true;
-} else {
-    $_SESSION['errors'] = "Veuillez vous authentifier à l'aide de l'une des méthodes ci-dessus.";
-    header('Location: login.php');
-    exit();
-}
+include './loggedVerif.php';
 
 $sql = "SELECT * FROM `pieces` WHERE 1 ORDER BY id DESC";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 
-if (isset($_POST[('PieceSubmit')])) {
+if (isset($_POST[('pieceSubmit')])) {
     if (!empty($_POST['pieceName']) && !empty($_POST['pieceRef'])) {
         $pieceName = htmlspecialchars($_POST['pieceName']);
         $pieceRef = htmlspecialchars($_POST['pieceRef']);
         if (strlen($pieceName) < 100 && strlen($pieceRef) < 20) {
-            $Crud = 'C';
-        } else {
-            $message = "Le nom ou la référence de la pièce est trop long.";
-        }
-    }
-}
-
-if (isset($_POST['PieceDeleteSubmit'])) {
-    $Crud = 'D';
-}
-
-if (isset($_POST['PieceUpdateSubmit'])) {
-    $Crud = 'U1';
-}
-
-if (isset($_POST['PieceUpdate2Submit'])) {
-    $Crud = 'U2';
-    $pieceName = $_POST['pieceName'];
-    $pieceRef = $_POST['pieceRef'];
-    $pieceId = $_POST['pieceId'];
-}
-
-if (@$Crud != '0') {
-    try {
-        switch (@$Crud) {
-            case 'C':
+            if (strlen($pieceName) >= strlen($pieceRef)) {
+                $Crud = 'C';
+                $_SESSION['message'] = "";
                 $sql = "INSERT INTO `pieces` (`nom`, `ref`) VALUES (:name, :ref)";
                 $stmt = $db->prepare($sql);
                 $stmt->bindParam('name', $pieceName);
                 $stmt->bindParam('ref', $pieceRef);
                 $stmt->execute();
-                $message = "Réussite de l'insertion.<br>La pièce " . $pieceName . " a bien été ajoutée.";
-                break;
-            case 'U2':
-                $sql = "UPDATE `pieces` set nom = :name, ref = :ref WHERE id = :id";
-                $stmt = $db->prepare($sql);
-                $stmt->bindParam('name', $pieceName);
-                $stmt->bindParam('ref', $pieceRef);
-                $stmt->bindParam('id', $id);
-                $stmt->execute();
-                break;
-            case 'D':
-                # https://www.youtube.com/watch?v=2QPuo3ynS_U
-                break;
+                $_SESSION['message'] = "La pièce " . $pieceName . " a bien été ajoutée.";
+                header("Refresh:0");
+            } else {
+                $_SESSION['message'] = "La référence doit être plus courte que le nom";
+            }
+        } else {
+            $_SESSION['message'] = "Le nom ou la référence de la pièce est trop long.";
         }
-    } catch (\Throwable $th) {
-        //throw $th;
+    } else {
+        $_SESSION['message'] = "Le nom et/ou la référence est vide.";
     }
 }
 
@@ -89,6 +53,7 @@ if (@$Crud != '0') {
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+outlined">
     <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/modal_style.css">
     <link rel="shortcut icon" href="./getImage.php?nom=logo_copiercare.png" type="image/x-icon">
 </head>
 
@@ -146,6 +111,20 @@ if (@$Crud != '0') {
         </aside>
         <!----------------------- END OF ASIDE ------------------------->
 
+        <section id="modal1" class="modal" aria-hidden="true" role="dialog" aria_labelledby="titlemodal" style="display: none;">
+            <div class="modal-wrapper">
+                <form action=" ./pieces.php" method="post" class="form1">
+                    <h1 id="titlemodal">Modifier la pièce suivante :<br><?php echo "Nom de la piece"; ?></h1>
+                    <div class="inputs">
+                        <input name="username" type="text" placeholder="Nom de la pièce" value="<?php ?>">
+                        <input name="ref" type="text" placeholder="Référence de la pièce" value="<?php ?>">
+                        <button type="submit">Appliquer les modifications</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <!----------------------- END OF MODAL ------------------------->
+
         <main>
             <h1>Liste des pièces</h1>
             <div class="alert">
@@ -167,7 +146,9 @@ if (@$Crud != '0') {
                         </button>
                     </form>
                 </section>
-                <?php echo $message; ?>
+                <?php if (isset($_SESSION['message'])) {
+                    echo "<p>" . $_SESSION['message'] . "</p>";
+                } ?>
             </div>
             <div class="alert bis">
                 <h2>Pièces</h2>
@@ -188,8 +169,8 @@ if (@$Crud != '0') {
                             echo '<td style="display: none;">' . $query['id'] . '</td>';
                             echo '<td>' . $query['nom'] . '</td>';
                             echo '<td>' . $query['ref'] . '</td>';
-                            echo '<td class="warning" style="max-width: 100px;"><span class="material-icons-sharp">edit</span></td>';
-                            echo '<td class="danger" style="max-width: 100px;"><span class="material-icons-sharp">delete</span></td>';
+                            echo '<td class="warning" style="max-width: 100px;"><a href="?id=' . $query['id'] . '" class="js-modal" style="text-decoration: none; color: #ffbb55; cursor: pointer;"><span class="material-icons-sharp">edit</span></a></td>';
+                            echo '<td class="danger" style="max-width: 100px;"><a href="delete.php?table=pieces&id=' . $query['id'] . '" style="text-decoration: none; color: #ff7782; cursor: pointer;"><span class="material-icons-sharp">delete</span></a></td>';
                             echo '</tr>';
                         }
                         ?>
