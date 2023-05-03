@@ -41,7 +41,9 @@ const stopPropagation = function (e) {
     e.stopPropagation();
 }
 
-document.querySelector('.js-modal').addEventListener('click', openModal)
+document.querySelectorAll('.js-modal').forEach(a => {
+    a.addEventListener('click', openModal)
+})
 
 window.addEventListener('keydown', function (e) {
     if(e.key === "Escape" || e.key === "Esc") {
