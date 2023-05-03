@@ -38,7 +38,8 @@ $stmt = $db->prepare($sql);
 $stmt->bindParam('id', $id);
 $stmt->execute();
 
-$_SESSION['errors'] = "Une erreur est survenue lors la tentative de connexion.<br>Veuillez réessayer";
+$_SESSION['message'] = '<p style="color: #41f1b6; font-size: 1.25em; font-weight: 100;">La suppression s\'est correctement effectuée</p>';
+
 $location = 'Location: ' . $table . '.php';
 header($location);
 exit();
