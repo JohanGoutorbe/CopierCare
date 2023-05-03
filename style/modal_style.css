@@ -12,7 +12,7 @@
 
 .modal-wrapper {
     overflow: auto;
-    width: 600px;
+    width: 750px;
     max-width: calc(100vw - 20px);
     max-height: calc(100vh - 20px);
     padding: 20px;
@@ -23,8 +23,6 @@
     background-color: #fff;
     min-width: 300px;
     padding: 40px 50px;
-    padding-bottom: 10px;
-    border-top: 10px;
 }
 
 .form1 h1 {
@@ -35,6 +33,7 @@
 .form1 .inputs {
     display: flex;
     flex-direction: column;
+    padding-top: 25px;
 }
 
 .form1 .inputs input[type='text'], input[type='password'], input[type='email'] {
