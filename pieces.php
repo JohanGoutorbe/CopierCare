@@ -21,7 +21,6 @@ if (isset($_POST[('pieceSubmit')])) {
         if (strlen($pieceName) < 100 && strlen($pieceRef) < 20) {
             if (strlen($pieceName) >= strlen($pieceRef)) {
                 $Crud = 'C';
-                $_SESSION['message'] = "";
                 $sql = "INSERT INTO `pieces` (`nom`, `ref`) VALUES (:name, :ref)";
                 $stmt = $db->prepare($sql);
                 $stmt->bindParam('name', $pieceName);
