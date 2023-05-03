@@ -114,7 +114,7 @@ if (isset($_POST[('pieceSubmit')])) {
             <h1>Liste des pièces</h1>
             <div class="alert">
                 <button id="AddPieceBtn" class="AddPieceBtn">
-                    <h2 style="text-align:left; font-size: 1.4rem; font-family: Poppins, sans-serif; color: #363949;">Ajouter une pièce</h2>
+                    <h2>Ajouter une pièce</h2>
                 </button>
                 <section class="sales" id="addPiece">
                     <form action="./pieces.php" method="POST" class="formAddPiece ">
@@ -135,7 +135,7 @@ if (isset($_POST[('pieceSubmit')])) {
                     echo $_SESSION['message'];
                 } ?>
             </div>
-            <div class="alert bis">
+            <div class=" alert bis">
                 <h2>Pièces</h2>
                 <table>
                     <thead>
@@ -154,7 +154,7 @@ if (isset($_POST[('pieceSubmit')])) {
                             echo '<td style="display: none;">' . $query['id'] . '</td>';
                             echo '<td>' . $query['nom'] . '</td>';
                             echo '<td>' . $query['ref'] . '</td>';
-                            echo '<td class="warning" style="max-width: 100px;"><a href="#modal" class="js-modal" style="text-decoration: none; color: #ffbb55; cursor: pointer;"><span class="material-icons-sharp">edit</span></a></td>';
+                            echo '<td class="warning" style="max-width: 100px;"><a href="pieces.php?update=true&id=' . $query['id'] . '" style="text-decoration: none; color: #ffbb55; cursor: pointer;"><span class="material-icons-sharp">edit</span></a></td>';
                             echo '<td class="danger" style="max-width: 100px;"><a href="delete.php?table=pieces&id=' . $query['id'] . '" style="text-decoration: none; color: #ff7782; cursor: pointer;"><span class="material-icons-sharp">delete</span></a></td>';
                             echo '</tr>';
                         } ?>
@@ -163,7 +163,7 @@ if (isset($_POST[('pieceSubmit')])) {
             </div>
         </main>
 
-        <section id="modal" class="modal" aria-hidden="true" role="dialog" aria_labelledby="titlemodal" style="display: none;">
+        <section id="modal" class="modal" aria-hidden="true" role="dialog" aria_labelledby="titlemodal" style="<?php if (isset($_GET['update'])) { echo 'visibility: visible; opacity: 1;'; } else { echo 'visibility: hidden; opacity: 0'; } ?>">
             <div class="modal-wrapper">
                 <form action="./updatePiece.php" method="post" class="form1">
                     <h1 id="titlemodal">Modifier la pièce suivante :<br><?php if (isset($_GET['pieceName'])) { echo $_GET['pieceName']; } ?></h1>
