@@ -8,13 +8,7 @@ error_reporting(E_ALL);
 // Connexion à la base de données
 include './dbconnect.php';
 
-if (@isset($_SESSION['logged']) && @$_SESSION['logged'] == true) {
-    $_SESSION['validate'] = true;
-} else {
-    $_SESSION['errors'] = "Veuillez vous authentifier à l'aide de l'une des méthodes ci-dessus.";
-    header('Location: login.php');
-    exit();
-}
+include './loggedVerif.php';
 
 ?>
 <!DOCTYPE html>
