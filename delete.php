@@ -10,6 +10,26 @@ include './dbconnect.php';
 
 include './loggedVerif.php';
 
+$error = '<p style="color: #ff7782;">L\'url est incorrecte</p>';
+
+if (!isset($_GET['table'])) {
+    $_SESSION['message'] = $error;
+    exit();
+} elseif (empty($_GET['table'])) {
+    $_SESSION['message'] = $error;
+    exit();
+}
+$location = 'Location: ' . $table . '.php';
+if (!isset($_GET['id'])) {
+    $_SESSION['message'] = $error;
+    header($location);
+    exit();
+} elseif (empty($_GET['id'])) {
+    $_SESSION['message'] = $error;
+    header($location);
+    exit();
+}
+
 $table = trim(htmlspecialchars($_GET['table']));
 $id = htmlspecialchars($_GET['id']);
 
