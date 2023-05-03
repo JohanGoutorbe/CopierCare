@@ -27,16 +27,16 @@ if (isset($_POST[('pieceSubmit')])) {
                 $stmt->bindParam('name', $pieceName);
                 $stmt->bindParam('ref', $pieceRef);
                 $stmt->execute();
-                $_SESSION['message'] = "La pièce " . $pieceName . " a bien été ajoutée.";
+                $_SESSION['message'] = '<p style="color: #41f1b6; text-shadow: 0px 0px black;">La pièce ' . $pieceName . ' a bien été ajoutée.</p>';
                 header("Refresh:0");
             } else {
-                $_SESSION['message'] = "La référence doit être plus courte que le nom";
+                $_SESSION['message'] = '<p style="color: #ff7782;">La référence doit être plus courte que le nom</p>';
             }
         } else {
-            $_SESSION['message'] = "Le nom ou la référence de la pièce est trop long.";
+            $_SESSION['message'] = '<p style="color: #ff7782;">Le nom ou la référence de la pièce est trop long.</p>';
         }
     } else {
-        $_SESSION['message'] = "Le nom et/ou la référence est vide.";
+        $_SESSION['message'] = '<p style="color: #ff7782;">Le nom et/ou la référence est vide.</p>';
     }
 }
 
@@ -110,21 +110,7 @@ if (isset($_POST[('pieceSubmit')])) {
             </div>
         </aside>
         <!----------------------- END OF ASIDE ------------------------->
-
-        <section id="modal1" class="modal" aria-hidden="true" role="dialog" aria_labelledby="titlemodal" style="display: none;">
-            <div class="modal-wrapper">
-                <form action=" ./pieces.php" method="post" class="form1">
-                    <h1 id="titlemodal">Modifier la pièce suivante :<br><?php echo "Nom de la piece"; ?></h1>
-                    <div class="inputs">
-                        <input name="username" type="text" placeholder="Nom de la pièce" value="<?php ?>">
-                        <input name="ref" type="text" placeholder="Référence de la pièce" value="<?php ?>">
-                        <button type="submit">Appliquer les modifications</button>
-                    </div>
-                </form>
-            </div>
-        </section>
-        <!----------------------- END OF MODAL ------------------------->
-
+        
         <main>
             <h1>Liste des pièces</h1>
             <div class="alert">
@@ -146,9 +132,7 @@ if (isset($_POST[('pieceSubmit')])) {
                         </button>
                     </form>
                 </section>
-                <?php if (isset($_SESSION['message'])) {
-                    echo "<p>" . $_SESSION['message'] . "</p>";
-                } ?>
+                <?php if (isset($_SESSION['message'])) { echo $_SESSION['message']; } ?>
             </div>
             <div class="alert bis">
                 <h2>Pièces</h2>
@@ -169,15 +153,29 @@ if (isset($_POST[('pieceSubmit')])) {
                             echo '<td style="display: none;">' . $query['id'] . '</td>';
                             echo '<td>' . $query['nom'] . '</td>';
                             echo '<td>' . $query['ref'] . '</td>';
-                            echo '<td class="warning" style="max-width: 100px;"><a href="?id=' . $query['id'] . '" class="js-modal" style="text-decoration: none; color: #ffbb55; cursor: pointer;"><span class="material-icons-sharp">edit</span></a></td>';
+                            echo '<td class="warning" style="max-width: 100px;"><a href="#modal" class="js-modal" style="text-decoration: none; color: #ffbb55; cursor: pointer;"><span class="material-icons-sharp">edit</span></a></td>';
                             echo '<td class="danger" style="max-width: 100px;"><a href="delete.php?table=pieces&id=' . $query['id'] . '" style="text-decoration: none; color: #ff7782; cursor: pointer;"><span class="material-icons-sharp">delete</span></a></td>';
                             echo '</tr>';
-                        }
-                        ?>
+                        } ?>
                     </tbody>
                 </table>
             </div>
         </main>
+
+        <section id="modal" class="modal" aria-hidden="true" role="dialog" aria_labelledby="titlemodal" style="display: none;">
+            <div class="modal-wrapper">
+                <form action="./updatePiece.php" method="post" class="form1">
+                    <h1 id="titlemodal">Modifier la pièce suivante :<br><?php if (isset($_GET['pieceName'])) { echo $_GET['pieceName']; } ?></h1>
+                    <div class="inputs">
+                        <input name="username" type="text" placeholder="Nom de la pièce" value="<?php ?>">
+                        <input name="ref" type="text" placeholder="Référence de la pièce" value="<?php ?>">
+                        <button type="submit">Appliquer les modifications</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <!----------------------- END OF MODAL ------------------------->
+
         <div class="right">
             <div class="top">
                 <button id="menu-btn">
