@@ -537,6 +537,17 @@ main .alert a {
     cursor: pointer;
 }
 
+.alert button h2 {
+    text-align: left;
+    font-size: 1.4rem;
+    font-family: Poppins, sans-serif;
+    color: var(--color-dark);
+}
+
+.formAddPiece .inputs input {
+    background-color: var(--color-white);
+}
+
 .BtnAdd {
     background: var(--color-white);
     padding: 1rem;
