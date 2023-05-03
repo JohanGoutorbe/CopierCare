@@ -109,7 +109,7 @@ if (isset($_POST[('pieceSubmit')])) {
             </div>
         </aside>
         <!----------------------- END OF ASIDE ------------------------->
-        
+
         <main>
             <h1>Liste des pièces</h1>
             <div class="alert">
@@ -131,7 +131,9 @@ if (isset($_POST[('pieceSubmit')])) {
                         </button>
                     </form>
                 </section>
-                <?php if (isset($_SESSION['message'])) { echo $_SESSION['message']; } ?>
+                <?php if (isset($_SESSION['message'])) {
+                    echo $_SESSION['message'];
+                } ?>
             </div>
             <div class="alert bis">
                 <h2>Pièces</h2>
@@ -161,7 +163,7 @@ if (isset($_POST[('pieceSubmit')])) {
             </div>
         </main>
 
-        <section id="modal" class="modal" aria-hidden="true" role="dialog" aria_labelledby="titlemodal"> <!-- style="display: none;" -->
+        <section id="modal" class="modal" aria-hidden="true" role="dialog" aria_labelledby="titlemodal" style="display: none;">
             <div class="modal-wrapper">
                 <form action="./updatePiece.php" method="post" class="form1">
                     <h1 id="titlemodal">Modifier la pièce suivante :<br><?php if (isset($_GET['pieceName'])) { echo $_GET['pieceName']; } ?></h1>
