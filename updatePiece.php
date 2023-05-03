@@ -68,6 +68,6 @@ $stmt->bindParam('name', $name);
 $stmt->bindParam('ref', $ref);
 $stmt->bindParam('id', $intID);
 $stmt->execute();
-$_SESSION['message'] = '<p style="color: #41f1b6; text-shadow: 0px 0px black;">La pièce <strong>' . $name . '</strong> a bien été modifiée.</p>';
+$_SESSION['message'] = '<p style="color: #41f1b6; text-shadow: 0px 0px black; font-size: 1.25em; font-weight: 100;">La pièce <strong>' . $name . '</strong> a bien été modifiée.</p>';
 header('Location: pieces.php');
 exit();
