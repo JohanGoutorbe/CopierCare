@@ -38,7 +38,7 @@ $stmt = $db->prepare($sql);
 $stmt->bindParam('id', $id);
 $stmt->execute();
 
-$_SESSION['errors'] = "Une erreur est survenue lors la tentative de connexion.<br>Veuillez réessayer.";
+$_SESSION['errors'] = "Une erreur est survenue lors la tentative de connexion.<br>Veuillez réessayer";
 $location = 'Location: ' . $table . '.php';
 header($location);
 exit();
