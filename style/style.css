@@ -544,20 +544,57 @@ main .alert a {
     color: var(--color-dark);
 }
 
+.formAddPiece {
+    min-width: 275px;
+    width: fit-content;
+}
+
+.formAddPiece .inputs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2.5px 0;
+}
+
 .formAddPiece .inputs input {
     background-color: var(--color-white);
+}
+
+.formAddPiece .inputs input[type="text"],
+.formAddPiece .inputs input[type="password"],
+.formAddPiece .inputs input[type="number"] {
+    padding: 0.25rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .BtnAdd {
     background: var(--color-white);
     padding: 1rem;
     border-radius: 2rem;
-    margin-top: 1rem;
     box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
     transition: all 300ms ease;
     width: 200px;
     height: 50px;
     cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: nowrap;
+    position: relative;
+    margin: auto;
+    margin-bottom: 10px;
+    margin-top: 2rem;
+}
+
+.BtnAdd h2 {
+    color: #7380ec;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 0;
 }
 
 
