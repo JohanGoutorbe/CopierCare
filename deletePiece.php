@@ -29,6 +29,7 @@ if (!isset($_GET['id'])) {
     header($location);
     exit();
 }
+i
 
 $table = trim(htmlspecialchars($_GET['table']));
 $id = htmlspecialchars($_GET['id']);
@@ -38,7 +39,7 @@ $stmt = $db->prepare($sql);
 $stmt->bindParam('id', $id);
 $stmt->execute();
 
-$_SESSION['message'] = '<p style="color: #41f1b6; font-size: 1.25em; font-weight: 100;">La suppression s\'est correctement effectuée</p>';
+$_SESSION['message'] = '<p style="color: #41f1b6; font-size: 1.25em; font-weight: 100; width: 100vw;">La suppression s\'est correctement effectuée</p>';
 
 $location = 'Location: ' . $table . '.php';
 header($location);
