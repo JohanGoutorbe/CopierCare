@@ -26,16 +26,16 @@ if (isset($_POST[('pieceSubmit')])) {
                 $stmt->bindParam('name', $pieceName);
                 $stmt->bindParam('ref', $pieceRef);
                 $stmt->execute();
-                $_SESSION['message'] = '<p style="color: #41f1b6; text-shadow: 0px 0px black; width: 100vw;">La pièce <strong>' . $pieceName . '</strong> a bien été ajoutée.</p>';
+                $_SESSION['message'] = '<p style="color: #41f1b6; text-shadow: 0px 0px black;">La pièce <strong>' . $pieceName . '</strong> a bien été ajoutée.</p>';
                 header("Refresh:0");
             } else {
-                $_SESSION['message'] = '<p style="color: #ff7782; width: 100vw;">La référence doit être plus courte que le nom</p>';
+                $_SESSION['message'] = '<p style="color: #ff7782;">La référence doit être plus courte que le nom</p>';
             }
         } else {
-            $_SESSION['message'] = '<p style="color: #ff7782; width: 100vw;">Le nom ou la référence de la pièce est trop long.</p>';
+            $_SESSION['message'] = '<p style="color: #ff7782;">Le nom ou la référence de la pièce est trop long.</p>';
         }
     } else {
-        $_SESSION['message'] = '<p style="color: #ff7782; width: 100vw;">Le nom et/ou la référence est vide.</p>';
+        $_SESSION['message'] = '<p style="color: #ff7782;">Le nom et/ou la référence est vide.</p>';
     }
 }
 
