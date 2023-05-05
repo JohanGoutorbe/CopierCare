@@ -43,6 +43,21 @@ $_SESSION['surname'] = $result['prenom'];
 $_SESSION['photo'] = $result['photo'];
 $_SESSION['rang'] = $result['rang'];
 
+$sql = 'SELECT * FROM `copieurs`';
+$stmt = $db->prepare($sql);
+$stmt->execute();
+$copieursCount = $stmt->rowCount();
+
+$sql = 'SELECT * FROM `clients`';
+$stmt = $db->prepare($sql);
+$stmt->execute();
+$clientsCount = $stmt->rowCount();
+
+$sql = 'SELECT * FROM `inters`';
+$stmt = $db->prepare($sql);
+$stmt->execute();
+$intersCount = $stmt->rowCount();
+
 ?>
 
 <!DOCTYPE html>
@@ -131,7 +146,7 @@ $_SESSION['rang'] = $result['rang'];
                     <div class="middle">
                         <div class="left">
                             <h3>Nombre de copieurs</h3>
-                            <h1>~450</h1>
+                            <h1><?php echo $copieursCount; ?></h1>
                         </div>
                         <div class="progress">
                             <svg>
@@ -150,7 +165,7 @@ $_SESSION['rang'] = $result['rang'];
                     <div class="middle">
                         <div class="left">
                             <h3>Nombre d'interventions</h3>
-                            <h1>1,652</h1>
+                            <h1><?php echo $intersCount; ?></h1>
                         </div>
                         <div class="progress">
                             <svg>
@@ -169,7 +184,7 @@ $_SESSION['rang'] = $result['rang'];
                     <div class="middle">
                         <div class="left">
                             <h3>Nombre de clients</h3>
-                            <h1>136</h1>
+                            <h1><?php echo $clientsCount; ?></h1>
                         </div>
                         <div class="progress">
                             <svg>
