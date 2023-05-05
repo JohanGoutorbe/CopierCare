@@ -82,6 +82,10 @@ if (isset($_POST[('pieceSubmit')])) {
                     <span class="material-icons-sharp">groups</span>
                     <h3>Clients</h3>
                 </a>
+                <a href="./inter.php">
+                    <span class="material-icons-sharp">description</span>
+                    <h3>Interventions</h3>
+                </a>
                 <a href="./copieurs.php">
                     <span style="width: 24px;" class="material-icons-sharp">print_outline</span>
                     <h3>Copieurs</h3>

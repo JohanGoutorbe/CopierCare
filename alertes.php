@@ -48,6 +48,10 @@ include './loggedVerif.php';
                     <span class="material-icons-sharp">report_gmailerrorred</span>
                     <h3>Alertes</h3>
                 </a>
+                <a href="./inter.php">
+                    <span class="material-icons-sharp">description</span>
+                    <h3>Interventions</h3>
+                </a>
                 <a href="./clients.php">
                     <span class="material-icons-sharp">groups</span>
                     <h3>Clients</h3>
