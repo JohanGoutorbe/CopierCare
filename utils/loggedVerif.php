@@ -4,6 +4,6 @@ if (isset($_SESSION['logged']) && $_SESSION['logged'] == true && !empty($_SESSIO
     $_SESSION['validate'] = true;
 } else {
     $_SESSION['errors'] = "Veuillez vous authentifier à l'aide de l'une des méthodes ci-dessus.";
-    header('Location: login.php');
+    header('Location: ../login/login.php');
     exit();
 }

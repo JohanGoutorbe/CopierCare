@@ -18,8 +18,8 @@ $_SESSION['theme'] = "white";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CopierCare | Connexion</title>
-    <link rel="stylesheet" href="./style/login_style.css">
-    <link rel="shortcut icon" href="./getImage.php?nom=logo_copiercare.png" type="image/x-icon">
+    <link rel="stylesheet" href="../style/login_style.css">
+    <link rel="shortcut icon" href="../images/getImage.php?nom=logo_copiercare.png" type="image/x-icon">
 </head>
 
 <body>

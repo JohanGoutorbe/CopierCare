@@ -6,7 +6,7 @@ ini_set('displau_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Connexion à la base de données
-include './dbconnect.php';
+include '../utils/dbconnect.php';
 
 // Déclaration des variables
 $username_validate = false;
@@ -51,7 +51,7 @@ if ($username_validate) {
     if ($count > 0) {
         $_SESSION['logged'] = true;
         $_SESSION['username'] = $username;
-        header('Location: index.php');
+        header('Location: ../index.php');
         exit();
     } elseif ($count < 1) {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);

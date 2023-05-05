@@ -6,7 +6,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Connexion à la base de données
-include './dbconnect.php';
+include './utils/dbconnect.php';
 
 /*
 <!-- Lire et écrire les relevés compteurs dans la base de données -->
@@ -29,7 +29,13 @@ while ($query = $stmt->fetch()) {
     echo "</br>";
 }*/
 
-include './loggedVerif.php';
+if (isset($_SESSION['logged']) && $_SESSION['logged'] == true && !empty($_SESSION['username'])) {
+    $_SESSION['validate'] = true;
+} else {
+    $_SESSION['errors'] = "Veuillez vous authentifier à l'aide de l'une des méthodes ci-dessus.";
+    header('Location: ./login/login.php');
+    exit();
+}
 
 $username = $_SESSION['username'];
 
@@ -72,7 +78,7 @@ $intersCount = $stmt->rowCount();
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+outlined">
     <link rel="stylesheet" href="./style/style.css">
-    <link rel="shortcut icon" href="./getImage.php?nom=logo_copiercare.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./images/getImage.php?nom=logo_copiercare.png" type="image/x-icon">
 </head>
 
 <body>
@@ -80,7 +86,7 @@ $intersCount = $stmt->rowCount();
         <aside>
             <div class="top">
                 <div class="logo">
-                    <img src="./getImage.php?nom=logo_copiercare.png" alt="CopierCare logo">
+                    <img src="./images/getImage.php?nom=logo_copiercare.png" alt="CopierCare logo">
                     <h2><span class="danger">COPIER</span>CARE</h2>
                 </div>
                 <div class="close" id="close-btn">
@@ -89,43 +95,43 @@ $intersCount = $stmt->rowCount();
             </div>
 
             <div class="sidebar">
-                <a href="./index.php" class="active">
+                <a href="" class="active">
                     <span class="material-icons-sharp">home</span>
                     <h3>Accueil</h3>
                 </a>
-                <a href="./alertes.php">
+                <a href="./alertes/alertes.php">
                     <span class="material-icons-sharp">report_gmailerrorred</span>
                     <h3>Alertes</h3>
                 </a>
-                <a href="./inter.php">
+                <a href="./inters/inter.php">
                     <span class="material-icons-sharp">description</span>
                     <h3>Interventions</h3>
                 </a>
-                <a href="./clients.php">
+                <a href="./clients/clients.php">
                     <span class="material-icons-sharp">groups</span>
                     <h3>Clients</h3>
                 </a>
-                <a href="./copieurs.php">
+                <a href="./copieurs/copieurs.php">
                     <span style="width: 24px;" class="material-icons-sharp">print_outline</span>
                     <h3>Copieurs</h3>
                 </a>
-                <a href="./consommables.php">
+                <a href="./consommables/consommables.php">
                     <span class="material-icons-sharp">construction</span>
                     <h3>Consommables</h3>
                 </a>
-                <a href="./pieces.php">
+                <a href="./pieces/pieces.php">
                     <span class="material-icons-sharp">devices</span>
                     <h3>Pièces</h3>
                 </a>
-                <a href="./parametres.php">
+                <a href="./parametres/parametres.php">
                     <span class="material-icons-sharp">settings</span>
                     <h3>Paramètres</h3>
                 </a>
-                <a href="./admin.php">
+                <a href="./admin/admin.php">
                     <span class="material-icons-sharp">admin_panel_settings</span>
                     <h3>Administrateur</h3>
                 </a>
-                <a href="./logout.php">
+                <a href="./utils/logout.php">
                     <span class="material-icons-sharp">logout</span>
                     <h3>Se déconnecter</h3>
                 </a>
@@ -251,7 +257,7 @@ $intersCount = $stmt->rowCount();
                         </tr>
                     </tbody>
                 </table>
-                <a href="#">Show All</a>
+                <a href="">Show All</a>
             </div>
         </main>
         <!--------------- END OF MAIN ------------>
@@ -271,7 +277,7 @@ $intersCount = $stmt->rowCount();
                         <small class="text-muted"><?php echo ucfirst($_SESSION['rang']); ?></small>
                     </div>
                     <div class="profile-photo">
-                        <img src="./getImage.php?nom=<?php echo $_SESSION['photo']; ?>" alt="Photo de profil">
+                        <img src="./images/getImage.php?nom=<?php echo $_SESSION['photo']; ?>" alt="Photo de profil">
                     </div>
                 </div>
             </div>
@@ -281,7 +287,7 @@ $intersCount = $stmt->rowCount();
                 <div class="updates">
                     <div class="update">
                         <div class="profile-photo">
-                            <img src="./getImage.php?nom=profile-2.jpg">
+                            <img src="./images/getImage.php?nom=profile-2.jpg">
                         </div>
                         <div class="message">
                             <p><b>Mike Tyson</b> recieved his order of Night lion tech GPS drone.</p>
@@ -290,7 +296,7 @@ $intersCount = $stmt->rowCount();
                     </div>
                     <div class="update">
                         <div class="profile-photo">
-                            <img src="./getImage.php?nom=profile-3.jpg">
+                            <img src="./images/getImage.php?nom=profile-3.jpg">
                         </div>
                         <div class="message">
                             <p><b>Diana Ayi</b> declien her order of 2 DJI Air 2S.</p>
@@ -299,7 +305,7 @@ $intersCount = $stmt->rowCount();
                     </div>
                     <div class="update">
                         <div class="profile-photo">
-                            <img src="./getImage.php?nom=profile-4.jpg">
+                            <img src="./images/getImage.php?nom=profile-4.jpg">
                         </div>
                         <div class="message">
                             <p><b>Mandy Roy</b> recieved his order of Larvender KF102 Drone.</p>
@@ -360,7 +366,7 @@ $intersCount = $stmt->rowCount();
         </div>
     </div>
 
-    <script src="./index.js"></script>
+    <script src="./script/index.js"></script>
 </body>
 
 </html>
