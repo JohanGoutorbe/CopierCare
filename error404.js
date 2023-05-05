@@ -22,7 +22,7 @@ t2.to(".cog2",
 
 t3.fromTo(".wrong-para",
     {
-        opacity: 0
+        opacity: 0.1
     },
     {
         opacity: 1,
