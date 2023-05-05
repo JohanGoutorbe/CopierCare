@@ -1,0 +1,10 @@
+# --------------------------------------------------
+# Répertoire : /www/
+# --------------------------------------------------
+
+# Le serveur doit suivre les liens symboliques :
+Options +FollowSymlinks
+
+# Changement de la localisation du fichier d'erreur 404 vvers index.php
+ErrorDocument 404 /error404.html
+ErrorDocument 500 /error400.html
