@@ -318,7 +318,7 @@ $intersCount = $stmt->rowCount();
                     <div class="right">
                         <div class="info">
                             <h3>ONLINE ORDERS</h3>
-                            <small class="text-muted">LAst 24 hours</small>
+                            <small class="text-muted">Last 24 hours</small>
                         </div>
                         <h5 class="success">+39%</h5>
                         <h3>3849</h3>
@@ -331,7 +331,7 @@ $intersCount = $stmt->rowCount();
                     <div class="right">
                         <div class="info">
                             <h3>OFFLINE ORDERS</h3>
-                            <small class="text-muted">LAst 24 hours</small>
+                            <small class="text-muted">Last 24 hours</small>
                         </div>
                         <h5 class="danger">-17%</h5>
                         <h3>1100</h3>
@@ -344,7 +344,7 @@ $intersCount = $stmt->rowCount();
                     <div class="right">
                         <div class="info">
                             <h3>NEW CUSTOMERS</h3>
-                            <small class="text-muted">LAst 24 hours</small>
+                            <small class="text-muted">Last 24 hours</small>
                         </div>
                         <h5 class="success">+25%</h5>
                         <h3>849</h3>
