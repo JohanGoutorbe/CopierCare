@@ -64,7 +64,7 @@ include '../utils/loggedVerif.php';
                     <span class="material-icons-sharp">construction</span>
                     <h3>Consommables</h3>
                 </a>
-                <a href="./pieces.php">
+                <a href="../pieces/pieces.php">
                     <span class="material-icons-sharp">devices</span>
                     <h3>Pièces</h3>
                 </a>

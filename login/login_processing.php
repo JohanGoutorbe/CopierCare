@@ -57,15 +57,15 @@ if ($username_validate) {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result['identifiant'] !== $username) {
             $_SESSION['errors'] = "L'identifiant de connexion est incorrect";
-            header('Location: login.php');
+            header('Location: ./login.php');
             exit();
         } elseif ($result['mdp'] !== $pwd) {
             $_SESSION['errors'] = "Le mot de passe est incorrect";
-            header('Location: login.php');
+            header('Location: ./login.php');
             exit();
         } else {
             $_SESSION['errors'] = "il n'existe aucun utilisateur enregistré à ce nom";
-            header('Location: login.php');
+            header('Location: ./login.php');
         }
     }
 }

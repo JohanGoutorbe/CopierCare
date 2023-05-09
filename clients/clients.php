@@ -6,9 +6,9 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Connexion à la base de données
-include './dbconnect.php';
+include '../utils/dbconnect.php';
 
-include './loggedVerif.php';
+include '../utils/loggedVerif.php';
 
 $sql = "SELECT * FROM `clients` WHERE 1 ORDER BY `nom_client`";
 $stmt = $db->prepare($sql);
@@ -51,9 +51,9 @@ if (isset($_POST[('pieceSubmit')])) {
     </title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+outlined">
-    <link rel="stylesheet" href="./style/style.css">
-    <link rel="stylesheet" href="./style/modal_style.css">
-    <link rel="shortcut icon" href="./getImage.php?nom=logo_copiercare.png" type="image/x-icon">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/modal_style.css">
+    <link rel="shortcut icon" href="../images/getImage.php?nom=logo_copiercare.png" type="image/x-icon">
 </head>
 
 <body>
@@ -61,7 +61,7 @@ if (isset($_POST[('pieceSubmit')])) {
         <aside>
             <div class="top">
                 <div class="logo">
-                    <img src="./getImage.php?nom=logo_copiercare.png" alt="CopierCare logo">
+                    <img src="../images/getImage.php?nom=logo_copiercare.png" alt="CopierCare logo">
                     <h2><span class="danger">COPIER</span>CARE</h2>
                 </div>
                 <div class="close" id="close-btn">
@@ -70,43 +70,43 @@ if (isset($_POST[('pieceSubmit')])) {
             </div>
 
             <div class="sidebar">
-                <a href="./index.php">
+                <a href="../index.php">
                     <span class="material-icons-sharp">home</span>
                     <h3>Accueil</h3>
                 </a>
-                <a href="./alertes.php">
+                <a href="../alertes/alertes.php">
                     <span class="material-icons-sharp">report_gmailerrorred</span>
                     <h3>Alertes</h3>
                 </a>
-                <a href="./inter.php">
+                <a href="../inters/inter.php">
                     <span class="material-icons-sharp">description</span>
                     <h3>Interventions</h3>
                 </a>
-                <a href="./clients.php" class="active">
+                <a href="" class="active">
                     <span class="material-icons-sharp">groups</span>
                     <h3>Clients</h3>
                 </a>
-                <a href="./copieurs.php">
+                <a href="../copieurs/copieurs.php">
                     <span style="width: 24px;" class="material-icons-sharp">print_outline</span>
                     <h3>Copieurs</h3>
                 </a>
-                <a href="./consommables.php">
+                <a href="../parametres/parametres.php">
                     <span class="material-icons-sharp">construction</span>
                     <h3>Consommables</h3>
                 </a>
-                <a href="./pieces.php">
+                <a href="../pieces/pieces.php">
                     <span class="material-icons-sharp">devices</span>
                     <h3>Pièces</h3>
                 </a>
-                <a href="./parametres.php">
+                <a href="../parametres/parametres.php">
                     <span class="material-icons-sharp">settings</span>
                     <h3>Paramètres</h3>
                 </a>
-                <a href="./admin.php">
+                <a href="../admin/admin.php">
                     <span class="material-icons-sharp">admin_panel_settings</span>
                     <h3>Administrateur</h3>
                 </a>
-                <a href="./logout.php">
+                <a href="../utils/logout.php">
                     <span class="material-icons-sharp">logout</span>
                     <h3>Se déconnecter</h3>
                 </a>
@@ -121,7 +121,7 @@ if (isset($_POST[('pieceSubmit')])) {
                     <h2>Ajouter un client</h2>
                 </button>
                 <section class="sales" id="addPiece">
-                    <form action="./pieces.php" method="POST" class="formAddPiece ">
+                    <form action="./clients.php" method="POST" class="formAddPiece ">
                         <div class="inputs">
                             <label for="clientName">Nom : </label>
                             <input type="text" name="clientName" placeholder="Société Exemple" required>
@@ -189,7 +189,7 @@ if (isset($_POST[('pieceSubmit')])) {
                                                                                                                     echo 'visibility: hidden; opacity: 0';
                                                                                                                 } ?>">
             <div class="modal-wrapper">
-                <form action="./updatePiece.php" method="post" class="form1">
+                <form action="./updateClient.php" method="post" class="form1">
                     <h1 id="titlemodal">Modifier la pièce suivante :<br><?php if (isset($_GET['pieceName'])) {
                                                                             echo $_GET['pieceName'];
                                                                         } ?></h1>
@@ -219,7 +219,7 @@ if (isset($_POST[('pieceSubmit')])) {
                         <small class="text-muted"><?php echo ucfirst($_SESSION['rang']); ?></small>
                     </div>
                     <div class="profile-photo">
-                        <img src="./getImage.php?nom=<?php echo $_SESSION['photo']; ?>" alt="Photo de profil">
+                        <img src="../images/getImage.php?nom=<?php echo $_SESSION['photo']; ?>" alt="Photo de profil">
                     </div>
                 </div>
             </div>
@@ -227,8 +227,8 @@ if (isset($_POST[('pieceSubmit')])) {
         </div>
     </div>
 
-    <script src="./index.js"></script>
-    <script src="./pieces.js"></script>
+    <script src="../script/index.js"></script>
+    <script src="../script/pieces.js"></script>
 </body>
 
 </html>

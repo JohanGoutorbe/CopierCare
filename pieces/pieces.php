@@ -6,9 +6,9 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Connexion à la base de données
-include './dbconnect.php';
+include '../utils/dbconnect.php';
 
-include './loggedVerif.php';
+include '../utils/loggedVerif.php';
 
 $sql = "SELECT * FROM `pieces` WHERE 1 ORDER BY id DESC";
 $stmt = $db->prepare($sql);
@@ -26,7 +26,7 @@ if (isset($_POST[('pieceSubmit')])) {
                 $stmt->bindParam('name', $pieceName);
                 $stmt->bindParam('ref', $pieceRef);
                 $stmt->execute();
-                $_SESSION['message'] = '<p style="color: #41f1b6; text-shadow: 0px 0px black;">La pièce <strong>' . $pieceName . '</strong> a bien été ajoutée.</p>';
+                $_SESSION['message'] = '<p style="color: #41f1b6; text-shadow: 0px 0px black; width: auto;">La pièce <strong>' . $pieceName . '</strong> a bien été ajoutée.</p>';
                 header("Refresh:0");
             } else {
                 $_SESSION['message'] = '<p style="color: #ff7782;">La référence doit être plus courte que le nom</p>';
@@ -51,9 +51,9 @@ if (isset($_POST[('pieceSubmit')])) {
     </title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+outlined">
-    <link rel="stylesheet" href="./style/style.css">
-    <link rel="stylesheet" href="./style/modal_style.css">
-    <link rel="shortcut icon" href="./getImage.php?nom=logo_copiercare.png" type="image/x-icon">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/modal_style.css">
+    <link rel="shortcut icon" href="../images/getImage.php?nom=logo_copiercare.png" type="image/x-icon">
 </head>
 
 <body>
@@ -61,7 +61,7 @@ if (isset($_POST[('pieceSubmit')])) {
         <aside>
             <div class=" top">
                 <div class="logo">
-                    <img src="./getImage.php?nom=logo_copiercare.png" alt="CopierCare logo">
+                    <img src="../images/getImage.php?nom=logo_copiercare.png" alt="CopierCare logo">
                     <h2><span class="danger">COPIER</span>CARE</h2>
                 </div>
                 <div class="close" id="close-btn">
@@ -70,43 +70,43 @@ if (isset($_POST[('pieceSubmit')])) {
             </div>
 
             <div class="sidebar">
-                <a href="./index.php">
+                <a href="../index.php">
                     <span class="material-icons-sharp">home</span>
                     <h3>Accueil</h3>
                 </a>
-                <a href="./alertes.php">
+                <a href="../alertes/alertes.php">
                     <span class="material-icons-sharp">report_gmailerrorred</span>
                     <h3>Alertes</h3>
                 </a>
-                <a href="./inter.php">
+                <a href="../inters/inter.php">
                     <span class="material-icons-sharp">description</span>
                     <h3>Interventions</h3>
                 </a>
-                <a href="./clients.php">
+                <a href="../clients/clients.php">
                     <span class="material-icons-sharp">groups</span>
                     <h3>Clients</h3>
                 </a>
-                <a href="./copieurs.php">
+                <a href="../copieurs/copieurs.php">
                     <span style="width: 24px;" class="material-icons-sharp">print_outline</span>
                     <h3>Copieurs</h3>
                 </a>
-                <a href="./consommables.php">
+                <a href="../consommables/consommables.php">
                     <span class="material-icons-sharp">construction</span>
                     <h3>Consommables</h3>
                 </a>
-                <a href="./pieces.php" class="active">
+                <a href="" class="active">
                     <span class="material-icons-sharp">devices</span>
                     <h3>Pièces</h3>
                 </a>
-                <a href="./parametres.php">
+                <a href="../parametres/parametres.php">
                     <span class="material-icons-sharp">settings</span>
                     <h3>Paramètres</h3>
                 </a>
-                <a href="./admin.php">
+                <a href="../admin/admin.php">
                     <span class="material-icons-sharp">admin_panel_settings</span>
                     <h3>Administrateur</h3>
                 </a>
-                <a href="./logout.php">
+                <a href="../utils/logout.php">
                     <span class="material-icons-sharp">logout</span>
                     <h3>Se déconnecter</h3>
                 </a>
@@ -159,7 +159,7 @@ if (isset($_POST[('pieceSubmit')])) {
                             echo '<td>' . $query['nom'] . '</td>';
                             echo '<td>' . $query['ref'] . '</td>';
                             echo '<td class="warning" style="max-width: 100px;"><a href="pieces.php?update=true&id=' . $query['id'] . '&name=' . $query['nom'] . '&ref=' . $query['ref'] . '" style="text-decoration: none; color: #ffbb55; cursor: pointer;"><span class="material-icons-sharp">edit</span></a></td>';
-                            echo '<td class="danger" style="max-width: 100px;"><a href="deletePiece.php?table=pieces&id=' . $query['id'] . '&name=' . $query['nom'] . '" style="text-decoration: none; color: #ff7782; cursor: pointer;"><span class="material-icons-sharp">delete</span></a></td>';
+                            echo '<td class="danger" style="max-width: 100px;"><a href="deletePiece.php?id=' . $query['id'] . '&name=' . $query['nom'] . '" style="text-decoration: none; color: #ff7782; cursor: pointer;"><span class="material-icons-sharp">delete</span></a></td>';
                             echo '</tr>';
                         } ?>
                     </tbody>
@@ -203,7 +203,7 @@ if (isset($_POST[('pieceSubmit')])) {
                         <small class="text-muted"><?php echo ucfirst($_SESSION['rang']); ?></small>
                     </div>
                     <div class="profile-photo">
-                        <img src="./getImage.php?nom=<?php echo $_SESSION['photo']; ?>" alt="Photo de profil">
+                        <img src="../images/getImage.php?nom=<?php echo $_SESSION['photo']; ?>" alt="Photo de profil">
                     </div>
                 </div>
             </div>
@@ -211,8 +211,8 @@ if (isset($_POST[('pieceSubmit')])) {
         </div>
     </div>
 
-    <script src="./index.js"></script>
-    <script src="./pieces.js"></script>
+    <script src="../script/index.js"></script>
+    <script src="../script/pieces.js"></script>
 </body>
 
 </html>
