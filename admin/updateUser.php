@@ -75,7 +75,7 @@ if (strlen($nom) > 50) {
     exit();
 } 
 
-if (filter_var($email, FILTER_VALIDATE_EMAIL) !== true) {
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $_SESSION['message'] .= '<p style="color: #ff7782;">L\'email de l\'utilisateur est incorrect</p>';
     header('Location: ./admin.php');
     exit();
