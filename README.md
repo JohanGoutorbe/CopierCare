@@ -1,6 +1,6 @@
 # CopierCare : la solution reprographique complète !
 
-Bienvenue sur CopierCare, l'application web de gestion du parc reprographique de multifonctions.
+Bienvenue sur CopierCare, l'application web de gestion du parc reprographique de multifonctions, développée spécifiquement pour l'entreprise Office Center.
 
 ## Table des Matières
 1. [Introduction](#Introduction)
@@ -12,11 +12,11 @@ Bienvenue sur CopierCare, l'application web de gestion du parc reprographique de
 ***
 ## Introduction
 
-CopierCare est une application wen de suivi en ligne du parc reprographique de multifonctions de l'entreprise Office Center. Elle permet de faciliter la gestion du parc actuel et de permettre l'ajout de nouveaux équipements grâce à un formulaire d'ajout. La saisie des interventions est également possible pour permettre une meilleure navigation et une accessibilité optimale pour le technicien sur site. De plus, l'application web offre des alertes automatiques pour prévenir l'usure des pièces et la fréquence des pannes. 
+CopierCare est une application web qui permet de gérer de manière centralisée et en ligne le ligne du parc reprographique de multifonctions de l'entreprise Office Center. Elle simplifie la gestion du parc existant et facilite l'ajout de nouveaux équipements grâce à un formulaire dédié. De plus, elle offre la possibilité de saisir des interventions pour une meilleure navigation et une accessibilité optimale pour les techniciens sur site. De plus, l'application web est également dotée de fonctionnalités d'alertes automatiques pour prévenir l'usure des pièces et anticiper les pannes. 
 
 ## Fonctionnement 
 
-CopierCare est une application web développée avec PHP 8 et JavaScript, et utilise une base de données MySQL pour stocker les données du parc et des clients. L'application dispose d'une interface utilisateur ergonomique et fluide, avec une charte graphique professionnelle et épurée et une navigation fluide et instinctive. 
+CopierCare est une application web développée en utilisant PHP 8 et JavaScript. Elle utilise une base de données MySQL pour stocker toutes les informations relatives au parc et aux clients. L'application offre une interface utilisateur ergonomique, avec une charte graphique professionnelle et épurée, garantissant ainsi une navigation fluide et instinctive. 
 
 ## Prérequis
 
