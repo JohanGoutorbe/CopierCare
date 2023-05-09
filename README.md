@@ -1,6 +1,6 @@
 # CopierCare : la solution reprographique complète !
 
-Bienvenue sur CopierCare, l'application web de gestion du parc reprographique de multifonctions, développée spécifiquement pour l'entreprise Office Center.
+Bienvenue sur CopierCare, l'application web de gestion du parc reprographique de multifonctions, développée par Johan Goutorbe spécifiquement pour l'entreprise Office Center.
 
 ## Table des Matières
 1. [Introduction](#Introduction)
