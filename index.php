@@ -37,6 +37,7 @@ if (isset($_SESSION['logged']) && $_SESSION['logged'] == true && !empty($_SESSIO
     exit();
 }
 
+$_SESSION['message'] = '';
 $username = $_SESSION['username'];
 
 $sql = "SELECT * FROM `utilisateurs` WHERE `identifiant` = :username";
