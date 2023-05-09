@@ -142,7 +142,7 @@ $stmt->execute();
                         <input name="email" type="text" placeholder="Email de l'utilisateur" value="<?php echo $_GET['email']; ?>">
                         <input name="rang" type="text" placeholder="Rang de l'utilisateur" value="<?php echo $_GET['rang']; ?>">
                         <input name="formation" type="text" placeholder="Formation de l'utilisateur" value="<?php echo $_GET['formation']; ?>">
-                        <button type="submit" name="pieceUpdateSubmit">Appliquer les modifications</button>
+                        <button type="submit" name="userUpdateSubmit">Appliquer les modifications</button>
                     </div>
                 </form>
             </div>
