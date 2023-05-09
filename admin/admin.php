@@ -10,6 +10,10 @@ include '../utils/dbconnect.php';
 
 include '../utils/loggedVerif.php';
 
+$sql = "SELECT * FROM `utilisateurs` WHERE 1 ORDER BY id";
+$stmt = $db->prepare($sql);
+$stmt->execute();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,11 +22,12 @@ include '../utils/loggedVerif.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CopierCare - Tableau de bord
+    <title>CopierCare - Espace Administration
     </title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+outlined">
     <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/modal_style.css">
     <link rel="shortcut icon" href="../images/getImage.php?nom=logo_copiercare.png" type="image/x-icon">
 </head>
 
@@ -85,60 +90,66 @@ include '../utils/loggedVerif.php';
         <!----------------------- END OF ASIDE ------------------------->
 
         <main>
-            <h1>Tableau de bord</h1>
+            <h1>Administration du site</h1>
             <div class="alert">
-                <h2>Alertes</h2>
+                <h2>Utilisateurs</h2>
                 <table>
                     <thead>
                         <tr>
-                            <th>Pièce</th>
-                            <th>Copieur</th>
-                            <th>Client</th>
-                            <th>Limittes de la pièce</th>
-                            <th></th>
+                            <th style=" display: none;">ID</th>
+                            <th>Technicien</th>
+                            <th>Mail</th>
+                            <th>Rang</th>
+                            <th>Formation</th>
+                            <th>Modifier</th>
+                            <th>Supprimer</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Fordable Mini Drone</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Fordable Mini Drone</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Fordable Mini Drone</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Fordable Mini Drone</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Fordable Mini Drone</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
+                    <tbody>
+                        <?php
+                        while ($query = $stmt->fetch()) {
+                            echo '<tr>';
+                            echo '<td style="display: none;">' . $query['id'] . '</td>';
+                            echo '<td>' . ucfirst($query['prenom']) . ' ' . strtoupper($query['nom']) . '</td>';
+                            echo '<td>' . $query['email'] . '</td>';
+                            echo '<td>' . ucfirst($query['rang']) . '</td>';
+                            echo '<td>' . $query['formation'] . '</td>';
+                            echo '<td class="warning" style="max-width: 100px;"><a href="admin.php?update=true&id=' . $query['id'] . '&nom=' . $query['nom'] . '&prenom=' . $query['prenom'] . '&email=' . $query['email'] . '&rang=' . $query['rang'] . '&formation=' . $query['formation'] . '" style="text-decoration: none; color: #ffbb55; cursor: pointer;"><span class="material-icons-sharp">edit</span></a></td>';
+                            echo '<td class="danger" style="max-width: 100px;"><a href="deleteUser.php?id=' . $query['id'] . '" style="text-decoration: none; color: #ff7782; cursor: pointer;"><span class="material-icons-sharp">delete</span></a></td>';
+                            echo '</tr>';
+                        } ?>
                     </tbody>
                 </table>
                 <a href="#">Show All</a>
             </div>
         </main>
+
+        <section id="modal" class="modal" aria-hidden="true" role="dialog" aria_labelledby="titlemodal" style="<?php if (isset($_GET['update'])) {
+                                                                                                                    echo 'visibility: visible; opacity: 1;';
+                                                                                                                } else {
+                                                                                                                    echo 'visibility: hidden; opacity: 0';
+                                                                                                                } ?>">
+            <div class="modal-wrapper">
+                <form action="./updateUser.php" method="post" class="form1">
+                    <h1 id="titlemodal">Modifier l'utilisateur :<br><?php if (isset($_GET['nom']) && isset($_GET['prenom'])) {
+                                                                        echo ucfirst($_GET['prenom']) . ' ' . strtoupper($_GET['nom']);
+                                                                    } ?></h1>
+                    <div class="inputs">
+                        <input name="id" type="number" style="display: none;" value="<?php echo $_GET['id']; ?>">
+                        <input name="nom" type="text" placeholder="Nom de l'utilisateur" value="<?php echo $_GET['nom']; ?>">
+                        <input name="prenom" type="text" placeholder="Prénom de l'utilisateur" value="<?php echo $_GET['prenom']; ?>">
+                        <input name="email" type="text" placeholder="Email de l'utilisateur" value="<?php echo $_GET['email']; ?>">
+                        <input name="rang" type="text" placeholder="Rang de l'utilisateur" value="<?php echo $_GET['rang']; ?>">
+                        <input name="formation" type="text" placeholder="Formation de l'utilisateur" value="<?php echo $_GET['formation']; ?>">
+                        <button type="submit" name="pieceUpdateSubmit">Appliquer les modifications</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <!----------------------- END OF MODAL ------------------------->
+
+
         <div class="right">
             <div class="top">
                 <button id="menu-btn">
