@@ -35,14 +35,11 @@ Le code source de l'application est disponible sur GitHub à l'adresse suivante 
 Pour installer l'application CopierCare sur votre serveur ou votre poste, vous pouvez suivre les étapes d'installation suivantes : 
 
 1. Clonez le dépôt Git sur votre serveur web.
-2. Créez une base de données MySQL nommée CopierCare pour stocker les données du parc et des clients.
-3. Importez le fichier script.sql (https://github.com/JohanGoutorbe/CopierCare/blob/main/script.sql) dans la base de données que vous venez de créer
+2. Créez une base de données MySQL nommée copiercarev1_db (ou modifiez le fichier dbconnect.php dans /utils/) pour stocker les données du parc et des clients.
+3. Importez le fichier script.sql (https://github.com/JohanGoutorbe/CopierCare/blob/main/utils/sql/copiercare.sql) dans la base de données que vous venez de créer
 4. Mettez à jour les informations de connexion à la base de données dans le fichier dbconfig.php (nom de la base, utilisateur, mot de passe).
 5. Ouvrez u votre navigateur et accédez à l'url où vous avez installé l'application.
 
 ## Utilisation
 
 Pour utiliser l'application CopierCare, vous devez vous connecter avec les identifiants fournis par l'administrateur de l'application. Une fois connecté, vous pouvez accéder à toutes les fonctionnalités de l'applciation, notamment la gestion du parc et des clients, la saisie des interventions, la génération des rapports, etc.
-
-
-
