@@ -92,6 +92,29 @@ $stmt->execute();
         <main>
             <h1>Administration du site</h1>
             <div class="alert">
+                <button id="AddUserBtn" class="AddPieceBtn">
+                    <h2>Ajouter une pièce</h2>
+                </button>
+                <section class="sales" id="addPiece">
+                    <form action="./pieces.php" method="POST" class="formAddPiece ">
+                        <div class="inputs">
+                            <label for="pieceName">Désignation : </label>
+                            <input type="text" name="pieceName" placeholder="Exemple" required>
+                        </div>
+                        <div class="inputs">
+                            <label for="pieceRef">Référence : </label>
+                            <input type="text" name="pieceRef" placeholder="ex" required>
+                        </div>
+                        <button type="submit" name="pieceSubmit" value="Add a Piece" class="BtnAdd">
+                            <h2 style="color: #7380ec;">Valider</h2>
+                        </button>
+                    </form>
+                </section>
+                <?php if (isset($_SESSION['message'])) {
+                    echo $_SESSION['message'];
+                } ?>
+            </div>
+            <div class=" alert bis">
                 <h2>Utilisateurs</h2>
                 <table>
                     <thead>
@@ -174,6 +197,7 @@ $stmt->execute();
     </div>
 
     <script src="../script/index.js"></script>
+    <script src="../script/admin.js"></script>
 </body>
 
 </html>
