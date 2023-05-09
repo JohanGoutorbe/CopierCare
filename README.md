@@ -28,7 +28,7 @@ Les prérequis pour utiliser l'application CopierCare sont les suivants :
 
 ## Téléchargement
 
-Le code source de l'application est disponible sur GitHub à l'adresse suivante : https://github.com/JohanGoutorbe/copierCare
+Le code source de l'application est disponible sur GitHub à l'adresse suivante : https://github.com/JohanGoutorbe/CopierCare/
 
 ## Installation
 
