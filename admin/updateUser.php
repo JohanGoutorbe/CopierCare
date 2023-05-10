@@ -10,10 +10,6 @@ include '../utils/dbconnect.php';
 
 include '../utils/loggedVerif.php';
 
-if (isset($_SESSION['id']) || !($_SESSION['rang'] == 'admin')) {
-    header('Location: ../index.php');
-}
-
 $error = '<p style="color: #ff7782;">L\'url est incorrecte</p>';
 
 
