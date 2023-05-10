@@ -388,6 +388,97 @@ main .alert a {
     color: var(--color-primary);
 }
 
+/* ------------------ PROFILE ------------------ */
+main .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    margin-top: 3em;
+    padding-top: 1.5em;
+    box-sizing: border-box;
+    width: 500px;
+    height: 615px;
+    border: 2px solid var(--color-dark-variant);
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, 0.288);
+    border-radius: var(--border-radius-1);
+}
+
+main .profile img {
+    box-sizing: border-box;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 0;
+    border: 5px solid var(--color-dark-variant);
+    padding: 3px;
+    background-color: #fff;
+}
+
+main .profile #file {
+    display: none;
+}
+
+main .profile label {
+    cursor: pointer;
+}
+
+main .profile input[type=text] {
+    padding-bottom: 1em;
+}
+
+main .profile input[type=text],
+main .profile input[type=email],
+main .profile input[type=password] {
+    display: block;
+    box-sizing: border-box;
+    background: none;
+    color: #000;
+    margin-bottom: 30px;
+    padding: 4px;
+    width: 300px;
+    height: 32px;
+    border: none;
+    border-bottom: 1px solid var(--color-dark-variant);
+    font-weight: 400;
+    font-size: 1em;
+    transition: 0.2s ease;
+}
+
+main .profile input[type=text]:focus,
+main .profile input[type=email]:focus,
+main .profile input[type=password]:focus {
+    border-bottom: 2px solid var(--color-dark-variant);
+    border-bottom-right-radius: 20px;
+    color: var(--color-dark-variant);
+    transition: .2 ease;
+}
+
+main .profile .buttons {
+    width: 75%;
+}
+
+main .profile button {
+    border: 1px solid var(--color-dark-variant);
+    width: 150px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ------------------ RIGHT ------------------ */
 .right {
     margin-top: 1.4rem;
@@ -771,5 +862,35 @@ main .alert a {
     main .alert table thead tr .formation,
     main .alert table tbody tr .formation {
         display: none;
+    }
+
+    main .profile {
+        width: 300px;
+        height: 700px;
+        margin: auto;
+        margin-top: 3rem;
+    }
+
+    main .profile img {
+        width: 125px;
+        height: 125px;
+    }
+
+    main .profile label {
+        margin-bottom: 2em;
+    }
+
+    main .profile input[type=text],
+    main .profile input[type=email],
+    main .profile input[type=password] {
+        width: 200px;
+    }
+
+    main .profile .buttons {
+        width: 85%;
+    }
+
+    main .profile button {
+        width: 100px;
     }
 }
