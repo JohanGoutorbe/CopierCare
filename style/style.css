@@ -606,11 +606,6 @@ main .alert a {
 
 
 
-
-
-
-
-
 /* ================== MEDIA QUERIES ================== */
 @media screen and (max-width: 1200px) {
     .container {
@@ -708,7 +703,7 @@ main .alert a {
 
     main {
         margin-top: 8rem;
-        padding: 0 1rem;
+        padding: 0 .5rem;
     }
 
     main .alert {
@@ -762,5 +757,19 @@ main .alert a {
 
     .right .top button span {
         font-size: 2rem;
+    }
+
+    main .alert table {
+        padding: 1em;
+    }
+
+    main .alert table thead tr th,
+    main .alert table tbody tr td {
+        font-size: 0.9em;
+    }
+
+    main .alert table thead tr .formation,
+    main .alert table tbody tr .formation {
+        display: none;
     }
 }
