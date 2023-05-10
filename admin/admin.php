@@ -10,10 +10,6 @@ include '../utils/dbconnect.php';
 
 include '../utils/loggedVerif.php';
 
-if (isset($_SESSION['id']) || !($_SESSION['rang'] == 'admin')) {
-    header('Location: ../index.php');
-}
-
 $sql = "SELECT * FROM `utilisateurs` WHERE 1 ORDER BY id";
 $stmt = $db->prepare($sql);
 $stmt->execute();
@@ -240,7 +236,7 @@ if (isset($_POST[('userSubmit')])) {
             </div>
         </main>
 
-        <section id="modal" class="modal" aria-hidden="true" role="dialog" aria_labelledby="titlemodal" style="<?php if (isset($_GET['update'])) {
+        <section id="modal" class="modal" aria-hidden="true" role="dialog" aria_labelledby="titlemodal" style="<?php if (isset($_GET['update']) && $_GET['update'] == 'true') {
                                                                                                                     echo 'visibility: visible; opacity: 1;';
                                                                                                                 } else {
                                                                                                                     echo 'visibility: hidden; opacity: 0';
