@@ -98,14 +98,38 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                 <img style="margin-bottom: 1.5em;" src="../images/getImage.php?nom=<?php echo $_SESSION['photo']; ?>" alt="Photo de profil">
                 <input type="file" name="file" id="file" accept="image/png, image/jpeg">
                 <label for="file"><?php echo strtoupper('changer la photo') ?></label>
-                <input type="text" name="nom" placeholder="Nom" value="<?php echo strtoupper($row['nom']); ?>">
-                <input type="text" name="prenom" placeholder="Prénom" value="<?php echo ucfirst($row['prenom']); ?>">
-                <input type="email" name="email" placeholder="Adresse mail" value="<?php echo $row['email']; ?>">
-                <input type="text" name="formation" placeholder="Formation" value="<?php echo $row['formation']; ?>">
-                <input type="text" name="login" placeholder="Identifiant de connexion" value="<?php echo $row['identifiant']; ?>">
-                <input type="password" name="pwd" placeholder="Mot de passe de connexion" value="<?php echo $row['mdp']; ?>">
+                <input type="text" name="nom" placeholder="Nom" <?php if (isset($_GET['empty']) && @$_GET['empty'] == true) {
+                                                                    echo '';
+                                                                } else {
+                                                                    echo 'value="' . $row['nom'] . "\"";
+                                                                } ?>>
+                <input type="text" name="prenom" placeholder="Prénom" <?php if (isset($_GET['empty']) && @$_GET['empty'] == true) {
+                                                                            echo '';
+                                                                        } else {
+                                                                            echo 'value="' . $row['prenom'] . "\"";
+                                                                        } ?>>
+                <input type="email" name="email" placeholder="Adresse mail" <?php if (isset($_GET['empty']) && @$_GET['empty'] == true) {
+                                                                                echo '';
+                                                                            } else {
+                                                                                echo 'value="' . $row['email'] . "\"";
+                                                                            } ?>>
+                <input type="text" name="formation" placeholder="Formation" <?php if (isset($_GET['empty']) && $_GET['empty'] == true) {
+                                                                                echo '';
+                                                                            } else {
+                                                                                echo 'value="' . $row['formation'] . "\"";
+                                                                            } ?>>
+                <input type="text" name="login" placeholder="Identifiant de connexion" <?php if (isset($_GET['empty']) && $_GET['empty'] == true) {
+                                                                                            echo '';
+                                                                                        } else {
+                                                                                            echo 'value="' . $row['identifiant'] . "\"";
+                                                                                        } ?>>
+                <input type="password" name="pwd" placeholder="Mot de passe de connexion" <?php if (isset($_GET['empty']) && $_GET['empty'] == true) {
+                                                                                                echo '';
+                                                                                            } else {
+                                                                                                echo 'value="' . $row['mdp'] . "\"";
+                                                                                            } ?>>
                 <div class="buttons">
-                    <button type="submit" class="BtnAdd" style="float: left; margin: 10px 0 0 5%;">Annuler</button>
+                    <a href="./parametres.php?empty=true" class="BtnAdd" style="float: left; margin: 10px 0 0 5%;">Annuler</a>
                     <button type="submit" class="BtnAdd" style="float: right; margin: 10px 5% 0 0;">Valider</button>
                 </div>
             </form>
