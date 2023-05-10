@@ -72,7 +72,9 @@ include '../utils/loggedVerif.php';
                     <span class="material-icons-sharp">settings</span>
                     <h3>Paramètres</h3>
                 </a>
-                <a href="../admin/admin.php">
+                <a href="../admin/admin.php" <?php if ($_SESSION['rang'] !== 'admin') {
+                                                    echo ' style="display:none;"';
+                                                } ?>>
                     <span class="material-icons-sharp">admin_panel_settings</span>
                     <h3>Administrateur</h3>
                 </a>

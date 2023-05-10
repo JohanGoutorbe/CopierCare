@@ -5,14 +5,20 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+include '../utils/loggedVerif.php';
+
+if ($_SESSION['rang'] !== 'admin') {
+    header('Location: ../index.php');
+}
+
 // Connexion à la base de données
 include '../utils/dbconnect.php';
-
-include '../utils/loggedVerif.php';
 
 $sql = "SELECT * FROM `utilisateurs` WHERE 1 ORDER BY id";
 $stmt = $db->prepare($sql);
 $stmt->execute();
+
+
 
 if (isset($_POST[('userSubmit')])) {
     if (isset($_POST['userName']) || !empty($_POST['userName']) || strlen($_POST['userName']) <= 50) {
@@ -139,7 +145,9 @@ if (isset($_POST[('userSubmit')])) {
                     <span class="material-icons-sharp">settings</span>
                     <h3>Paramètres</h3>
                 </a>
-                <a href="" class="active">
+                <a href="" class="active" <?php if ($_SESSION['rang'] !== 'admin') {
+                                                echo ' style="display:none;"';
+                                            } ?>>
                     <span class="material-icons-sharp">admin_panel_settings</span>
                     <h3>Administrateur</h3>
                 </a>

@@ -5,10 +5,14 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+include '../utils/loggedVerif.php';
+
+if ($_SESSION['rang'] !== 'admin') {
+    header('Location: ../index.php');
+}
+
 // Connexion à la base de données
 include '../utils/dbconnect.php';
-
-include '../utils/loggedVerif.php';
 
 $error = '<p style="color: #ff7782;">L\'url est incorrecte</p>';
 
