@@ -94,35 +94,21 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         <main>
             <h1>Paramètres du profil</h1>
-            <div class="alert">
-                <h2>Informations personnelles</h2>
-                <form action="./parametres.php" method="post" enctype="multipart/form-data">
-                    <div class="inputs">
-                        <label for="nom">Nom</label>
-                        <input type="text" name="nom" value="<?php echo strtoupper($row['nom']); ?>">
-                    </div>
-                    <div class="inputs">
-                        <label for="nom">Prénom</label>
-                        <input type="text" name="nom" value="<?php echo ucfirst($row['prenom']); ?>">
-                    </div>
-                    <div class="inputs">
-                        <label for="nom">Adresse mail</label>
-                        <input type="text" name="nom" value="<?php echo $row['email']; ?>">
-                    </div>
-                    <div class="inputs">
-                        <label for="nom">Formation</label>
-                        <input type="text" name="nom" value="<?php echo $row['formation']; ?>">
-                    </div>
-                    <div class="inputs">
-                        <label for="nom">Identifiant de connexion</label>
-                        <input type="text" name="nom" value="<?php echo $row['identifiant']; ?>">
-                    </div>
-                    <div class="inputs">
-                        <label for="nom">Mot de passe de connexion</label>
-                        <input type="password" name="nom" value="<?php echo $row['mdp']; ?>">
-                    </div>
-                </form>
-            </div>
+            <form class="profile" action="./parametres.php" method="post" enctype="multipart/form-data">
+                <img style="margin-bottom: 1.5em;" src="../images/getImage.php?nom=<?php echo $_SESSION['photo']; ?>" alt="Photo de profil">
+                <input type="file" name="file" id="file" accept="image/png, image/jpeg">
+                <label for="file"><?php echo strtoupper('changer la photo') ?></label>
+                <input type="text" name="nom" placeholder="Nom" value="<?php echo strtoupper($row['nom']); ?>">
+                <input type="text" name="prenom" placeholder="Prénom" value="<?php echo ucfirst($row['prenom']); ?>">
+                <input type="email" name="email" placeholder="Adresse mail" value="<?php echo $row['email']; ?>">
+                <input type="text" name="formation" placeholder="Formation" value="<?php echo $row['formation']; ?>">
+                <input type="text" name="login" placeholder="Identifiant de connexion" value="<?php echo $row['identifiant']; ?>">
+                <input type="password" name="pwd" placeholder="Mot de passe de connexion" value="<?php echo $row['mdp']; ?>">
+                <div class="buttons">
+                    <button type="submit" class="BtnAdd" style="float: left; margin: 10px 0 0 5%;">Annuler</button>
+                    <button type="submit" class="BtnAdd" style="float: right; margin: 10px 5% 0 0;">Valider</button>
+                </div>
+            </form>
         </main>
 
         <div class="right">
