@@ -10,6 +10,12 @@ include '../utils/dbconnect.php';
 
 include '../utils/loggedVerif.php';
 
+$sql = "SELECT * FROM `utilisateurs` WHERE `id` = :id";
+$stmt = $db->prepare($sql);
+$stmt->bindParam('id', $_SESSION['id']);
+$stmt->execute();
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,7 +78,9 @@ include '../utils/loggedVerif.php';
                     <span class="material-icons-sharp">settings</span>
                     <h3>Paramètres</h3>
                 </a>
-                <a href="../admin/admin.php">
+                <a href="../admin/admin.php" <?php if ($_SESSION['rang'] !== 'admin') {
+                                                    echo ' style="display:none;"';
+                                                } ?>>
                     <span class="material-icons-sharp">admin_panel_settings</span>
                     <h3>Administrateur</h3>
                 </a>
@@ -85,60 +93,38 @@ include '../utils/loggedVerif.php';
         <!----------------------- END OF ASIDE ------------------------->
 
         <main>
-            <h1>Tableau de bord</h1>
+            <h1>Paramètres du profil</h1>
             <div class="alert">
-                <h2>Alertes</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Pièce</th>
-                            <th>Copieur</th>
-                            <th>Client</th>
-                            <th>Limittes de la pièce</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Fordable Mini Drone</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Fordable Mini Drone</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Fordable Mini Drone</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Fordable Mini Drone</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Fordable Mini Drone</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <a href="#">Show All</a>
+                <h2>Informations personnelles</h2>
+                <form action="./parametres.php" method="post" enctype="multipart/form-data">
+                    <div class="inputs">
+                        <label for="nom">Nom</label>
+                        <input type="text" name="nom" value="<?php echo strtoupper($row['nom']); ?>">
+                    </div>
+                    <div class="inputs">
+                        <label for="nom">Prénom</label>
+                        <input type="text" name="nom" value="<?php echo ucfirst($row['prenom']); ?>">
+                    </div>
+                    <div class="inputs">
+                        <label for="nom">Adresse mail</label>
+                        <input type="text" name="nom" value="<?php echo $row['email']; ?>">
+                    </div>
+                    <div class="inputs">
+                        <label for="nom">Formation</label>
+                        <input type="text" name="nom" value="<?php echo $row['formation']; ?>">
+                    </div>
+                    <div class="inputs">
+                        <label for="nom">Identifiant de connexion</label>
+                        <input type="text" name="nom" value="<?php echo $row['identifiant']; ?>">
+                    </div>
+                    <div class="inputs">
+                        <label for="nom">Mot de passe de connexion</label>
+                        <input type="password" name="nom" value="<?php echo $row['mdp']; ?>">
+                    </div>
+                </form>
             </div>
         </main>
+
         <div class="right">
             <div class="top">
                 <button id="menu-btn">
