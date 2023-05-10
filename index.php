@@ -38,6 +38,7 @@ if (isset($_SESSION['logged']) && $_SESSION['logged'] == true && !empty($_SESSIO
 }
 
 $_SESSION['message'] = '';
+$_SESSION['messageAdmin'] = '';
 $username = $_SESSION['username'];
 
 $sql = "SELECT * FROM `utilisateurs` WHERE `identifiant` = :username";
@@ -49,6 +50,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $_SESSION['surname'] = $result['prenom'];
 $_SESSION['photo'] = $result['photo'];
 $_SESSION['rang'] = $result['rang'];
+$_SESSION['id'] = $result['id'];
 
 $sql = 'SELECT * FROM `copieurs`';
 $stmt = $db->prepare($sql);
