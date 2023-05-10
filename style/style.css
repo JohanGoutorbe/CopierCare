@@ -398,7 +398,7 @@ main .profile {
     padding-top: 1.5em;
     box-sizing: border-box;
     width: 500px;
-    height: 615px;
+    height: 640px;
     border: 2px solid var(--color-dark-variant);
     box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, 0.288);
     border-radius: var(--border-radius-1);
@@ -457,6 +457,11 @@ main .profile input[type=password]:focus {
 
 main .profile .buttons {
     width: 75%;
+}
+
+main .profile a {
+    border: 1px solid var(--color-dark-variant);
+    width: 150px;
 }
 
 main .profile button {
