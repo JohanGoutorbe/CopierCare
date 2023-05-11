@@ -50,3 +50,13 @@ if (empty($id)) {
     header('Location: ./clients.php');
     exit();
 }
+
+if (!ctype_digit($id)) {
+    $_SESSION['message'] .= '<p style="color: #ff7782;">L\'id du client est incorrect</p>';
+    header('Location: ./pieces.php');
+    exit();
+} elseif (!ctype_digit($tel)) {
+    $_SESSION['message'] .= '<p style="color: #ff7782;">Le numéro de téléphone du client est incorrect</p>';
+    header('Location: ./pieces.php');
+    exit();
+}
