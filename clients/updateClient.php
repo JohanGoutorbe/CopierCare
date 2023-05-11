@@ -24,3 +24,29 @@ $email = htmlspecialchars($_POST['email']);
 $tel = str_replace(' ', '', htmlspecialchars($_POST['tel']));
 $adresse = htmlspecialchars($_POST['adresse']);
 $interlocuteur = htmlspecialchars($_POST['interlocuteur']);
+
+if (empty($id)) {
+    $_SESSION['message'] .= '<p style="color: #ff7782;">L\'id du client est vide</p>';
+    header('Location: ./clients.php');
+    exit();
+} elseif (empty($_POST['name'])) {
+    $_SESSION['message'] .= '<p style="color: #ff7782;">Le nom du client est vide</p>';
+    header('Location: ./clients.php');
+    exit();
+} elseif (empty($_POST['email'])) {
+    $_SESSION['message'] .= '<p style="color: #ff7782;">L\'adresse email du client est vide</p>';
+    header('Location: ./clients.php');
+    exit();
+} elseif (empty($_POST['tel'])) {
+    $_SESSION['message'] .= '<p style="color: #ff7782;">Le numéro de téléphone du client est vide</p>';
+    header('Location: ./clients.php');
+    exit();
+} elseif (empty($_POST['adresse'])) {
+    $_SESSION['message'] .= '<p style="color: #ff7782;">L\' adresse du client est vide</p>';
+    header('Location: ./clients.php');
+    exit();
+} elseif (empty($_POST['interlocuteur'])) {
+    $_SESSION['message'] .= '<p style="color: #ff7782;">L\'interlocuteur est vide</p>';
+    header('Location: ./clients.php');
+    exit();
+}
