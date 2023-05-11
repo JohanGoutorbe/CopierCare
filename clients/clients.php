@@ -134,7 +134,7 @@ if (isset($_POST[('pieceSubmit')])) {
                         </div>
                         <div class="inputs">
                             <label for="clientPhone">Tel : </label>
-                            <input type="text" name="clientPhone" placeholder="01 02 03 04 05" required>
+                            <input type="text" name="clientPhone" placeholder="0102030405" required>
                         </div>
                         <div class="inputs">
                             <label for="clientAdress">Adresse : </label>
