@@ -138,7 +138,7 @@ if (isset($_POST[('pieceSubmit')])) {
                         </div>
                         <div class="inputs">
                             <label for="clientAdress">Adresse : </label>
-                            <input type="text" name="clientAdress" placeholder="04000 Digne-les-Bains" required>
+                            <input type="text" name="clientAdress" placeholder="Digne-les-Bains" required>
                         </div>
                         <div class="inputs">
                             <label for="interlocutor">Interlocuteur : </label>
@@ -176,8 +176,8 @@ if (isset($_POST[('pieceSubmit')])) {
                             echo '<td>' . $query['tel'] . '</td>';
                             echo '<td>' . $query['adresse'] . '</td>';
                             echo '<td>' . $query['interlocuteur'] . '</td>';
-                            echo '<td class="warning" style="max-width: 100px;"><a href="pieces.php?update=true&id=' . $query['id'] . '" style="text-decoration: none; color: #ffbb55; cursor: pointer;"><span class="material-icons-sharp">edit</span></a></td>';
-                            echo '<td class="danger" style="max-width: 100px;"><a href="delete.php?table=pieces&id=' . $query['id'] . '" style="text-decoration: none; color: #ff7782; cursor: pointer;"><span class="material-icons-sharp">delete</span></a></td>';
+                            echo '<td class="warning" style="max-width: 100px;"><a href="clients.php?update=true&id=' . $query['id'] . '&name=' . $query['nom_client'] . '&email=' . $query['email'] . '&tel=' . $query['tel'] . '&adresse=' . $query['adresse'] . '&interlocuteur=' . $query['interlocuteur'] . '" style="text-decoration: none; color: #ffbb55; cursor: pointer;"><span class="material-icons-sharp">edit</span></a></td>';
+                            echo '<td class="danger" style="max-width: 100px;"><a href="deleteClient.php?id=' . $query['id'] . '&name=' . $query['nom_client'] . '" style="text-decoration: none; color: #ff7782; cursor: pointer;"><span class="material-icons-sharp">delete</span></a></td>';
                             echo '</tr>';
                         } ?>
                     </tbody>
@@ -192,14 +192,17 @@ if (isset($_POST[('pieceSubmit')])) {
                                                                                                                 } ?>">
             <div class="modal-wrapper">
                 <form action="./updateClient.php" method="post" class="form1">
-                    <h1 id="titlemodal">Modifier la pièce suivante :<br><?php if (isset($_GET['pieceName'])) {
-                                                                            echo $_GET['pieceName'];
+                    <h1 id="titlemodal">Modifier le client suivant :<br><?php if (isset($_GET['name'])) {
+                                                                            echo $_GET['name'];
                                                                         } ?></h1>
                     <div class="inputs">
                         <input name="id" type="number" style="display: none;" value="<?php echo $_GET['id']; ?>">
-                        <input name="name" type="text" placeholder="Nom de la pièce">
-                        <input name="ref" type="text" placeholder="Référence de la pièce">
-                        <button type="submit" name="pieceUpdateSubmit">Appliquer les modifications</button>
+                        <input name="name" type="text" placeholder="Nom du client" value="<?php echo $_GET['name']; ?>">
+                        <input name="email" type="email" placeholder="Email du client" value="<?php echo $_GET['email']; ?>">
+                        <input name="tel" type="text" placeholder="Téléphone du client" value="<?php echo $_GET['tel']; ?>">
+                        <input name="adresse" type="text" placeholder="adresse du client" value="<?php echo $_GET['adresse']; ?>">
+                        <input name="interlocuteur" type="text" placeholder="Interlocuteur" value="<?php echo $_GET['interlocuteur']; ?>">
+                        <button type="submit" name="clientUpdateSubmit">Appliquer les modifications</button>
                     </div>
                 </form>
             </div>
