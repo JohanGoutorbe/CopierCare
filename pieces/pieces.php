@@ -161,7 +161,7 @@ if (isset($_POST[('pieceSubmit')])) {
                             echo '<td>' . $query['nom'] . '</td>';
                             echo '<td>' . $query['ref'] . '</td>';
                             echo '<td class="warning" style="max-width: 100px;"><a href="pieces.php?update=true&id=' . $query['id'] . '&name=' . $query['nom'] . '&ref=' . $query['ref'] . '" style="text-decoration: none; color: #ffbb55; cursor: pointer;"><span class="material-icons-sharp">edit</span></a></td>';
-                            echo '<td class="danger" style="max-width: 100px;"><a href="deletePiece.php?&id=' . $query['id'] . '&name=' . $query['nom'] . '" style="text-decoration: none; color: #ff7782; cursor: pointer;"><span class="material-icons-sharp">delete</span></a></td>';
+                            echo '<td class="danger" style="max-width: 100px;"><a href="deletePiece.php?id=' . $query['id'] . '&name=' . $query['nom'] . '" style="text-decoration: none; color: #ff7782; cursor: pointer;"><span class="material-icons-sharp">delete</span></a></td>';
                             echo '</tr>';
                         } ?>
                     </tbody>
