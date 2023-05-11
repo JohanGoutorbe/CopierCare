@@ -462,6 +462,7 @@ main .profile .buttons {
 main .profile a {
     border: 1px solid var(--color-dark-variant);
     width: 150px;
+    color: #000;
 }
 
 main .profile button {
@@ -876,7 +877,7 @@ main .profile button {
         width: 85%;
     }
 
-    main .profile button {
+    main .profile .buttons .BtnAdd {
         width: 100px;
     }
 }
