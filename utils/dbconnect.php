@@ -6,7 +6,7 @@ session_start();
 define('USER', "309818_root");
 define('PASSWD', 'Pa$$w0rdAlwaysDataROOT');
 define('SERVER', "mysql-copiercarev1.alwaysdata.net");
-define('BASE', "copiercarev1_db");
+define('BASE', "copiercarev1_bdd");
 
 $dsn = "mysql:dbname=" . BASE . ";host=" . SERVER;
 
