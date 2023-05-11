@@ -38,8 +38,12 @@ if (isset($_POST[('userSubmit')])) {
                                     $login = htmlspecialchars($_POST['userLogin']);
                                     $pwd = htmlspecialchars($_POST['userPwd']);
 
+                                    // Récupérer la date
+                                    $getdt = new \DateTime();
+                                    $dt = $getdt->format('d/m/Y');
+
                                     // Insertion de l'utilisateur
-                                    $sql = "INSERT INTO `utilisateurs` (`nom`, `prenom`, `email`, `rang`, `photo`, `formation`, `identifiant`, `mdp`) VALUES (:nom, :prenom, :email, :rang, :photo, :formation, :identifiant, :mdp)";
+                                    $sql = "INSERT INTO `utilisateurs` (`nom`, `prenom`, `email`, `rang`, `photo`, `formation`, `identifiant`, `mdp`, `creation_date`) VALUES (:nom, :prenom, :email, :rang, :photo, :formation, :identifiant, :mdp, :creation_date)";
                                     $stmt = $db->prepare($sql);
                                     $stmt->bindParam('nom', $nom);
                                     $stmt->bindParam('prenom', $prenom);
@@ -49,6 +53,7 @@ if (isset($_POST[('userSubmit')])) {
                                     $stmt->bindParam('formation', $formation);
                                     $stmt->bindParam('identifiant', $login);
                                     $stmt->bindParam('mdp', $pwd);
+                                    $stmt->bindParam('creation_date',$dt);
                                     $stmt->execute();
                                     $_SESSION['messageAdmin'] = '<p style="color: #41f1b6; text-shadow: 0px 0px black; width: auto;">L\'utilisateur <strong>' . ucfirst($prenom) . ' ' . strtoupper($nom) . '</strong> a bien été ajouté.</p>';
                                     header("Refresh:0");
