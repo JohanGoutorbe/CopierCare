@@ -12,10 +12,6 @@ include '../utils/loggedVerif.php';
 
 $error = '<p style="color: #ff7782;">L\'url est incorrecte</p>';
 
-
-$_SESSION['message'] = '<p style="color: #ff7782;">Erreur de modification de la pièce</p><br>';
-
-
 if (!isset($_POST[('pieceUpdateSubmit')])) {
     $_SESSION['message'] .= '<p style="color: #ff7782;">L\'envoi du formulaire a échoué</p>';
     header('Location: ./piece.php');
