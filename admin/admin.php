@@ -219,8 +219,6 @@ if (isset($_POST[('userSubmit')])) {
                             <th>Mail</th>
                             <th>Rang</th>
                             <th class="formation">Formation</th>
-                            <th>Modifier</th>
-                            <th>Supprimer</th>
                         </tr>
                     </thead>
                     <tbody>
