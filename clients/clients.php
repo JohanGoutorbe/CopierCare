@@ -173,7 +173,7 @@ if (isset($_POST[('pieceSubmit')])) {
                             echo '<td style="display: none;">' . $query['id'] . '</td>';
                             echo '<td>' . $query['nom_client'] . '</td>';
                             echo '<td>' . $query['email'] . '</td>';
-                            echo '<td>' . $query['tel'] . '</td>';
+                            echo '<td>0' . $query['tel'] . '</td>';
                             echo '<td>' . $query['adresse'] . '</td>';
                             echo '<td>' . $query['interlocuteur'] . '</td>';
                             echo '<td class="warning" style="max-width: 100px;"><a href="clients.php?update=true&id=' . $query['id'] . '&name=' . $query['nom_client'] . '&email=' . $query['email'] . '&tel=' . $query['tel'] . '&adresse=' . $query['adresse'] . '&interlocuteur=' . $query['interlocuteur'] . '" style="text-decoration: none; color: #ffbb55; cursor: pointer;"><span class="material-icons-sharp">edit</span></a></td>';
