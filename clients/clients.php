@@ -15,30 +15,57 @@ $stmt = $db->prepare($sql);
 $stmt->execute();
 
 if (isset($_POST[('clientSubmit')])) {
-    if (!empty($_POST['pieceName']) && !empty($_POST['pieceRef'])) {
-        $pieceName = htmlspecialchars($_POST['pieceName']);
-        $pieceRef = htmlspecialchars($_POST['pieceRef']);
-        if (strlen($pieceName) < 100 && strlen($pieceRef) < 20) {
-            if (strlen($pieceName) >= strlen($pieceRef)) {
-                $Crud = 'C';
-                $sql = "INSERT INTO `pieces` (`nom`, `ref`) VALUES (:name, :ref)";
-                $stmt = $db->prepare($sql);
-                $stmt->bindParam('name', $pieceName);
-                $stmt->bindParam('ref', $pieceRef);
-                $stmt->execute();
-                $_SESSION['message'] = '<p style="color: #41f1b6; text-shadow: 0px 0px black;">La pièce <strong>' . $pieceName . '</strong> a bien été ajoutée.</p>';
-                header("Refresh:0");
+    $name = htmlspecialchars($_POST['clientName']);
+    $email = htmlspecialchars($_POST['clientEmail']);
+    $tel = htmlspecialchars($_POST['clientPhone']);
+    $adress = htmlspecialchars($_POST['clientAdress']);
+    $interlocuteur = htmlspecialchars($_POST['interlocutor']);
+    if (!empty($name)) {
+        if (!empty($email)) {
+            if (!empty($tel)) {
+                if (!empty($adress)) {
+                    if (!empty($interlocuteur)) {
+                        if (!empty(filter_var($email, FILTER_VALIDATE_EMAIL))) {
+                            if (strlen($name) < 100) {
+                                if (strlen($email) < 100) {
+                                    if (strlen($tel) < 10) {
+                                        if (strlen($adress) < 250) {
+                                            if (strlen($interlocuteur) < 100) {
+                                                # code...
+                                            } else {
+                                                $_SESSION['message'] = '<p style="color: #ff7782;">Le nom du client est vide</p>';
+                                            }
+                                        } else {
+                                            $_SESSION['message'] = '<p style="color: #ff7782;">Le nom du client est vide</p>';
+                                        }
+                                    } else {
+                                        $_SESSION['message'] = '<p style="color: #ff7782;">Le nom du client est vide</p>';
+                                    }
+                                } else {
+                                    $_SESSION['message'] = '<p style="color: #ff7782;">Le nom du client est vide</p>';
+                                }
+                            } else {
+                                $_SESSION['message'] = '<p style="color: #ff7782;">Le nom du client est vide</p>';
+                            }
+                        } else {
+                            $_SESSION['message'] = '<p style="color: #ff7782;">Le nom du client est vide</p>';
+                        }
+                    } else {
+                        $_SESSION['message'] = '<p style="color: #ff7782;">Le nom du client est vide</p>';
+                    }
+                } else {
+                    $_SESSION['message'] = '<p style="color: #ff7782;">Le nom du client est vide</p>';
+                }
             } else {
-                $_SESSION['message'] = '<p style="color: #ff7782;">La référence doit être plus courte que le nom</p>';
+                $_SESSION['message'] = '<p style="color: #ff7782;">Le nom du client est vide</p>';
             }
         } else {
-            $_SESSION['message'] = '<p style="color: #ff7782;">Le nom ou la référence de la pièce est trop long.</p>';
+            $_SESSION['message'] = '<p style="color: #ff7782;">Le nom du client est vide</p>';
         }
     } else {
-        $_SESSION['message'] = '<p style="color: #ff7782;">Le nom et/ou la référence est vide.</p>';
+        $_SESSION['message'] = '<p style="color: #ff7782;">Le nom du client est vide</p>';
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
