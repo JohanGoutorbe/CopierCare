@@ -199,7 +199,7 @@ if (isset($_POST[('pieceSubmit')])) {
                         <input name="id" type="number" style="display: none;" value="<?php echo $_GET['id']; ?>">
                         <input name="name" type="text" placeholder="Nom du client" value="<?php echo $_GET['name']; ?>">
                         <input name="email" type="email" placeholder="Email du client" value="<?php echo $_GET['email']; ?>">
-                        <input name="tel" type="text" placeholder="Téléphone du client" value="<?php echo $_GET['tel']; ?>">
+                        <input name="tel" type="text" placeholder="Téléphone du client" value="<?php echo '0' . $_GET['tel']; ?>">
                         <input name="adresse" type="text" placeholder="adresse du client" value="<?php echo $_GET['adresse']; ?>">
                         <input name="interlocuteur" type="text" placeholder="Interlocuteur" value="<?php echo $_GET['interlocuteur']; ?>">
                         <button type="submit" name="clientUpdateSubmit">Appliquer les modifications</button>
