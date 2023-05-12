@@ -10,6 +10,7 @@ include '../utils/dbconnect.php';
 
 include '../utils/loggedVerif.php';
 
+$_SESSION['clientMessage'] = "Erreur de modification du client<br>";
 $error = '<p style="color: #ff7782;">L\'url est incorrecte</p>';
 
 if (!isset($_POST[('clientUpdateSubmit')])) {
@@ -53,43 +54,43 @@ if (empty($id)) {
 
 if (!ctype_digit($id)) {
     $_SESSION['clientMessage'] .= '<p style="color: #ff7782;">L\'id du client est incorrect</p>';
-    header('Location: ./pieces.php');
+    header('Location: ./clients.php');
     exit();
 } elseif (!ctype_digit($tel)) {
     $_SESSION['clientMessage'] .= '<p style="color: #ff7782;">Le numéro de téléphone du client est incorrect</p>';
-    header('Location: ./pieces.php');
+    header('Location: ./clients.php');
     exit();
 }
 
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $_SESSION['clientMessage'] .= '<p style="color: #ff7782;">Le numéro de téléphone du client est incorrect</p>';
-    header('Location: ./pieces.php');
+if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
+    $_SESSION['clientMessage'] .= '<p style="color: #ff7782;">L\'adresse mail du client est incorrecte</p>';
+    header('Location: ./clients.php');
     exit();
 }
 
 if (strlen($name) > 100) {
     $_SESSION['clientMessage'] .= '<p style="color: #ff7782;">Le nom du client est incorrect</p>';
-    header('Location: ./pieces.php');
+    header('Location: ./clients.php');
     exit();
-} elseif (strlen($email) < 100) {
+} elseif (strlen($email) > 100) {
     $_SESSION['clientMessage'] .= '<p style="color: #ff7782;">L\'adresse mail du client est incorrecte</p>';
-    header('Location: ./pieces.php');
+    header('Location: ./clients.php');
     exit();
-} elseif (strlen($tel) < 10) {
+} elseif (strlen($tel) > 10) {
     $_SESSION['clientMessage'] .= '<p style="color: #ff7782;">Le numéro de téléphone du client est incorrect</p>';
-    header('Location: ./pieces.php');
+    header('Location: ./clients.php');
     exit();
-} elseif (strlen($adresse) < 250) {
+} elseif (strlen($adresse) > 250) {
     $_SESSION['clientMessage'] .= '<p style="color: #ff7782;">L\'adresse du client est incorrecte</p>';
-    header('Location: ./pieces.php');
+    header('Location: ./clients.php');
     exit();
-} elseif (strlen($interlocuteur) < 100) {
+} elseif (strlen($interlocuteur) > 100) {
     $_SESSION['clientMessage'] .= '<p style="color: #ff7782;">L\'interlocuteur est incorrect</p>';
-    header('Location: ./pieces.php');
+    header('Location: ./clients.php');
     exit();
 }
 
-$sql = "UPDATE `clients` SET `nom` = :name, `email` = :email, `tel` = :tel, `adresse` = :adresse, `interlocuteur` = :interlocuteur WHERE id = :id";
+$sql = "UPDATE `clients` SET `nom_client` = :name, `email` = :email, `tel` = :tel, `adresse` = :adresse, `interlocuteur` = :interlocuteur WHERE id = :id";
 $stmt = $db->prepare($sql);
 $stmt->bindParam('name', $name);
 $stmt->bindParam('email', $email);
