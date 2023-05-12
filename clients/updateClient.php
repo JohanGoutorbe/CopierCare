@@ -29,23 +29,23 @@ if (empty($id)) {
     $_SESSION['message'] .= '<p style="color: #ff7782;">L\'id du client est vide</p>';
     header('Location: ./clients.php');
     exit();
-} elseif (empty($_POST['name'])) {
+} elseif (empty($name)) {
     $_SESSION['message'] .= '<p style="color: #ff7782;">Le nom du client est vide</p>';
     header('Location: ./clients.php');
     exit();
-} elseif (empty($_POST['email'])) {
+} elseif (empty($email)) {
     $_SESSION['message'] .= '<p style="color: #ff7782;">L\'adresse email du client est vide</p>';
     header('Location: ./clients.php');
     exit();
-} elseif (empty($_POST['tel'])) {
+} elseif (empty($tel)) {
     $_SESSION['message'] .= '<p style="color: #ff7782;">Le numéro de téléphone du client est vide</p>';
     header('Location: ./clients.php');
     exit();
-} elseif (empty($_POST['adresse'])) {
+} elseif (empty($adresse)) {
     $_SESSION['message'] .= '<p style="color: #ff7782;">L\' adresse du client est vide</p>';
     header('Location: ./clients.php');
     exit();
-} elseif (empty($_POST['interlocuteur'])) {
+} elseif (empty($interlocuteur)) {
     $_SESSION['message'] .= '<p style="color: #ff7782;">L\'interlocuteur est vide</p>';
     header('Location: ./clients.php');
     exit();
@@ -56,6 +56,12 @@ if (!ctype_digit($id)) {
     header('Location: ./pieces.php');
     exit();
 } elseif (!ctype_digit($tel)) {
+    $_SESSION['message'] .= '<p style="color: #ff7782;">Le numéro de téléphone du client est incorrect</p>';
+    header('Location: ./pieces.php');
+    exit();
+}
+
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $_SESSION['message'] .= '<p style="color: #ff7782;">Le numéro de téléphone du client est incorrect</p>';
     header('Location: ./pieces.php');
     exit();
