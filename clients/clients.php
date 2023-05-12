@@ -25,13 +25,22 @@ if (isset($_POST[('clientSubmit')])) {
             if (!empty($tel)) {
                 if (!empty($adress)) {
                     if (!empty($interlocuteur)) {
-                        if (!empty(filter_var($email, FILTER_VALIDATE_EMAIL))) {
+                        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
                             if (strlen($name) < 100) {
                                 if (strlen($email) < 100) {
                                     if (strlen($tel) < 10) {
                                         if (strlen($adress) < 250) {
                                             if (strlen($interlocuteur) < 100) {
-                                                # code...
+                                                $sql = "INSERT INTO `clients` (`nom_client`, `email`, `tel`, `adresse`, `interlocuteur`) VALUES (:name, :email, :tel, :adress, :interlocuteur)";
+                                                $stmt = $db->prepare($sql);
+                                                $stmt->bindParam('name', $name);
+                                                $stmt->bindParam('email', $email);
+                                                $stmt->bindParam('tel', $tel);
+                                                $stmt->bindParam('adresse', $adress);
+                                                $stmt->bindParam('interlocuteur', $interlocuteur);
+                                                $stmt->execute();
+                                                $_SESSION['message'] = '<p style="color: #41f1b6; text-shadow: 0px 0px black; width: auto;">Le client <strong>' . $name . '</strong> a bien été ajouté.</p>';
+                                                header("Refresh:0");
                                             } else {
                                                 $_SESSION['message'] = '<p style="color: #ff7782;">Le nom du client est vide</p>';
                                             }
