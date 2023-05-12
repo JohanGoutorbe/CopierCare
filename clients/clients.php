@@ -14,7 +14,7 @@ $sql = "SELECT * FROM `clients` WHERE 1 ORDER BY `nom_client`";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 
-if (isset($_POST[('pieceSubmit')])) {
+if (isset($_POST[('clientSubmit')])) {
     if (!empty($_POST['pieceName']) && !empty($_POST['pieceRef'])) {
         $pieceName = htmlspecialchars($_POST['pieceName']);
         $pieceRef = htmlspecialchars($_POST['pieceRef']);
