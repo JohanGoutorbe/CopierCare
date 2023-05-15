@@ -80,7 +80,7 @@ if ($username_validate) {
 
         $newObject = [
             "logID" => strval($newIndex),
-            "type" => "connexion",
+            "type" => "connect",
             "userID" => $result['id'],
             "name" => $result['nom'],
             "surname" => $result['prenom'],
