@@ -298,19 +298,62 @@ $intersCount = $stmt->rowCount();
                     $now = time();
                     $sql = "SELECT `photo` FROM `utilisateurs` WHERE `id` = :id";
                     $stmt = $db->prepare($sql);
-                    while ($loop <= 3) {
+                    while ($loop <= 4) { // Compter +1 pour l'affichage car départ à 0 (json)
+                        // Récupérer le nom de l'image de profil de l'utilisateur
                         $userID = intval($obj[$loop]->userID);
                         $stmt->bindParam('id', $userID);
                         $stmt->execute();
                         $result = $stmt->fetch(PDO::FETCH_ASSOC);
                         $date = strtotime($obj[$loop]->date);
+                        // Calculer la différence des dates/heures
+                        $diff = abs($now - $date);
+                        $dateDiff = '';
+                        $secondes = $diff % 60;
+                        $diff = floor(($diff - $secondes) / 60);
+                        $minutes = $diff % 60;
+                        $diff = floor(($diff - $minutes) / 60);
+                        $heures = $diff % 24;
+                        $diff = floor(($diff - $heures) / 24);
+                        $jours = $diff;
+                        if ($minutes > 1) {
+                            $echoMinutes = ' minutes ';
+                        } else {
+                            $echoMinutes = ' minute ';
+                        }
+                        if ($heures > 1) {
+                            $echoHeures = ' heures et ';
+                        } else {
+                            $echoHeures = ' heure et ';
+                        }
+                        if ($jours > 1) {
+                            $echoJours = ' jours, ';
+                        } else {
+                            $echoJours = ' jour, ';
+                        }
+                        
+                        if ($jours == 0) {
+                            $date = $heures . $echoHeures . $minutes . $echoMinutes;
+                        } elseif ($jours == 0 && $heures !== 0) {
+                            $date = $minutes . $echoMinutes;
+                        } elseif (2 <= $jours && $jours < 7) {
+                            if ($heures > 1) {
+                                $echoHeures = ' heures';
+                            } else {
+                                $echoHeures = ' heure';
+                            }
+                            $date = $jours . ' jours et ' . $heures . $echoHeures;
+                        } elseif ($jours >= 7) {
+                            $date = $jours . ' jours';
+                        } else {
+                            $date = $jours . $echoJours . $heures . $echoHeures . $minutes . $echoMinutes;
+                        }
                         echo '<div class="update">';
                         echo '<div class="profile-photo">';
                         echo '<img src="./images/getImage.php?nom=' . $result['photo'] . '">';
                         echo '</div>';
                         echo '<div class="message">';
                         echo '<p><b>' . ucfirst($obj[$loop]->surname) . ' ' . ucfirst($obj[$loop]->name) . '</b> ' . $obj[$loop]->action . '</p>';
-                        echo '<small class="text-muted">2 Minutes Ago</small>';
+                        echo '<small class="text-muted">Il y a ' . $date . '</small>';
                         echo '</div>';
                         echo '</div>';
                         $loop++;
