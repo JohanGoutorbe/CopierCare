@@ -64,8 +64,6 @@ $stmt = $db->prepare($sql);
 $stmt->bindParam('id', $id);
 $stmt->execute();
 
-
-
 $file = '../json/logs.json';
 $content = file_get_contents($file);
 $data = json_decode($content, true);
@@ -105,10 +103,6 @@ $newObject = [
 array_unshift($data, $newObject);
 $json = json_encode($data, JSON_PRETTY_PRINT);
 file_put_contents($file, $json);
-
-
-
-
 
 $_SESSION['messageAdmin'] = '<p style="color: #41f1b6; font-size: 1.25em; font-weight: 100;">La suppression de l\'utilisateur <strong>' . ucfirst($prenom) . ' ' . strtoupper($nom) . '</strong> s\'est bien effectuée</p>';
 header($location);
