@@ -295,14 +295,14 @@ $intersCount = $stmt->rowCount();
                     $data = file_get_contents($file);
                     $obj = json_decode($data);
                     $loop = 0;
+                    $now = time();
+                    $sql = "SELECT `photo` FROM `utilisateurs` WHERE `id` = :id";
+                    $stmt = $db->prepare($sql);
                     while ($loop <= 3) {
-                        $sql = "SELECT `photo` FROM `utilisateurs` WHERE `id` = :id";
-                        $stmt = $db->prepare($sql);
                         $userID = intval($obj[$loop]->userID);
                         $stmt->bindParam('id', $userID);
                         $stmt->execute();
                         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                        $now = time();
                         $date = strtotime($obj[$loop]->date);
                         echo '<div class="update">';
                         echo '<div class="profile-photo">';
