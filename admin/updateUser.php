@@ -90,6 +90,39 @@ $stmt->bindParam('rang', $rang);
 $stmt->bindParam('formation', $formation);
 $stmt->bindParam('id', $id);
 $stmt->execute();
+
+$file = '../json/logs.json';
+$content = file_get_contents($file);
+$data = json_decode($content, true);
+$maxIndex = 0;
+foreach ($data as $item) {
+    $index = intval($item['index']);
+    if ($index > $maxIndex) {
+        $maxIndex = $index;
+    }
+}
+$newIndex = $maxIndex + 1;
+
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$getdt = new \DateTime();
+$dt = $getdt->format('Y-m-d H:i:s');
+
+$newObject = [
+    "logID" => strval($newIndex),
+    "type" => "update",
+    "userID" => $_SESSION['id'],
+    "name" => $_SESSION['name'],
+    "surname" => $_SESSION['surname'],
+    "role" => $_SESSION['rang'],
+    "date" => $dt,
+    "action" => "a modifié l'utilisateur " . ucfirst($prenom) . ' ' . strtoupper($nom) . ' dans la liste des utilisateurs'
+];
+
+array_unshift($data, $newObject);
+$json = json_encode($data, JSON_PRETTY_PRINT);
+file_put_contents($file, $json);
+
 $_SESSION['messageAdmin'] = '<p style="color: #41f1b6; text-shadow: 0px 0px black; font-size: 1.25em; font-weight: 100;">L\'utilisateur <strong>' . ucfirst($prenom) . ' ' . strtoupper($nom) . '</strong> a bien été modifié.</p>';
 header('Location: ./admin.php');
 exit();
