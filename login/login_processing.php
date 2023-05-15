@@ -51,6 +51,50 @@ if ($username_validate) {
     if ($count > 0) {
         $_SESSION['logged'] = true;
         $_SESSION['username'] = $username;
+
+        // Logs
+        $file = '../json/logs.json';
+        $content = file_get_contents($file);
+        $data = json_decode($content, true);
+        $maxIndex = 0;
+        foreach ($data as $item) {
+            $index = intval($item['index']);
+            if ($index > $maxIndex) {
+                $maxIndex = $index;
+            }
+        }
+        $newIndex = $maxIndex + 1;
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $getdt = new \DateTime();
+        $dt = $getdt->format('Y-m-d H:i:s');
+
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+
+        $newObject = [
+            "logID" => strval($newIndex),
+            "type" => "connexion",
+            "userID" => $result['id'],
+            "name" => $result['nom'],
+            "surname" => $result['prenom'],
+            "role" => $result['rang'],
+            "date" => $dt,
+            "action" => "s'est connecte",
+            "sessionID" => session_id(),
+            "IPadress" => $ip
+        ];
+
+        array_unshift($data, $newObject);
+        $json = json_encode($data, JSON_PRETTY_PRINT);
+        file_put_contents($file, $json);
+
         header('Location: ../index.php');
         exit();
     } elseif ($count < 1) {
