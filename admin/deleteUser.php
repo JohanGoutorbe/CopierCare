@@ -81,14 +81,6 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $getdt = new \DateTime();
 $dt = $getdt->format('Y-m-d H:i:s');
 
-if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-    $ip = $_SERVER['HTTP_CLIENT_IP'];
-} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-} else {
-    $ip = $_SERVER['REMOTE_ADDR'];
-}
-
 $newObject = [
     "logID" => strval($newIndex),
     "type" => "delete",
