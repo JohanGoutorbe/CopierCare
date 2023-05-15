@@ -52,7 +52,6 @@ if ($username_validate) {
         $_SESSION['logged'] = true;
         $_SESSION['username'] = $username;
 
-        // Logs
         $file = '../json/logs.json';
         $content = file_get_contents($file);
         $data = json_decode($content, true);
