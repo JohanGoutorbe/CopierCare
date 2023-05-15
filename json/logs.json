@@ -1,0 +1,14 @@
+[
+    {
+        "logID": "0",
+        "type": "connexion",
+        "userID": 1,
+        "name": "goutorbe",
+        "surname": "johan",
+        "role": "admin",
+        "date": "2023-05-15 15:49:04",
+        "action": "s'est connecte",
+        "sessionID": "eb28bbf0b5dfa93d59cfe588f7a86dae",
+        "IPadress": "84.103.106.50"
+    }
+]
