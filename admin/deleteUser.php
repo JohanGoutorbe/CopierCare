@@ -64,6 +64,52 @@ $stmt = $db->prepare($sql);
 $stmt->bindParam('id', $id);
 $stmt->execute();
 
+
+
+$file = '../json/logs.json';
+$content = file_get_contents($file);
+$data = json_decode($content, true);
+$maxIndex = 0;
+foreach ($data as $item) {
+    $index = intval($item['index']);
+    if ($index > $maxIndex) {
+        $maxIndex = $index;
+    }
+}
+$newIndex = $maxIndex + 1;
+
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$getdt = new \DateTime();
+$dt = $getdt->format('Y-m-d H:i:s');
+
+if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+    $ip = $_SERVER['HTTP_CLIENT_IP'];
+} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+} else {
+    $ip = $_SERVER['REMOTE_ADDR'];
+}
+
+$newObject = [
+    "logID" => strval($newIndex),
+    "type" => "delete",
+    "userID" => $_SESSION['id'],
+    "name" => $_SESSION['name'],
+    "surname" => $_SESSION['surname'],
+    "role" => $_SESSION['rang'],
+    "date" => $dt,
+    "action" => "a supprimé l'utilisateur" . ucfirst($prenom) . ' ' . strtoupper($nom),
+];
+
+array_unshift($data, $newObject);
+$json = json_encode($data, JSON_PRETTY_PRINT);
+file_put_contents($file, $json);
+
+
+
+
+
 $_SESSION['messageAdmin'] = '<p style="color: #41f1b6; font-size: 1.25em; font-weight: 100;">La suppression de l\'utilisateur <strong>' . ucfirst($prenom) . ' ' . strtoupper($nom) . '</strong> s\'est bien effectuée</p>';
 header($location);
 exit();
