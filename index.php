@@ -292,71 +292,56 @@ $intersCount = $stmt->rowCount();
                 <h2>Recent Updates</h2>
                 <div class="updates">
                     <?php 
-                    $file = "./json/updates.json";
+                    $file = "./json/logs.json";
                     $data = file_get_contents($file);
                     $obj = json_decode($data);
                     $loop = 0;
                     $now = time();
                     $sql = "SELECT `photo` FROM `utilisateurs` WHERE `id` = :id";
                     $stmt = $db->prepare($sql);
-                    while ($loop <= 4) { // Compter +1 pour l'affichage car départ à 0 (json)
-                        // Récupérer le nom de l'image de profil de l'utilisateur
-                        $userID = intval($obj[$loop]->userID);
-                        $stmt->bindParam('id', $userID);
-                        $stmt->execute();
-                        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                        $date = strtotime($obj[$loop]->date);
-                        // Calculer la différence des dates/heures
-                        $diff = abs($now - $date);
-                        $dateDiff = '';
-                        $secondes = $diff % 60;
-                        $diff = floor(($diff - $secondes) / 60);
-                        $minutes = $diff % 60;
-                        $diff = floor(($diff - $minutes) / 60);
-                        $heures = $diff % 24;
-                        $diff = floor(($diff - $heures) / 24);
-                        $jours = $diff;
-                        if ($minutes > 1) {
-                            $echoMinutes = ' minutes ';
-                        } else {
-                            $echoMinutes = ' minute ';
-                        }
-                        if ($heures > 1) {
-                            $echoHeures = ' heures et ';
-                        } else {
-                            $echoHeures = ' heure et ';
-                        }
-                        if ($jours > 1) {
-                            $echoJours = ' jours, ';
-                        } else {
-                            $echoJours = ' jour, ';
-                        }
-                        
-                        if ($jours == 0) {
-                            $date = $heures . $echoHeures . $minutes . $echoMinutes;
-                        } elseif ($jours == 0 && $heures !== 0) {
-                            $date = $minutes . $echoMinutes;
-                        } elseif (2 <= $jours && $jours < 7) {
-                            if ($heures > 1) {
-                                $echoHeures = ' heures';
-                            } else {
-                                $echoHeures = ' heure';
+                    while ($loop <= 4 && isset($obj[$loop])) {
+                        if (in_array($obj[$loop]->type, ['create', 'delete', 'update'])) {
+                            // Récupérer le nom de l'image de profil de l'utilisateur
+                            $userID = intval($obj[$loop]->userID);
+                            $stmt->bindParam('id', $userID);
+                            $stmt->execute();
+                            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                            // Calculer la différence des dates/heures
+                            $date = strtotime($obj[$loop]->date);
+                            $diff = abs($now - $date);
+                            $days = floor($diff / (60 * 60 * 24));
+                            $hours = floor(($diff % (60 * 60 * 24)) / (60 * 60));
+                            $minutes = floor(($diff % (60 * 60)) / 60);
+                            $seconds = $diff % 60;
+
+                            $dateDiff = '';
+                            if ($days > 0) {
+                                $dateDiff .= $days . ($days > 1 ? ' jours' : ' jour') . ', ';
                             }
-                            $date = $jours . ' jours et ' . $heures . $echoHeures;
-                        } elseif ($jours >= 7) {
-                            $date = $jours . ' jours';
-                        } else {
-                            $date = $jours . $echoJours . $heures . $echoHeures . $minutes . $echoMinutes;
+                            if ($hours > 0) {
+                                $date = $minutes . $echoMinutes;
+                            }
+                            if (2 <= $days && $days < 7) {
+                                $dateDiff .= $hours . ($hours > 1 ? ' heures' : ' heure') . ' et ';
+                            }
+                            if ($minutes > 0) {
+                                $dateDiff .= $minutes . ($minutes > 1 ? ' minutes' : ' minute');
+                            }
+                            if ($days == 0 && $hours == 0 && $minutes == 0) {
+                                $dateDiff = $seconds . ($seconds > 1 ? ' secondes' : ' seconde');
+                            }
+
+                            echo '<div class="update">';
+                            echo '<div class="profile-photo">';
+                            echo '<img src="./images/getImage.php?nom=' . $result['photo'] . '">';
+                            echo '</div>';
+                            echo '<div class="message">';
+                            echo '<p><b>' . ucfirst($obj[$loop]->surname) . ' ' . ucfirst($obj[$loop]->name) . '</b> ' . $obj[$loop]->action . '</p>';
+                            echo '<small class="text-muted">Il y a ' . $date . '</small>';
+                            echo '</div>';
+                            echo '</div>';
                         }
-                        echo '<div class="update">';
-                        echo '<div class="profile-photo">';
-                        echo '<img src="./images/getImage.php?nom=' . $result['photo'] . '">';
-                        echo '</div>';
-                        echo '<div class="message">';
-                        echo '<p><b>' . ucfirst($obj[$loop]->surname) . ' ' . ucfirst($obj[$loop]->name) . '</b> ' . $obj[$loop]->action . '</p>';
-                        echo '<small class="text-muted">Il y a ' . $date . '</small>';
-                        echo '</div>';
-                        echo '</div>';
                         $loop++;
                     }
                     ?>
