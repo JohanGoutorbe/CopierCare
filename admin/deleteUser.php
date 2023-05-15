@@ -89,7 +89,7 @@ $newObject = [
     "surname" => $_SESSION['surname'],
     "role" => $_SESSION['rang'],
     "date" => $dt,
-    "action" => "a supprimé l'utilisateur" . ucfirst($prenom) . ' ' . strtoupper($nom),
+    "action" => "a supprimé l'utilisateur " . ucfirst($prenom) . ' ' . strtoupper($nom) . ' de la liste des utilisateurs'
 ];
 
 array_unshift($data, $newObject);
