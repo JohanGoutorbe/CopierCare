@@ -303,7 +303,7 @@ $intersCount = $stmt->rowCount();
                         $stmt->execute();
                         $result = $stmt->fetch(PDO::FETCH_ASSOC);
                         $now = time();
-                        $date = $obj[$loop]->date;
+                        $date = strtotime($obj[$loop]->date);
                         echo '<div class="update">';
                         echo '<div class="profile-photo">';
                         echo '<img src="./images/getImage.php?nom=' . $result['photo'] . '">';
@@ -316,35 +316,6 @@ $intersCount = $stmt->rowCount();
                         $loop++;
                     }
                     ?>
-                    <!--
-                    <div class="update">
-                        <div class="profile-photo">
-                            <img src="./images/getImage.php?nom=profile-2.jpg">
-                        </div>
-                        <div class="message">
-                            <p><b>Mike Tyson</b> recieved his order of Night lion tech GPS drone.</p>
-                            <small class="text-muted">2 Minutes Ago</small>
-                        </div>
-                    </div>
-                    <div class="update">
-                        <div class="profile-photo">
-                            <img src="./images/getImage.php?nom=profile-3.jpg">
-                        </div>
-                        <div class="message">
-                            <p><b>Diana Ayi</b> declien her order of 2 DJI Air 2S.</p>
-                            <small class="text-muted">5 Minutes Ago</small>
-                        </div>
-                    </div>
-                    <div class="update">
-                        <div class="profile-photo">
-                            <img src="./images/getImage.php?nom=profile-4.jpg">
-                        </div>
-                        <div class="message">
-                            <p><b>Mandy Roy</b> recieved his order of Larvender KF102 Drone.</p>
-                            <small class="text-muted">6 Minutes Ago</small>
-                        </div>
-                    </div>
-                -->
                 </div>
             </div>
             <!--------------- END OF RECENT UPDATES ------------>
