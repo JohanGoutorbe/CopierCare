@@ -290,6 +290,33 @@ $intersCount = $stmt->rowCount();
             <div class="recent-updates">
                 <h2>Recent Updates</h2>
                 <div class="updates">
+                    <?php 
+                    $file = "./json/updates.json";
+                    $data = file_get_contents($file);
+                    $obj = json_decode($data);
+                    $loop = 0;
+                    while ($loop <= 3) {
+                        $sql = "SELECT `photo` FROM `utilisateurs` WHERE `id` = :id";
+                        $stmt = $db->prepare($sql);
+                        $userID = intval($obj[$loop]->userID);
+                        $stmt->bindParam('id', $userID);
+                        $stmt->execute();
+                        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                        $now = time();
+                        $date = $obj[$loop]->date;
+                        echo '<div class="update">';
+                        echo '<div class="profile-photo">';
+                        echo '<img src="./images/getImage.php?nom=' . $result['photo'] . '">';
+                        echo '</div>';
+                        echo '<div class="message">';
+                        echo '<p><b>' . ucfirst($obj[$loop]->surname) . ' ' . ucfirst($obj[$loop]->name) . '</b> ' . $obj[$loop]->action . '</p>';
+                        echo '<small class="text-muted">2 Minutes Ago</small>';
+                        echo '</div>';
+                        echo '</div>';
+                        $loop++;
+                    }
+                    ?>
+                    <!--
                     <div class="update">
                         <div class="profile-photo">
                             <img src="./images/getImage.php?nom=profile-2.jpg">
@@ -317,6 +344,7 @@ $intersCount = $stmt->rowCount();
                             <small class="text-muted">6 Minutes Ago</small>
                         </div>
                     </div>
+                -->
                 </div>
             </div>
             <!--------------- END OF RECENT UPDATES ------------>
