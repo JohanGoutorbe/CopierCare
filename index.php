@@ -48,6 +48,7 @@ $stmt->execute();
 
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $_SESSION['surname'] = $result['prenom'];
+$_SESSION['name'] = $result['nom'];
 $_SESSION['photo'] = $result['photo'];
 $_SESSION['rang'] = $result['rang'];
 $_SESSION['id'] = $result['id'];
