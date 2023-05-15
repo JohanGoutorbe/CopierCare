@@ -1,7 +1,31 @@
 [
     {
         "logID": "1",
-        "type": "connexion",
+        "type": "connect",
+        "userID": 1,
+        "name": "goutorbe",
+        "surname": "johan",
+        "role": "admin",
+        "date": "2023-05-15 16:42:59",
+        "action": "s'est connecte",
+        "sessionID": "eb28bbf0b5dfa93d59cfe588f7a86dae",
+        "IPadress": "84.103.106.50"
+    },
+    {
+        "logID": "1",
+        "type": "connect",
+        "userID": 3,
+        "name": "test",
+        "surname": "test",
+        "role": "test",
+        "date": "2023-05-15 16:35:46",
+        "action": "s'est connecte",
+        "sessionID": "eb28bbf0b5dfa93d59cfe588f7a86dae",
+        "IPadress": "84.103.106.50"
+    },
+    {
+        "logID": "1",
+        "type": "connect",
         "userID": 2,
         "name": "charles",
         "surname": "vincent",
@@ -13,7 +37,7 @@
     },
     {
         "logID": "0",
-        "type": "connexion",
+        "type": "connect",
         "userID": 1,
         "name": "goutorbe",
         "surname": "johan",
