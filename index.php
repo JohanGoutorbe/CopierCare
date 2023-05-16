@@ -1,12 +1,17 @@
 <?php
 
-//Affichage des erreurs sur la page web
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+error_reporting(0);
 
 // Connexion à la base de données
 include './utils/dbconnect.php';
+
+if (isset($_SESSION['logged']) && $_SESSION['logged'] == true && !empty($_SESSION['username'])) {
+    $_SESSION['validate'] = true;
+} else {
+    $_SESSION['errors'] = "Veuillez vous authentifier à l'aide de l'une des méthodes ci-dessus.";
+    header('Location: ./login/login.php');
+    exit();
+}
 
 /*
 <!-- Lire et écrire les relevés compteurs dans la base de données -->
@@ -28,14 +33,6 @@ while ($query = $stmt->fetch()) {
     }
     echo "</br>";
 }*/
-
-if (isset($_SESSION['logged']) && $_SESSION['logged'] == true && !empty($_SESSION['username'])) {
-    $_SESSION['validate'] = true;
-} else {
-    $_SESSION['errors'] = "Veuillez vous authentifier à l'aide de l'une des méthodes ci-dessus.";
-    header('Location: ./login/login.php');
-    exit();
-}
 
 $_SESSION['message'] = '';
 $_SESSION['messageAdmin'] = '';
@@ -320,7 +317,7 @@ $intersCount = $stmt->rowCount();
                                 $dateDiff .= $days . ($days > 1 ? ' jours' : ' jour') . ', ';
                             }
                             if ($hours > 0) {
-                                $date = $minutes . $echoMinutes;
+                                $date = $minutes . ($minutes > 1 ? ' minutes' : ' minute');
                             }
                             if (2 <= $days && $days < 7) {
                                 $dateDiff .= $hours . ($hours > 1 ? ' heures' : ' heure') . ' et ';
