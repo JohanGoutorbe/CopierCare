@@ -1,5 +1,9 @@
 <?php
+
+error_reporting(0);
+
 include '../utils/loggedVerif.php';
+
 if (isset($_POST["valider"])) {
     include '../utils/dbconnect.php';
     $req=$db->prepare("insert into images(nom,taille,bin) values(?,?,?)");
