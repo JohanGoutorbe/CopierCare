@@ -316,11 +316,11 @@ $intersCount = $stmt->rowCount();
                             if ($days > 0) {
                                 $dateDiff .= $days . ($days > 1 ? ' jours' : ' jour') . ', ';
                             }
-                            if ($hours > 0) {
-                                $date = $minutes . ($minutes > 1 ? ' minutes' : ' minute');
-                            }
                             if (2 <= $days && $days < 7) {
                                 $dateDiff .= $hours . ($hours > 1 ? ' heures' : ' heure') . ' et ';
+                            }
+                            if ($hours > 0) {
+                                $dateDiff = $minutes . ($minutes > 1 ? ' minutes' : ' minute');
                             }
                             if ($minutes > 0) {
                                 $dateDiff .= $minutes . ($minutes > 1 ? ' minutes' : ' minute');
@@ -335,7 +335,7 @@ $intersCount = $stmt->rowCount();
                             echo '</div>';
                             echo '<div class="message">';
                             echo '<p><b>' . ucfirst($obj[$loop]->surname) . ' ' . ucfirst($obj[$loop]->name) . '</b> ' . $obj[$loop]->action . '</p>';
-                            echo '<small class="text-muted">Il y a ' . $date . '</small>';
+                            echo '<small class="text-muted">Il y a ' . $dateDiff . '<br>' . abs($now - $date) . '</small>';
                             echo '</div>';
                             echo '</div>';
                         }
