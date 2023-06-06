@@ -10,6 +10,10 @@ include '../utils/dbconnect.php';
 
 include '../utils/loggedVerif.php';
 
+$sql = "SELECT * FROM `copieurs` WHERE 1";
+$stmt = $db->prepare($sql);
+$stmt->execute();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -93,49 +97,38 @@ include '../utils/loggedVerif.php';
                 <table>
                     <thead>
                         <tr>
-                            <th>Pièce</th>
-                            <th>Copieur</th>
+                            <th style=" display: none;">ID</th>
+                            <th>Marque</th>
+                            <th>Modèle</th>
+                            <th>Mise en service</th>
+                            <th>Fin de garantie</th>
+                            <th>Relevé compteur NB</th>
+                            <th>Relevé compteur Couleur</th>
                             <th>Client</th>
-                            <th>Limittes de la pièce</th>
-                            <th></th>
+                            <th>Options</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Fordable Mini Drone</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Fordable Mini Drone</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Fordable Mini Drone</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Fordable Mini Drone</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Fordable Mini Drone</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
+                        <?php
+                        while ($query = $stmt->fetch()) {
+                            $request = "SELECT `nom_client` FROM `clients` WHERE `id` = :client_id";
+                            $answer = $db->prepare($request);
+                            $answer->execute(['client_id' => $query['client_id']]);
+                            $row = $answer->fetch();
+                            echo '<tr>';
+                            echo '<td style="display: none;">' . $query['id'] . '</td>';
+                            echo '<td>' . $query['marque'] . '</td>';
+                            echo '<td>' . $query['modele'] . '</td>';
+                            echo '<td>0' . $query['date_mise_en_service'] . '</td>';
+                            echo '<td>' . $query['date_fin_garantie'] . '</td>';
+                            echo '<td>' . $query['releve_compteur_nb'] . '</td>';
+                            echo '<td>' . $query['releve_compteur_couleur'] . '</td>';
+                            echo '<td>' . $row['nom_client'] . '</td>';
+                            echo '<td>' . $query['options'] . '</td>';/*
+                            echo '<td class="warning" style="max-width: 100px;"><a href="clients.php?update=true&id=' . $query['id'] . '&name=' . $query['nom_client'] . '&email=' . $query['email'] . '&tel=' . $query['tel'] . '&adresse=' . $query['adresse'] . '&interlocuteur=' . $query['interlocuteur'] . '" style="text-decoration: none; color: #ffbb55; cursor: pointer;"><span class="material-icons-sharp">edit</span></a></td>';
+                            echo '<td class="danger" style="max-width: 100px;"><a href="deleteClient.php?id=' . $query['id'] . '&name=' . $query['nom_client'] . '" style="text-decoration: none; color: #ff7782; cursor: pointer;"><span class="material-icons-sharp">delete</span></a></td>';*/
+                            echo '</tr>';
+                        } ?>
                     </tbody>
                 </table>
                 <a href="#">Show All</a>
