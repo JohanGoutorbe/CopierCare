@@ -144,7 +144,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                     <span class="material-icons-sharp active">light_mode</span>
                     <span class="material-icons-sharp">dark_mode</span>
                 </div>
-                <div class="profile">
+                <a href="../parametres/parametres.php" class="profile">
                     <div class="info">
                         <p>Hey, <b><?php echo ucfirst($_SESSION['surname']); ?></b></p>
                         <small class="text-muted"><?php echo ucfirst($_SESSION['rang']); ?></small>
@@ -152,7 +152,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                     <div class="profile-photo">
                         <img src="../images/getImage.php?nom=<?php echo $_SESSION['photo']; ?>" alt="Photo de profil">
                     </div>
-                </div>
+                </a>
             </div>
             <!--------------- END OF TOP ------------>
         </div>
