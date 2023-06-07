@@ -274,21 +274,21 @@ $intersCount = $stmt->rowCount();
                     <span class="material-icons-sharp active">light_mode</span>
                     <span class="material-icons-sharp">dark_mode</span>
                 </div>
-                <div class="profile">
+                <a href="./parametres/parametres.php" class="profile">
                     <div class="info">
                         <p>Hey, <b><?php echo ucfirst($_SESSION['surname']); ?></b></p>
                         <small class="text-muted"><?php echo ucfirst($_SESSION['rang']); ?></small>
                     </div>
                     <div class="profile-photo">
-                        <img src="./images/getImage.php?nom=<?php echo $_SESSION['photo']; ?>" alt="Photo de profil">
+                        <img src="../images/getImage.php?nom=<?php echo $_SESSION['photo']; ?>" alt="Photo de profil">
                     </div>
-                </div>
+                </a>
             </div>
             <!--------------- END OF TOP ------------>
             <div class="recent-updates">
                 <h2>Recent Updates</h2>
                 <div class="updates">
-                    <?php 
+                    <?php
                     $file = "./json/logs.json";
                     $data = file_get_contents($file);
                     $obj = json_decode($data);
