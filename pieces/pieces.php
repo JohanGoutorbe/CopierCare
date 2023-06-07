@@ -190,6 +190,9 @@ if (isset($_POST[('pieceSubmit')])) {
                     </thead>
                     <tbody>
                         <?php
+                        $totalLignes = $stmt->rowCount();
+                        $lignesAffichees = 8;
+                        $i = 1;
                         while ($query = $stmt->fetch()) {
                             echo '<tr>';
                             echo '<td style="display: none;">' . $query['id'] . '</td>';
@@ -198,6 +201,11 @@ if (isset($_POST[('pieceSubmit')])) {
                             echo '<td class="warning" style="max-width: 100px;"><a href="pieces.php?update=true&id=' . $query['id'] . '&name=' . $query['nom'] . '&ref=' . $query['ref'] . '" style="text-decoration: none; color: #ffbb55; cursor: pointer;"><span class="material-icons-sharp">edit</span></a></td>';
                             echo '<td class="danger" style="max-width: 100px;"><a href="deletePiece.php?id=' . $query['id'] . '&name=' . $query['nom'] . '" style="text-decoration: none; color: #ff7782; cursor: pointer;"><span class="material-icons-sharp">delete</span></a></td>';
                             echo '</tr>';
+                            if ($i >= $lignesAffichees) {
+                                break;
+                            } else {
+                                $i++;
+                            }
                         } ?>
                     </tbody>
                 </table>
@@ -234,7 +242,7 @@ if (isset($_POST[('pieceSubmit')])) {
                     <span class="material-icons-sharp active">light_mode</span>
                     <span class="material-icons-sharp">dark_mode</span>
                 </div>
-                <div class="profile">
+                <a href="../parametres/parametres.php" class="profile">
                     <div class="info">
                         <p>Hey, <b><?php echo ucfirst($_SESSION['surname']); ?></b></p>
                         <small class="text-muted"><?php echo ucfirst($_SESSION['rang']); ?></small>
@@ -242,7 +250,7 @@ if (isset($_POST[('pieceSubmit')])) {
                     <div class="profile-photo">
                         <img src="../images/getImage.php?nom=<?php echo $_SESSION['photo']; ?>" alt="Photo de profil">
                     </div>
-                </div>
+                </a>
             </div>
             <!--------------- END OF TOP ------------>
         </div>
