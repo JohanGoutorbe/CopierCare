@@ -57,14 +57,14 @@ if (isset($_POST[('clientSubmit')])) {
                                                 $dt = $getdt->format('Y-m-d H:i:s');
 
                                                 $newObject = [
-                                                        "logID" => strval($newIndex),
-                                                        "type" => "create",
-                                                        "userID" => $_SESSION['id'],
-                                                        "name" => $_SESSION['name'],
-                                                        "role" => $_SESSION['rang'],
-                                                        "date" => $dt,
-                                                        "action" => "a ajouté le client " . $name . ' à la liste des clients'
-                                                    ];
+                                                    "logID" => strval($newIndex),
+                                                    "type" => "create",
+                                                    "userID" => $_SESSION['id'],
+                                                    "name" => $_SESSION['name'],
+                                                    "role" => $_SESSION['rang'],
+                                                    "date" => $dt,
+                                                    "action" => "a ajouté le client " . $name . ' à la liste des clients'
+                                                ];
 
                                                 array_unshift(
                                                     $data,
@@ -288,7 +288,7 @@ if (isset($_POST[('clientSubmit')])) {
                     <span class="material-icons-sharp active">light_mode</span>
                     <span class="material-icons-sharp">dark_mode</span>
                 </div>
-                <div class="profile">
+                <a href="../parametres/parametres.php" class="profile">
                     <div class="info">
                         <p>Hey, <b><?php echo ucfirst($_SESSION['surname']); ?></b></p>
                         <small class="text-muted"><?php echo ucfirst($_SESSION['rang']); ?></small>
@@ -296,7 +296,7 @@ if (isset($_POST[('clientSubmit')])) {
                     <div class="profile-photo">
                         <img src="../images/getImage.php?nom=<?php echo $_SESSION['photo']; ?>" alt="Photo de profil">
                     </div>
-                </div>
+                </a>
             </div>
             <!--------------- END OF TOP ------------>
         </div>
