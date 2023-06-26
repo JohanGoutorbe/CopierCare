@@ -109,7 +109,7 @@ $stmt->execute();
                         <div class="inputs">
                             <label>Client : </label>
                             <select style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" name="interClient" id="" required>
-                                <option value="" selected disabled hidden>Choisissez un client</option>
+                                <option value="" selected disabled hidden>Sélectionnez un client</option>
                                 <?php
                                 $sentence = "SELECT DISTINCT `id`, `nom_client` FROM `clients` WHERE 1";
                                 $clients = $db->prepare($sentence);
@@ -120,12 +120,30 @@ $stmt->execute();
                             </select>
                         </div>
                         <div class="inputs">
-                            <label for="interCopieur">Copieur : </label>
-                            <input type="text" name="interCopieur" placeholder="Copieur lié à l'intervention" required>
+                            <label>Copieur : </label>
+                            <select style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" name="interCopieur" id="" required>
+                                <option value="" selected disabled hidden>Sélectionnez un copieur</option>
+                                <?php
+                                $sentence = "SELECT DISTINCT `id`, `marque`, `modele` FROM `copieurs` WHERE 1";
+                                $copieurs = $db->prepare($sentence);
+                                $copieurs->execute();
+                                while ($copieur = $copieurs->fetch()) {
+                                    echo '<option style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" value="' . $copieur['id'] . '">' . $copieur['marque'] . " " . $copieur['modele'] . '</option>';
+                                } ?>
+                            </select>
                         </div>
                         <div class="inputs">
-                            <label for="interTech">Technicien : </label>
-                            <input type="text" name="interTech" placeholder="Technicien de l'intervention" required>
+                            <label>Technicien : </label>
+                            <select style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" name="interTech" id="" required>
+                                <option value="" selected disabled hidden>Sélectionnez un technicien</option>
+                                <?php
+                                $sentence = "SELECT DISTINCT `id`, `nom`, `prenom` FROM `utilisateurs` WHERE 1";
+                                $users = $db->prepare($sentence);
+                                $users->execute();
+                                while ($user = $users->fetch()) {
+                                    echo '<option style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" value="' . $user['id'] . '">' . ucfirst($user['prenom']) . ' ' . strtoupper($user['nom']) . '</option>';
+                                } ?>
+                            </select>
                         </div>
                         <div class="inputs">
                             <label for="interCompteurNB">Compteur NB : </label>
