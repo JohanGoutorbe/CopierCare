@@ -11,7 +11,7 @@ $sql = "SELECT * FROM `clients` WHERE 1 ORDER BY `nom_client`";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 
-if (isset($_POST[('clientSubmit')])) {
+if (isset($_POST['clientSubmit'])) {
     $name = htmlspecialchars($_POST['clientName']);
     $email = htmlspecialchars($_POST['clientEmail']);
     $tel = htmlspecialchars($_POST['clientPhone']);
