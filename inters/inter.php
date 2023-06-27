@@ -44,8 +44,7 @@ if (isset($_POST['userSubmit'])) {
                                                             if (strlen($compteurNB) < 10000000) {
                                                                 if (strlen($compteurCouleur) < 10000000) {
                                                                     if (strlen($pieces) < 250) {
-                                                                        $sql = "INSERT INTO `inters` (`num_gestco`, `date`, `client_id`, `copieur_id`, `tech_id`, `compteur_nb`, `compteur_couleur`, `panne`, `diagnostic`, `travaux`, `liste_pieces_changees`) VALUES 
-                                                                        (:num, :date, :client, :copieur, :tech, :comptNB, :comptC, :panne, :diag, :travaux, :pieces)";
+                                                                        $sql = "INSERT INTO `inters` (`num_gestco`, `date`, `client_id`, `copieur_id`, `tech_id`, `compteur_nb`, `compteur_couleur`, `panne`, `diagnostic`, `travaux`, `liste_pieces_changees`) VALUES (:num, :date, :client, :copieur, :tech, :comptNB, :comptC, :panne, :diag, :travaux, :pieces)";
                                                                         $stmt = $db->prepare($sql);
                                                                         $stmt->bindParam('num', $inter);
                                                                         $stmt->bindParam('date', $date);
@@ -58,6 +57,37 @@ if (isset($_POST['userSubmit'])) {
                                                                         $stmt->bindParam('diag', $diag);
                                                                         $stmt->bindParam('travaux', $travaux);
                                                                         $stmt->bindParam('pieces', $pieces);
+                                                                        $stmt->execute();
+
+                                                                        $file = '../json/logs.json';
+                                                                        $content = file_get_contents($file);
+                                                                        $data = json_decode($content, true);
+                                                                        $MaxIndex = 0;
+                                                                        foreach ($data as $item) {
+                                                                            $index = intval($item['index']);
+                                                                            if ($index > $MaxIndex) {
+                                                                                $MaxIndex = $index;
+                                                                            }
+                                                                        }
+                                                                        $newIndex = $MaxIndex + 1;
+
+                                                                        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                                                        $getdt = new \DateTime();
+                                                                        $dt = $getdt->format('Y-m-d H:i:s');
+
+                                                                        $newObject = [
+                                                                            "logID" => strval($newIndex),
+                                                                            "type" => "create",
+                                                                            "userID" => $_SESSION['id'],
+                                                                            "name" => $_SESSION['name'],
+                                                                            "role" => $_SESSION['rang'],
+                                                                            "date" => $dt,
+                                                                            "action" => "a ajouté l'intervention " . $inter . " à la liste des interventions"
+                                                                        ];
+
+                                                                        $_SESSION['message'] = '<p style="color: #41f1b6; text-shadow: 0px 0px black; width: auto;">L\'intervention N°<strong>' . $inter . '</strong> a bien été ajouté.</p>';
+                                                                        header("Refresh:0");
                                                                     } else {
                                                                         $_SESSION['message'] = '<p style="color: #ff7782;">La liste des pièces changées est trop longue (250 caractères maximum)</p>';
                                                                     }
@@ -251,19 +281,19 @@ if (isset($_POST['userSubmit'])) {
                             <input type="number" name="interCompteurCouleur" required>
                         </div>
                         <div class="inputs">
-                            <label for="interPanne">Panne :   </label>
+                            <label for="interPanne">Panne : </label>
                             <textarea rows='3' cols='50' name='interPanne' placeholder="Panne du copieur"></textarea>
                         </div>
                         <div class="inputs">
-                            <label for="interDiag">Dagnostic :   </label>
+                            <label for="interDiag">Dagnostic : </label>
                             <textarea rows='3' cols='50' name='interDiag' placeholder="Diagnostic de la panne"></textarea>
                         </div>
                         <div class="inputs">
-                            <label for="interWork">Travaux :   </label>
+                            <label for="interWork">Travaux : </label>
                             <textarea rows='3' cols='50' name='interWork' placeholder="Travaux sur le copieur"></textarea>
                         </div>
                         <div class="inputs">
-                            <label for="interPieces">Pieces :   </label>
+                            <label for="interPieces">Pieces : </label>
                             <textarea rows='3' cols='50' name='interPieces' placeholder="Pieces changées du copieur"></textarea>
                         </div>
                         <button type="submit" name="userSubmit" value="Add an User" class="BtnAdd">
@@ -355,6 +385,7 @@ if (isset($_POST['userSubmit'])) {
     </div>
 
     <script src="../script/index.js"></script>
+    <script src="../script/pieces.js"></script>
 </body>
 
 </html>
