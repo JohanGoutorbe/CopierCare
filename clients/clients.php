@@ -37,6 +37,8 @@ if (isset($_POST['clientSubmit'])) {
                                                 $stmt->bindParam('interlocuteur', $interlocuteur);
                                                 $stmt->execute();
 
+                                                $type = "create";
+                                                $action = "a ajouté le client " . $name . " à la liste des clients";
                                                 include '../utils/log.php';
 
                                                 $_SESSION['message'] = '<p style="color: #41f1b6; text-shadow: 0px 0px black; width: auto;">Le client <strong>' . $name . '</strong> a bien été ajouté.</p>';
