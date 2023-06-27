@@ -33,12 +33,46 @@ if (isset($_POST['userSubmit'])) {
                     if (!empty($tech)) {
                         if (!empty($compteurNB)) {
                             if (!empty($compteurCouleur)) {
-                                if (DateTime::createFromFormat('d/m/Y', $date)) {
-                                    # code...
+                                if (ctype_digit($inter)) {
+                                    if (DateTime::createFromFormat('d/m/Y', $date)) {
+                                        if (strlen($inter) < 10) {
+                                            if (strlen($date) < 10) {
+                                                if (strlen($client) < 100) {
+                                                    if (strlen($copieur) < 45) {
+                                                        if (strlen($tech) < 100) {
+                                                            if (strlen($compteurNB) < 10000000) {
+                                                                if (strlen($compteurCouleur) < 10000000) {
+                                                                    if (strlen($pieces) < 250) {
+                                                                    } else {
+                                                                        $_SESSION['message'] = '<p style="color: #ff7782;">La liste des pièces changées est trop longue (250 caractères maximum)</p>';
+                                                                    }
+                                                                } else {
+                                                                    $_SESSION['message'] = '<p style="color: #ff7782;">Le relevé compteur Couleur est trop long</p>';
+                                                                }
+                                                            } else {
+                                                                $_SESSION['message'] = '<p style="color: #ff7782;">Le relevé compteur NB est trop long</p>';
+                                                            }
+                                                        } else {
+                                                            $_SESSION['message'] = '<p style="color: #ff7782;">Le nom du technicien est trop long</p>';
+                                                        }
+                                                    } else {
+                                                        $_SESSION['message'] = '<p style="color: #ff7782;">Le nom du copieur est trop long</p>';
+                                                    }
+                                                } else {
+                                                    $_SESSION['message'] = '<p style="color: #ff7782;">Le nom du client est trop long</p>';
+                                                }
+                                            } else {
+                                                $_SESSION['message'] = '<p style="color: #ff7782;">La date est trop longue</p>';
+                                            }
+                                        } else {
+                                            $_SESSION['message'] = '<p style="color: #ff7782;">Le numéro d\'intervention est trop long</p>';
+                                        }
+                                    } else {
+                                        $_SESSION['message'] = '<p style="color: #ff7782;">Le format de la date est incorrect</p>';
+                                    }
                                 } else {
-                                    # code...
+                                    $_SESSION['message'] = '<p style="color: #ff7782;">Le numéro de l\'intervention est incorrect</p>';
                                 }
-                                
                             } else {
                                 $_SESSION['message'] = '<p style="color: #ff7782;">Le compteur couleur du copieur est vide</p>';
                             }
