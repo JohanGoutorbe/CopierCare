@@ -246,7 +246,7 @@ if (isset($_POST['userSubmit'])) {
                             <label for="interCompteurNB">Compteur NB : </label>
                             <input type="number" name="interCompteurNB" required>
                         </div>
-                        <div class="inputs">;
+                        <div class="inputs">
                             <label for="interCompteurCouleur">Compteur Couleur : </label>
                             <input type="number" name="interCompteurCouleur" required>
                         </div>
