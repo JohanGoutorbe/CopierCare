@@ -33,6 +33,11 @@ if (isset($_POST['userSubmit'])) {
                     if (!empty($tech)) {
                         if (!empty($compteurNB)) {
                             if (!empty($compteurCouleur)) {
+                                if (DateTime::createFromFormat('d/m/Y', $date)) {
+                                    # code...
+                                } else {
+                                    # code...
+                                }
                                 
                             } else {
                                 $_SESSION['message'] = '<p style="color: #ff7782;">Le compteur couleur du copieur est vide</p>';
@@ -55,10 +60,6 @@ if (isset($_POST['userSubmit'])) {
     } else {
         $_SESSION['message'] = '<p style="color: #ff7782;">Le numéro de l\'intervention est vide</p>';
     }
-    
-
-    ctype_digit()
-
 }
 
 ?>
