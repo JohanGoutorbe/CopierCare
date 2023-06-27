@@ -20,11 +20,12 @@ if (isset($_POST['userSubmit'])) {
     $client = htmlspecialchars($_POST['interClient']);
     $copieur = htmlspecialchars($_POST['interCopieur']);
     $tech = htmlspecialchars($_POST['interTech']);
-    $compteurNB = htmlspecialchars($_POST['interTech']);
-    $compteurCouleur = htmlspecialchars($_POST['interTech']);
-    $panne = htmlspecialchars($_POST['interTech']);
-    $diag = htmlspecialchars($_POST['interTech']);
-    $pieces = htmlspecialchars($_POST['interTech']);
+    $compteurNB = htmlspecialchars($_POST['interCompteurNB']);
+    $compteurCouleur = htmlspecialchars($_POST['interCompteurCouleur']);
+    $panne = htmlspecialchars($_POST['interPanne']);
+    $diag = htmlspecialchars($_POST['interDiag']);
+    $travaux = htmlspecialchars($_POST['interWork']);
+    $pieces = htmlspecialchars($_POST['interPieces']);
 
     if (!empty($inter)) {
         if (!empty($date)) {
@@ -37,12 +38,26 @@ if (isset($_POST['userSubmit'])) {
                                     if (DateTime::createFromFormat('d/m/Y', $date)) {
                                         if (strlen($inter) < 10) {
                                             if (strlen($date) < 10) {
-                                                if (strlen($client) < 100) {
-                                                    if (strlen($copieur) < 45) {
-                                                        if (strlen($tech) < 100) {
+                                                if (strlen($client) < 10) {
+                                                    if (strlen($copieur) < 10) {
+                                                        if (strlen($tech) < 10) {
                                                             if (strlen($compteurNB) < 10000000) {
                                                                 if (strlen($compteurCouleur) < 10000000) {
                                                                     if (strlen($pieces) < 250) {
+                                                                        $sql = "INSERT INTO `inters` (`num_gestco`, `date`, `client_id`, `copieur_id`, `tech_id`, `compteur_nb`, `compteur_couleur`, `panne`, `diagnostic`, `travaux`, `liste_pieces_changees`) VALUES 
+                                                                        (:num, :date, :client, :copieur, :tech, :comptNB, :comptC, :panne, :diag, :travaux, :pieces)";
+                                                                        $stmt = $db->prepare($sql);
+                                                                        $stmt->bindParam('num', $inter);
+                                                                        $stmt->bindParam('date', $date);
+                                                                        $stmt->bindParam('client', $client);
+                                                                        $stmt->bindParam('copieur', $copieur);
+                                                                        $stmt->bindParam('tech', $tech);
+                                                                        $stmt->bindParam('comptNB', $compteurNB);
+                                                                        $stmt->bindParam('comptC', $compteurCouleur);
+                                                                        $stmt->bindParam('panne', $panne);
+                                                                        $stmt->bindParam('diag', $diag);
+                                                                        $stmt->bindParam('travaux', $travaux);
+                                                                        $stmt->bindParam('pieces', $pieces);
                                                                     } else {
                                                                         $_SESSION['message'] = '<p style="color: #ff7782;">La liste des pièces changées est trop longue (250 caractères maximum)</p>';
                                                                     }
