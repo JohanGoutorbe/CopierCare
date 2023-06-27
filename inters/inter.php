@@ -59,39 +59,7 @@ if (isset($_POST['userSubmit'])) {
                                                                         $stmt->bindParam('pieces', $pieces);
                                                                         $stmt->execute();
 
-                                                                        $file = '../json/logs.json';
-                                                                        $content = file_get_contents($file);
-                                                                        $data = json_decode($content, true);
-                                                                        $MaxIndex = 0;
-                                                                        foreach ($data as $item) {
-                                                                            $index = intval($item['index']);
-                                                                            if ($index > $MaxIndex) {
-                                                                                $MaxIndex = $index;
-                                                                            }
-                                                                        }
-                                                                        $newIndex = $MaxIndex + 1;
-
-                                                                        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                                                                        $getdt = new \DateTime();
-                                                                        $dt = $getdt->format('Y-m-d H:i:s');
-
-                                                                        $newObject = [
-                                                                            "logID" => strval($newIndex),
-                                                                            "type" => "create",
-                                                                            "userID" => $_SESSION['id'],
-                                                                            "name" => $_SESSION['name'],
-                                                                            "role" => $_SESSION['rang'],
-                                                                            "date" => $dt,
-                                                                            "action" => "a ajouté l'intervention " . $inter . " à la liste des interventions"
-                                                                        ];
-
-                                                                        array_unshift(
-                                                                            $data,
-                                                                            $newObject
-                                                                        );
-                                                                        $json = json_encode($data, JSON_PRETTY_PRINT);
-                                                                        file_put_contents($file, $json)
+                                                                        include '../utils/log.php';
 
                                                                         $_SESSION['message'] = '<p style="color: #41f1b6; text-shadow: 0px 0px black; width: auto;">L\'intervention N°<strong>' . $inter . '</strong> a bien été ajouté.</p>';
                                                                         header("Refresh:0");
