@@ -19,12 +19,12 @@ $dt = $getdt->format('Y-m-d H:i:s');
 
 $newObject = [
     "logID" => strval($newIndex),
-    "type" => "create",
+    "type" => "$type",
     "userID" => $_SESSION['id'],
     "name" => $_SESSION['name'],
     "role" => $_SESSION['rang'],
     "date" => $dt,
-    "action" => "a ajouté le client " . $name . ' à la liste des clients'
+    "action" => $action
 ];
 
 array_unshift(
