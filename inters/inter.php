@@ -86,6 +86,13 @@ if (isset($_POST['userSubmit'])) {
                                                                             "action" => "a ajouté l'intervention " . $inter . " à la liste des interventions"
                                                                         ];
 
+                                                                        array_unshift(
+                                                                            $data,
+                                                                            $newObject
+                                                                        );
+                                                                        $json = json_encode($data, JSON_PRETTY_PRINT);
+                                                                        file_put_contents($file, $json)
+
                                                                         $_SESSION['message'] = '<p style="color: #41f1b6; text-shadow: 0px 0px black; width: auto;">L\'intervention N°<strong>' . $inter . '</strong> a bien été ajouté.</p>';
                                                                         header("Refresh:0");
                                                                     } else {
