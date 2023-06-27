@@ -14,6 +14,53 @@ $sql = "SELECT * FROM `inters` WHERE 1 ORDER BY `id` DESC";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 
+if (isset($_POST['userSubmit'])) {
+    $inter = htmlspecialchars($_POST['interNumber']);
+    $date = htmlspecialchars($_POST['interDate']);
+    $client = htmlspecialchars($_POST['interClient']);
+    $copieur = htmlspecialchars($_POST['interCopieur']);
+    $tech = htmlspecialchars($_POST['interTech']);
+    $compteurNB = htmlspecialchars($_POST['interTech']);
+    $compteurCouleur = htmlspecialchars($_POST['interTech']);
+    $panne = htmlspecialchars($_POST['interTech']);
+    $diag = htmlspecialchars($_POST['interTech']);
+    $pieces = htmlspecialchars($_POST['interTech']);
+
+    if (!empty($inter)) {
+        if (!empty($date)) {
+            if (!empty($client)) {
+                if (!empty($copieur)) {
+                    if (!empty($tech)) {
+                        if (!empty($compteurNB)) {
+                            if (!empty($compteurCouleur)) {
+                                
+                            } else {
+                                $_SESSION['message'] = '<p style="color: #ff7782;">Le compteur couleur du copieur est vide</p>';
+                            }
+                        } else {
+                            $_SESSION['message'] = '<p style="color: #ff7782;">Le compteur NB du copieur est vide</p>';
+                        }
+                    } else {
+                        $_SESSION['message'] = '<p style="color: #ff7782;">Le technicien de l\'intervention est vide</p>';
+                    }
+                } else {
+                    $_SESSION['message'] = '<p style="color: #ff7782;">Le copieur de l\'intervention est vide</p>';
+                }
+            } else {
+                $_SESSION['message'] = '<p style="color: #ff7782;">Le client de l\'intervention est vide</p>';
+            }
+        } else {
+            $_SESSION['message'] = '<p style="color: #ff7782;">La date de l\'intervention est vide</p>';
+        }
+    } else {
+        $_SESSION['message'] = '<p style="color: #ff7782;">Le numéro de l\'intervention est vide</p>';
+    }
+    
+
+    ctype_digit()
+
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -108,7 +155,7 @@ $stmt->execute();
                         </div>
                         <div class="inputs">
                             <label>Client : </label>
-                            <select style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" name="interClient" id="" required>
+                            <select style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" name="interClient" required>
                                 <option value="" selected disabled hidden>Sélectionnez un client</option>
                                 <?php
                                 $sentence = "SELECT DISTINCT `id`, `nom_client` FROM `clients` WHERE 1";
@@ -121,7 +168,7 @@ $stmt->execute();
                         </div>
                         <div class="inputs">
                             <label>Copieur : </label>
-                            <select style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" name="interCopieur" id="" required>
+                            <select style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" name="interCopieur" required>
                                 <option value="" selected disabled hidden>Sélectionnez un copieur</option>
                                 <?php
                                 $sentence = "SELECT DISTINCT `id`, `marque`, `modele` FROM `copieurs` WHERE 1";
@@ -134,7 +181,7 @@ $stmt->execute();
                         </div>
                         <div class="inputs">
                             <label>Technicien : </label>
-                            <select style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" name="interTech" id="" required>
+                            <select style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" name="interTech" required>
                                 <option value="" selected disabled hidden>Sélectionnez un technicien</option>
                                 <?php
                                 $sentence = "SELECT DISTINCT `id`, `nom`, `prenom` FROM `utilisateurs` WHERE 1";
@@ -149,7 +196,7 @@ $stmt->execute();
                             <label for="interCompteurNB">Compteur NB : </label>
                             <input type="number" name="interCompteurNB" required>
                         </div>
-                        <div class="inputs">
+                        <div class="inputs">;
                             <label for="interCompteurCouleur">Compteur Couleur : </label>
                             <input type="number" name="interCompteurCouleur" required>
                         </div>
