@@ -62,10 +62,10 @@ if (isset($_POST[('pieceSubmit')])) {
     <div class="container" style="grid-template-columns: 14rem auto 18rem;">
         <aside>
             <div class=" top">
-                <div class="logo">
+                <a class="logo" href="..\index.php">
                     <img src="../images/getImage.php?nom=logo_copiercare.png" alt="CopierCare logo">
                     <h2><span class="danger">COPIER</span>CARE</h2>
-                </div>
+                </a>
                 <div class="close" id="close-btn">
                     <span class="material-icons-sharp">close</span>
                 </div>
