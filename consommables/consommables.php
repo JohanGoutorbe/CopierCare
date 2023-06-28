@@ -30,7 +30,7 @@ include '../utils/loggedVerif.php';
     <div class="container">
         <aside>
             <div class="top">
-                <a class="logo" href="..\index.php">
+                <a class="logo" href="..\">
                     <img src="../images/getImage.php?nom=logo_copiercare.png" alt="CopierCare logo">
                     <h2><span class="danger">COPIER</span>CARE</h2>
                 </a>
