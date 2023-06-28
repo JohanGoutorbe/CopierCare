@@ -19,7 +19,7 @@ $dt = $getdt->format('Y-m-d H:i:s');
 
 $newObject = [
     "logID" => strval($newIndex),
-    "type" => "$type",
+    "type" => $type,
     "userID" => $_SESSION['id'],
     "name" => $_SESSION['name'],
     "role" => $_SESSION['rang'],
