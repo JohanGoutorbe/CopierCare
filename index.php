@@ -286,7 +286,7 @@ $intersCount = $stmt->rowCount();
             </div>
             <!--------------- END OF TOP ------------>
             <div class="recent-updates">
-                <h2>Recent Updates</h2>
+                <h2>Dernières Modifications</h2>
                 <div class="updates">
                     <?php
                     $file = "./json/logs.json";
@@ -296,7 +296,7 @@ $intersCount = $stmt->rowCount();
                     $now = time();
                     $sql = "SELECT `photo` FROM `utilisateurs` WHERE `id` = :id";
                     $stmt = $db->prepare($sql);
-                    while ($loop <= 4 && isset($obj[$loop])) {
+                    while ($loop <= 10 && isset($obj[$loop])) {
                         if (in_array($obj[$loop]->type, ['create', 'delete', 'update'])) {
                             // Récupérer le nom de l'image de profil de l'utilisateur
                             $userID = intval($obj[$loop]->userID);
@@ -335,7 +335,7 @@ $intersCount = $stmt->rowCount();
                             echo '</div>';
                             echo '<div class="message">';
                             echo '<p><b>' . ucfirst($obj[$loop]->surname) . ' ' . ucfirst($obj[$loop]->name) . '</b> ' . $obj[$loop]->action . '</p>';
-                            echo '<small class="text-muted">Il y a ' . $dateDiff . '<br>' . abs($now - $date) . '</small>';
+                            echo '<small class="text-muted">Il y a ' . $dateDiff . '</small>';
                             echo '</div>';
                             echo '</div>';
                         }
