@@ -127,12 +127,12 @@ $(function () {
             action: 'type',
             strings: ["These are not the error codes you're looking for.", 'Please either report this error to an administrator or return back and forget you were here...'],
             output: '&nbsp;',
-            postDelay: 2000
+            postDelay: 1500
         },
         {
             action: 'type',
             strings: ["Redirection to a potentially functional page..."],
-            output: '<span class="gray">Click on <a href="./index.php">this link</a> or refresh the page</><br><br>',
+            output: '<span class="gray">Click on <a href="../index.php">this link</a> or refresh the page</><br><br>',
             postDelay: 1000
         },
 
