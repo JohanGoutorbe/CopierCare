@@ -62,7 +62,7 @@ if (isset($_POST['userSubmit'])) {
                                                                     $action = "a ajouté l'intervention N°" . $inter . " à la liste des interventions";
                                                                     include '../utils/log.php';
 
-                                                                    $_SESSION['message'] = '<p style="color: #41f1b6; text-shadow: 0px 0px black; width: auto;">L\'intervention N°<strong>' . $inter . '</strong> a bien été ajouté.</p>';
+                                                                    $_SESSION['message'] = '<p style="color: #41f1b6; text-shadow: 0px 0px black; width: auto, font-size:16px;">L\'intervention <strong>' . $inter . '</strong> a bien été ajouté.</p>';
                                                                     header("Refresh:0");
                                                                 } else {
                                                                     $_SESSION['message'] = '<p style="color: #ff7782;">La liste des pièces changées est trop longue (250 caractères maximum)</p>';
