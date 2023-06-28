@@ -203,7 +203,8 @@ if (isset($_POST['userSubmit'])) {
                             <input type="text" name="interNumber" placeholder="Numéro de l'intervention" required>
                         </div>
                         <div class="inputs">
-                            <?php $getdt = new \DateTime(); $dt = $getdt->format('Y-m-d'); ?>
+                            <?php $getdt = new \DateTime();
+                            $dt = $getdt->format('Y-m-d'); ?>
                             <label for="interDate">Date : </label>
                             <input type="date" name="interDate" min="2023-01-01" value="<?php echo $dt; ?>" required>
                         </div>
@@ -296,6 +297,8 @@ if (isset($_POST['userSubmit'])) {
                             <th>Diagnostic</th>
                             <th>Travaux</th>
                             <th>Pièces changées</th>
+                            <th>Modifier</th>
+                            <th>Supprimer</th>
                         </tr>
                     </thead>
                     <tbody>
