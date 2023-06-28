@@ -278,8 +278,8 @@ if (isset($_POST['userSubmit'])) {
                         </button>
                     </form>
                 </section>
-                <?php if (isset($_SESSION['messageAdmin'])) {
-                    echo $_SESSION['messageAdmin'];
+                <?php if (isset($_SESSION['message'])) {
+                    echo $_SESSION['message'];
                 } ?>
             </div>
             <div class="alert bis">
