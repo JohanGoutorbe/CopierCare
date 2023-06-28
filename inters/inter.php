@@ -331,6 +331,8 @@ if (isset($_POST['userSubmit'])) {
                             echo '<td>' . $query['diagnostic'] . '</td>';
                             echo '<td>' . $query['travaux'] . '</td>';
                             echo '<td>' . $query['liste_pieces_changees'] . '</td>';
+                            echo '<td class="warning" style="max-width: 100px;"><a href="inter.php?update=true" style="text-decoration: none; color: #ffbb55; cursor: pointer;"><span class="material-icons-sharp">edit</span></a></td>';
+                            echo '<td class="danger" style="max-width: 100px;"><a href="deleteInter.php?id=' . $query['id'] . '&name=' . $query['num_gestco'] . '" style="text-decoration: none; color: #ff7782; cursor: pointer;"><span class="material-icons-sharp">delete</span></a></td>';
                             echo '</tr>';
                         } ?>
                     </tbody>
