@@ -36,7 +36,7 @@ if (isset($_POST['userSubmit'])) {
                             if (!empty($compteurCouleur)) {
                                 if (ctype_digit($inter)) {
                                     if (strlen($inter) < 10) {
-                                        if (strlen($date) < 10) {
+                                        if (strlen($date) < 15) {
                                             if (strlen($client) < 10) {
                                                 if (strlen($copieur) < 10) {
                                                     if (strlen($tech) < 10) {
@@ -203,8 +203,9 @@ if (isset($_POST['userSubmit'])) {
                             <input type="text" name="interNumber" placeholder="Numéro de l'intervention" required>
                         </div>
                         <div class="inputs">
+                            <?php $getdt = new \DateTime(); $dt = $getdt->format('Y-m-d'); ?>
                             <label for="interDate">Date : </label>
-                            <input type="date" name="interDate" required>
+                            <input type="date" name="interDate" min="2023-01-01" value="<?php echo $dt; ?>" required>
                         </div>
                         <div class="inputs">
                             <label>Client : </label>
