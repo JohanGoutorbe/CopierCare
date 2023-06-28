@@ -35,62 +35,58 @@ if (isset($_POST['userSubmit'])) {
                         if (!empty($compteurNB)) {
                             if (!empty($compteurCouleur)) {
                                 if (ctype_digit($inter)) {
-                                    if (DateTime::createFromFormat('d/m/Y', $date)) {
-                                        if (strlen($inter) < 10) {
-                                            if (strlen($date) < 10) {
-                                                if (strlen($client) < 10) {
-                                                    if (strlen($copieur) < 10) {
-                                                        if (strlen($tech) < 10) {
-                                                            if (strlen($compteurNB) < 10000000) {
-                                                                if (strlen($compteurCouleur) < 10000000) {
-                                                                    if (strlen($pieces) < 250) {
-                                                                        $sql = "INSERT INTO `inters` (`num_gestco`, `date`, `client_id`, `copieur_id`, `tech_id`, `compteur_nb`, `compteur_couleur`, `panne`, `diagnostic`, `travaux`, `liste_pieces_changees`) VALUES (:num, :date, :client, :copieur, :tech, :comptNB, :comptC, :panne, :diag, :travaux, :pieces)";
-                                                                        $stmt = $db->prepare($sql);
-                                                                        $stmt->bindParam('num', $inter);
-                                                                        $stmt->bindParam('date', $date);
-                                                                        $stmt->bindParam('client', $client);
-                                                                        $stmt->bindParam('copieur', $copieur);
-                                                                        $stmt->bindParam('tech', $tech);
-                                                                        $stmt->bindParam('comptNB', $compteurNB);
-                                                                        $stmt->bindParam('comptC', $compteurCouleur);
-                                                                        $stmt->bindParam('panne', $panne);
-                                                                        $stmt->bindParam('diag', $diag);
-                                                                        $stmt->bindParam('travaux', $travaux);
-                                                                        $stmt->bindParam('pieces', $pieces);
-                                                                        $stmt->execute();
+                                    if (strlen($inter) < 10) {
+                                        if (strlen($date) < 10) {
+                                            if (strlen($client) < 10) {
+                                                if (strlen($copieur) < 10) {
+                                                    if (strlen($tech) < 10) {
+                                                        if (strlen($compteurNB) < 10000000) {
+                                                            if (strlen($compteurCouleur) < 10000000) {
+                                                                if (strlen($pieces) < 250) {
+                                                                    $sql = "INSERT INTO `inters` (`num_gestco`, `date`, `client_id`, `copieur_id`, `tech_id`, `compteur_nb`, `compteur_couleur`, `panne`, `diagnostic`, `travaux`, `liste_pieces_changees`) VALUES (:num, :date, :client, :copieur, :tech, :comptNB, :comptC, :panne, :diag, :travaux, :pieces)";
+                                                                    $stmt = $db->prepare($sql);
+                                                                    $stmt->bindParam('num', $inter);
+                                                                    $stmt->bindParam('date', $date);
+                                                                    $stmt->bindParam('client', $client);
+                                                                    $stmt->bindParam('copieur', $copieur);
+                                                                    $stmt->bindParam('tech', $tech);
+                                                                    $stmt->bindParam('comptNB', $compteurNB);
+                                                                    $stmt->bindParam('comptC', $compteurCouleur);
+                                                                    $stmt->bindParam('panne', $panne);
+                                                                    $stmt->bindParam('diag', $diag);
+                                                                    $stmt->bindParam('travaux', $travaux);
+                                                                    $stmt->bindParam('pieces', $pieces);
+                                                                    $stmt->execute();
 
-                                                                        $type = "create";
-                                                                        $action = "a ajouté l'intervention N°" . $inter . " à la liste des interventions";
-                                                                        include '../utils/log.php';
+                                                                    $type = "create";
+                                                                    $action = "a ajouté l'intervention N°" . $inter . " à la liste des interventions";
+                                                                    include '../utils/log.php';
 
-                                                                        $_SESSION['message'] = '<p style="color: #41f1b6; text-shadow: 0px 0px black; width: auto;">L\'intervention N°<strong>' . $inter . '</strong> a bien été ajouté.</p>';
-                                                                        header("Refresh:0");
-                                                                    } else {
-                                                                        $_SESSION['message'] = '<p style="color: #ff7782;">La liste des pièces changées est trop longue (250 caractères maximum)</p>';
-                                                                    }
+                                                                    $_SESSION['message'] = '<p style="color: #41f1b6; text-shadow: 0px 0px black; width: auto;">L\'intervention N°<strong>' . $inter . '</strong> a bien été ajouté.</p>';
+                                                                    header("Refresh:0");
                                                                 } else {
-                                                                    $_SESSION['message'] = '<p style="color: #ff7782;">Le relevé compteur Couleur est trop long</p>';
+                                                                    $_SESSION['message'] = '<p style="color: #ff7782;">La liste des pièces changées est trop longue (250 caractères maximum)</p>';
                                                                 }
                                                             } else {
-                                                                $_SESSION['message'] = '<p style="color: #ff7782;">Le relevé compteur NB est trop long</p>';
+                                                                $_SESSION['message'] = '<p style="color: #ff7782;">Le relevé compteur Couleur est trop long</p>';
                                                             }
                                                         } else {
-                                                            $_SESSION['message'] = '<p style="color: #ff7782;">Le nom du technicien est trop long</p>';
+                                                            $_SESSION['message'] = '<p style="color: #ff7782;">Le relevé compteur NB est trop long</p>';
                                                         }
                                                     } else {
-                                                        $_SESSION['message'] = '<p style="color: #ff7782;">Le nom du copieur est trop long</p>';
+                                                        $_SESSION['message'] = '<p style="color: #ff7782;">Le nom du technicien est trop long</p>';
                                                     }
                                                 } else {
-                                                    $_SESSION['message'] = '<p style="color: #ff7782;">Le nom du client est trop long</p>';
+                                                    $_SESSION['message'] = '<p style="color: #ff7782;">Le nom du copieur est trop long</p>';
                                                 }
                                             } else {
-                                                $_SESSION['message'] = '<p style="color: #ff7782;">La date est trop longue</p>';
+                                                $_SESSION['message'] = '<p style="color: #ff7782;">Le nom du client est trop long</p>';
                                             }
                                         } else {
-                                            $_SESSION['message'] = '<p style="color: #ff7782;">Le numéro d\'intervention est trop long</p>';
+                                            $_SESSION['message'] = '<p style="color: #ff7782;">La date est trop longue</p>';
                                         }
                                     } else {
-                                        $_SESSION['message'] = '<p style="color: #ff7782;">Le format de la date est incorrect</p>';
+                                        $_SESSION['message'] = '<p style="color: #ff7782;">Le numéro d\'intervention est trop long</p>';
                                     }
                                 } else {
                                     $_SESSION['message'] = '<p style="color: #ff7782;">Le numéro de l\'intervention est incorrect</p>';
