@@ -1,6 +1,6 @@
 [
     {
-        "logID": "1",
+        "index": "3",
         "type": "connect",
         "userID": 1,
         "name": "goutorbe",
@@ -12,7 +12,7 @@
         "IPadress": "84.103.106.50"
     },
     {
-        "logID": "1",
+        "index": "2",
         "type": "connect",
         "userID": 3,
         "name": "test",
@@ -24,7 +24,7 @@
         "IPadress": "84.103.106.50"
     },
     {
-        "logID": "1",
+        "index": "1",
         "type": "connect",
         "userID": 2,
         "name": "charles",
@@ -36,7 +36,7 @@
         "IPadress": "84.103.106.50"
     },
     {
-        "logID": "0",
+        "index": "0",
         "type": "connect",
         "userID": 1,
         "name": "goutorbe",
