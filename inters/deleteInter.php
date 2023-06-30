@@ -1,6 +1,11 @@
 <?php
 
-error_reporting(0);
+
+//Affichage des erreurs sur la page web
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 
 //Connexion à la base de données
 include '../utils/dbconnect.php';
@@ -36,7 +41,7 @@ if (!isset($_GET['inter'])) {
 $id = htmlspecialchars($_GET['id']);
 $inter = htmlspecialchars($_GET['inter']);
 
-$sql = "DELETE FROM `inter` WHERE `id` = :id";
+$sql = "DELETE FROM `inters` WHERE `id` = :id";
 $stmt = $db->prepare($sql);
 $stmt->bindParam('id', $id);
 $stmt->execute();
@@ -46,5 +51,5 @@ $action = "a supprimé l'intervention " . $inter . ' de la liste des interventio
 include '../utils/log.php';
 
 $_SESSION['message'] = '<p style="color: #41f1b6; font-size: 1.25em; font-weight: 100;">La suppression de l\'intervention <strong>' . $inter . '</strong> s\'est bien effectuée</p>';
-header($location);
+header('Location: ./inter.php');
 exit();
