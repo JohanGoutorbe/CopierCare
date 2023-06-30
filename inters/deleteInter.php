@@ -11,7 +11,7 @@ $error = '<p style="color: #ff7782;">L\'url est incorrecte</p>';
 
 $location = 'Location: ./inter.php';
 if (!isset($_GET['id'])) {
-    $_SESSION['message'] = $error. "1";
+    $_SESSION['message'] = $error . "1";
     header($location);
     exit();
 } elseif (empty($_GET['id'])) {
