@@ -349,12 +349,12 @@ if (isset($_POST['userSubmit'])) {
                                                                                                                 } ?>">
             <div class="modal-wrapper">
                 <form action="./inter.php" method="POST" class="formAddPiece" enctype="multipart/form-data">
-                    <h1 id="titlemodal">Modifier l'intervention :<br><?php if (isset($_GET['num_gestco'])) {
-                                                                            echo $_GET['name'];
+                    <h1 id="titlemodal">Modifier l'intervention : <?php if (isset($_GET['num_gestco'])) {
+                                                                            echo $_GET['num_gestco'];
                                                                         } ?></h1>
                     <div class="inputs">
                         <label for="interNumber">Numéro d'inter : </label>
-                        <input type="text" name="interNumber" placeholder="Numéro de l'intervention" required>
+                        <input type="text" name="interNumber" placeholder="Numéro de l'intervention" value="<?php echo $_GET['num_gestco'] ?>" required>
                     </div>
                     <div class="inputs">
                         <?php $getdt = new \DateTime();
