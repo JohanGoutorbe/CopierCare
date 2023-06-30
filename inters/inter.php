@@ -127,6 +127,7 @@ if (isset($_POST['userSubmit'])) {
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+outlined">
     <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/modal_style.css">
     <link rel="shortcut icon" href="../images/getImage.php?nom=logo_copiercare.png" type="image/x-icon">
 </head>
 
@@ -331,7 +332,7 @@ if (isset($_POST['userSubmit'])) {
                             echo '<td>' . $query['diagnostic'] . '</td>';
                             echo '<td>' . $query['travaux'] . '</td>';
                             echo '<td>' . $query['liste_pieces_changees'] . '</td>';
-                            echo '<td class="warning" style="max-width: 100px;"><a href="inter.php?update=true" style="text-decoration: none; color: #ffbb55; cursor: pointer;"><span class="material-icons-sharp">edit</span></a></td>';
+                            echo '<td class="warning" style="max-width: 100px;"><a href="inter.php?update=true&id=' . $query['id'] . '&num_gestco=' . $query['num_gestco'] . '&date=' . $query['date'] . '&nom_client=' . $row['nom_client'] . '&marque=' . $row2['marque'] . '&modele=' . $row2['modele'] . '&prenom=' . $row3['prenom'] . '&nom=' . $row3['nom'] . '&compteur_nb=' . $query['compteur_nb'] . '&compteur_couleur=' . $query['compteur_couleur'] . '&panne=' . $query['panne'] . '&diagnostic=' . $query['diagnostic'] . '&travaux=' . $query['travaux'] . '&liste_pieces_changees=' . $query['liste_pieces_changees'] . ' style="text-decoration: none; color: #ffbb55; cursor: pointer;"><span class="material-icons-sharp">edit</span></a></td>';
                             echo '<td class="danger" style="max-width: 100px;"><a href="deleteInter.php?id=' . $query['id'] . '&inter=' . $query['num_gestco'] . '" style="text-decoration: none; color: #ff7782; cursor: pointer;"><span class="material-icons-sharp">delete</span></a></td>';
                             echo '</tr>';
                         } ?>
@@ -340,6 +341,96 @@ if (isset($_POST['userSubmit'])) {
                 <a href="#">Voir tout</a>
             </div>
         </main>
+
+        <section id="modal" class="modal" aria-hidden="true" role="dialog" aria_labelledby="titlemodal" style="<?php if (isset($_GET['update'])) {
+                                                                                                                    echo 'visibility: visible; opacity: 1;';
+                                                                                                                } else {
+                                                                                                                    echo 'visibility: hidden; opacity: 0';
+                                                                                                                } ?>">
+            <div class="modal-wrapper">
+                <form action="./inter.php" method="POST" class="formAddPiece" enctype="multipart/form-data">
+                    <h1 id="titlemodal">Modifier l'intervention :<br><?php if (isset($_GET['num_gestco'])) {
+                                                                            echo $_GET['name'];
+                                                                        } ?></h1>
+                    <div class="inputs">
+                        <label for="interNumber">Numéro d'inter : </label>
+                        <input type="text" name="interNumber" placeholder="Numéro de l'intervention" required>
+                    </div>
+                    <div class="inputs">
+                        <?php $getdt = new \DateTime();
+                        $dt = $getdt->format('Y-m-d'); ?>
+                        <label for="interDate">Date : </label>
+                        <input type="date" name="interDate" min="2023-01-01" value="<?php echo $dt; ?>" required>
+                    </div>
+                    <div class="inputs">
+                        <label>Client : </label>
+                        <select style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" name="interClient" required>
+                            <option value="" selected disabled hidden>Sélectionnez un client</option>
+                            <?php
+                            $sentence = "SELECT DISTINCT `id`, `nom_client` FROM `clients` WHERE 1";
+                            $clients = $db->prepare($sentence);
+                            $clients->execute();
+                            while ($client = $clients->fetch()) {
+                                echo '<option style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" value="' . $client['id'] . '">' . $client['nom_client'] . '</option>';
+                            } ?>
+                        </select>
+                    </div>
+                    <div class="inputs">
+                        <label>Copieur : </label>
+                        <select style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" name="interCopieur" required>
+                            <option value="" selected disabled hidden>Sélectionnez un copieur</option>
+                            <?php
+                            $sentence = "SELECT DISTINCT `id`, `marque`, `modele` FROM `copieurs` WHERE 1";
+                            $copieurs = $db->prepare($sentence);
+                            $copieurs->execute();
+                            while ($copieur = $copieurs->fetch()) {
+                                echo '<option style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" value="' . $copieur['id'] . '">' . $copieur['marque'] . " " . $copieur['modele'] . '</option>';
+                            } ?>
+                        </select>
+                    </div>
+                    <div class="inputs">
+                        <label>Technicien : </label>
+                        <select style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" name="interTech" required>
+                            <option value="" selected disabled hidden>Sélectionnez un technicien</option>
+                            <?php
+                            $sentence = "SELECT DISTINCT `id`, `nom`, `prenom` FROM `utilisateurs` WHERE 1";
+                            $users = $db->prepare($sentence);
+                            $users->execute();
+                            while ($user = $users->fetch()) {
+                                echo '<option style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" value="' . $user['id'] . '">' . ucfirst($user['prenom']) . ' ' . strtoupper($user['nom']) . '</option>';
+                            } ?>
+                        </select>
+                    </div>
+                    <div class="inputs">
+                        <label for="interCompteurNB">Compteur NB : </label>
+                        <input type="number" name="interCompteurNB" required>
+                    </div>
+                    <div class="inputs">
+                        <label for="interCompteurCouleur">Compteur Couleur : </label>
+                        <input type="number" name="interCompteurCouleur" required>
+                    </div>
+                    <div class="inputs">
+                        <label for="interPanne">Panne : </label>
+                        <textarea rows='3' cols='50' name='interPanne' placeholder="Panne du copieur"></textarea>
+                    </div>
+                    <div class="inputs">
+                        <label for="interDiag">Dagnostic : </label>
+                        <textarea rows='3' cols='50' name='interDiag' placeholder="Diagnostic de la panne"></textarea>
+                    </div>
+                    <div class="inputs">
+                        <label for="interWork">Travaux : </label>
+                        <textarea rows='3' cols='50' name='interWork' placeholder="Travaux sur le copieur"></textarea>
+                    </div>
+                    <div class="inputs">
+                        <label for="interPieces">Pieces : </label>
+                        <textarea rows='3' cols='50' name='interPieces' placeholder="Pieces changées du copieur"></textarea>
+                    </div>
+                    <button type="submit" name="userUpdateSubmit">Appliquer les modifications</button></button>
+                </form>
+            </div>
+        </section>
+        <!----------------------- END OF MODAL ------------------------->
+
         <div class="right">
             <div class="top">
                 <button id="menu-btn">
