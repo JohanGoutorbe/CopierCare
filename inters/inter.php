@@ -350,21 +350,21 @@ if (isset($_POST['userSubmit'])) {
             <div class="modal-wrapper">
                 <form action="./inter.php" method="POST" class="formAddPiece" enctype="multipart/form-data">
                     <h1 id="titlemodal">Modifier l'intervention : <?php if (isset($_GET['num_gestco'])) {
-                                                                            echo $_GET['num_gestco'];
-                                                                        } ?></h1>
+                                                                        echo $_GET['num_gestco'];
+                                                                    } ?></h1>
                     <div class="inputs">
-                        <label for="interNumber">Numéro d'inter : </label>
-                        <input type="text" name="interNumber" placeholder="Numéro de l'intervention" value="<?php echo $_GET['num_gestco'] ?>" required>
+                        <label for="inter">Numéro d'inter : </label>
+                        <input type="text" name="inter" placeholder="Numéro de l'intervention" value="<?php echo $_GET['num_gestco'] ?>" required>
                     </div>
                     <div class="inputs">
                         <?php $getdt = new \DateTime();
                         $dt = $getdt->format('Y-m-d'); ?>
-                        <label for="interDate">Date : </label>
-                        <input type="date" name="interDate" min="2023-01-01" value="<?php echo $dt; ?>" required>
+                        <label for="date">Date : </label>
+                        <input type="date" name="date" min="2023-01-01" value="<?php echo $_GET['date']; ?>" required>
                     </div>
                     <div class="inputs">
-                        <label>Client : </label>
-                        <select style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" name="interClient" required>
+                        <label for="client">Client : </label>
+                        <select style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" name="client" required>
                             <option value="" selected disabled hidden>Sélectionnez un client</option>
                             <?php
                             $sentence = "SELECT DISTINCT `id`, `nom_client` FROM `clients` WHERE 1";
@@ -376,8 +376,8 @@ if (isset($_POST['userSubmit'])) {
                         </select>
                     </div>
                     <div class="inputs">
-                        <label>Copieur : </label>
-                        <select style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" name="interCopieur" required>
+                        <label for="copieur">Copieur : </label>
+                        <select style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" name="copieur" required>
                             <option value="" selected disabled hidden>Sélectionnez un copieur</option>
                             <?php
                             $sentence = "SELECT DISTINCT `id`, `marque`, `modele` FROM `copieurs` WHERE 1";
@@ -389,8 +389,8 @@ if (isset($_POST['userSubmit'])) {
                         </select>
                     </div>
                     <div class="inputs">
-                        <label>Technicien : </label>
-                        <select style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" name="interTech" required>
+                        <label for="tech">Technicien : </label>
+                        <select style="padding:0.25rem; border:1px solid #ccc; border-radius:5px; width:159px;" name="tech" required>
                             <option value="" selected disabled hidden>Sélectionnez un technicien</option>
                             <?php
                             $sentence = "SELECT DISTINCT `id`, `nom`, `prenom` FROM `utilisateurs` WHERE 1";
@@ -402,28 +402,28 @@ if (isset($_POST['userSubmit'])) {
                         </select>
                     </div>
                     <div class="inputs">
-                        <label for="interCompteurNB">Compteur NB : </label>
-                        <input type="number" name="interCompteurNB" required>
+                        <label for="comptNB">Compteur NB : </label>
+                        <input type="number" name="comptNB" required>
                     </div>
                     <div class="inputs">
-                        <label for="interCompteurCouleur">Compteur Couleur : </label>
-                        <input type="number" name="interCompteurCouleur" required>
+                        <label for="comptCoul">Compteur Couleur : </label>
+                        <input type="number" name="comptCoul" required>
                     </div>
                     <div class="inputs">
-                        <label for="interPanne">Panne : </label>
-                        <textarea rows='3' cols='50' name='interPanne' placeholder="Panne du copieur"></textarea>
+                        <label for="panne">Panne : </label>
+                        <textarea rows='3' cols='50' name='panne' placeholder="Panne du copieur"></textarea>
                     </div>
                     <div class="inputs">
-                        <label for="interDiag">Dagnostic : </label>
-                        <textarea rows='3' cols='50' name='interDiag' placeholder="Diagnostic de la panne"></textarea>
+                        <label for="diag">Dagnostic : </label>
+                        <textarea rows='3' cols='50' name='diag' placeholder="Diagnostic de la panne"></textarea>
                     </div>
                     <div class="inputs">
-                        <label for="interWork">Travaux : </label>
-                        <textarea rows='3' cols='50' name='interWork' placeholder="Travaux sur le copieur"></textarea>
+                        <label for="work">Travaux : </label>
+                        <textarea rows='3' cols='50' name='work' placeholder="Travaux sur le copieur"></textarea>
                     </div>
                     <div class="inputs">
-                        <label for="interPieces">Pieces : </label>
-                        <textarea rows='3' cols='50' name='interPieces' placeholder="Pieces changées du copieur"></textarea>
+                        <label for="pieces">Pieces : </label>
+                        <textarea rows='3' cols='50' name='pieces' placeholder="Pieces changées du copieur"></textarea>
                     </div>
                     <button type="submit" name="userUpdateSubmit">Appliquer les modifications</button></button>
                 </form>
